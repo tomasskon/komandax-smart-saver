@@ -1,0 +1,13 @@
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.exe
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.deps.json
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.runtimeconfig.json
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.runtimeconfig.dev.json
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.dll
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.pdb
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.csprojAssemblyReference.cache
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.AssemblyInfoInputs.cache
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.AssemblyInfo.cs
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.csproj.CoreCompileInputs.cache
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.dll
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.pdb
+C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.genruntimeconfig.cache
