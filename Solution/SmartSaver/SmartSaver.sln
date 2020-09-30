@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSaver", "SmartSaver\SmartSaver.csproj", "{BAB43503-F72D-47BB-918E-54367FFE0E01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAB43503-F72D-47BB-918E-54367FFE0E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB43503-F72D-47BB-918E-54367FFE0E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB43503-F72D-47BB-918E-54367FFE0E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB43503-F72D-47BB-918E-54367FFE0E01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {923D3875-F609-499C-AA8C-7B1902D3D0CC}
+	EndGlobalSection
+EndGlobal
