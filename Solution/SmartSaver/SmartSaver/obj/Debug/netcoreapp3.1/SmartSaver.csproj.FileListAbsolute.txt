@@ -11,3 +11,18 @@ C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\S
 C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.dll
 C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.pdb
 C:\Users\Tomas\Desktop\Univeras\2020 3kursas\PSI\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.genruntimeconfig.cache
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.exe
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.deps.json
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.runtimeconfig.json
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.runtimeconfig.dev.json
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.dll
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\bin\Debug\netcoreapp3.1\SmartSaver.pdb
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.csprojAssemblyReference.cache
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.AssemblyInfoInputs.cache
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.AssemblyInfo.cs
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.csproj.CoreCompileInputs.cache
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.dll
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.pdb
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.genruntimeconfig.cache
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.Form1.resources
+C:\Users\Ignas\source\repos\komandax-smart-saver\Solution\SmartSaver\SmartSaver\obj\Debug\netcoreapp3.1\SmartSaver.csproj.GenerateResource.cache
