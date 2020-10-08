@@ -1,3 +1,4 @@
+using SmartSaver.Forms.SpendingsCategorization;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace SmartSaver
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new SpendingCategorization());
         }
     }
 }
