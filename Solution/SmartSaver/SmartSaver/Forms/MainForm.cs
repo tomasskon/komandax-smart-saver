@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using UserControls = SmartSaver.Forms.UserControls;
 
 namespace SmartSaver
@@ -27,21 +28,17 @@ namespace SmartSaver
 
         protected UserControl GetPageFromButtonName(string buttonName)
         {
-            switch (buttonName)
+            Dictionary<string, UserControl> dictionary = new Dictionary<string, UserControl>()
             {
-                case "transactionsButton":
-                    return transactionsPage;
-                case "savingsButton":
-                    return savingsPage;
-                case "spendingsButton":
-                    return spendingsPage;
-                case "balanceButton":
-                    return balancePage;
-                case "moreButton":
-                    return morePage;
-                default:
-                    return mainPage;
-            }
+                { "homeButton", mainPage },
+                { "transactionsButton", transactionsPage },
+                { "savingsButton", savingsPage },
+                { "spendingsButton", spendingsPage },
+                { "balanceButton", balancePage },
+                { "moreButton", morePage }
+            };
+
+            return dictionary.GetValueOrDefault(buttonName, mainPage);
         }
 
         private void NavigationButtonClick(object sender, System.EventArgs e)
