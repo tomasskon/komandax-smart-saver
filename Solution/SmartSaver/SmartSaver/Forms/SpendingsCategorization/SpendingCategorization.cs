@@ -10,6 +10,7 @@ namespace SmartSaver.Forms.SpendingsCategorization
 {
     public partial class SpendingCategorization : Form
     {
+        private TransactionsListDummyForm _transactionsListForm;
         public SpendingCategorization()
         {
             InitializeComponent();
@@ -35,7 +36,16 @@ namespace SmartSaver.Forms.SpendingsCategorization
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void paymentHistoryButton_Click(object sender, EventArgs e)
+        {
+            //Point to transactions list FORM
+            _transactionsListForm = new TransactionsListDummyForm();
+            //Optional: Closing previous form:
+            this.Close();
+            _transactionsListForm.ShowDialog();
+        }
+
+        private void transportation_label_Click(object sender, EventArgs e)
         {
 
         }
