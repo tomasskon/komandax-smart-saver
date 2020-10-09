@@ -19,5 +19,15 @@ namespace SmartSaver.Forms.SpendingsCategorization
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QuickPaymentForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

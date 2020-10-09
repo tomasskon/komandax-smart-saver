@@ -32,19 +32,22 @@
             this.button1 = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.createCategoryButton = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.transportation_label = new System.Windows.Forms.Label();
+            this.food_amount = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.createCategoryButton = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.paymentHistoryButton = new System.Windows.Forms.Button();
             this.spendButton = new System.Windows.Forms.Button();
             this.food_input = new System.Windows.Forms.TextBox();
-            this.food_amount = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -78,25 +81,94 @@
             // 
             this.mainPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mainPanel.BackgroundImage")));
             this.mainPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.mainPanel.Controls.Add(this.createCategoryButton);
-            this.mainPanel.Controls.Add(this.textBox2);
-            this.mainPanel.Controls.Add(this.textBox1);
             this.mainPanel.Controls.Add(this.label4);
             this.mainPanel.Controls.Add(this.label3);
             this.mainPanel.Controls.Add(this.label2);
             this.mainPanel.Controls.Add(this.transportation_label);
+            this.mainPanel.Controls.Add(this.food_amount);
+            this.mainPanel.Controls.Add(this.label1);
+            this.mainPanel.Controls.Add(this.createCategoryButton);
+            this.mainPanel.Controls.Add(this.textBox2);
+            this.mainPanel.Controls.Add(this.textBox1);
             this.mainPanel.Controls.Add(this.paymentHistoryButton);
             this.mainPanel.Controls.Add(this.spendButton);
             this.mainPanel.Controls.Add(this.food_input);
-            this.mainPanel.Controls.Add(this.food_amount);
-            this.mainPanel.Controls.Add(this.label1);
             this.mainPanel.Controls.Add(this.backButton);
+            this.mainPanel.Controls.Add(this.panel1);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1006, 653);
             this.mainPanel.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.label4.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(587, 386);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 35);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Amount:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.label3.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(587, 330);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 35);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Amount:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.label2.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(188, 386);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(195, 35);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Entertainment";
+            this.label2.Click += new System.EventHandler(this.transportation_label_Click);
+            // 
+            // transportation_label
+            // 
+            this.transportation_label.AutoSize = true;
+            this.transportation_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.transportation_label.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.transportation_label.Location = new System.Drawing.Point(188, 330);
+            this.transportation_label.Name = "transportation_label";
+            this.transportation_label.Size = new System.Drawing.Size(197, 35);
+            this.transportation_label.TabIndex = 3;
+            this.transportation_label.Text = "Transportation";
+            this.transportation_label.Click += new System.EventHandler(this.transportation_label_Click);
+            // 
+            // food_amount
+            // 
+            this.food_amount.AutoSize = true;
+            this.food_amount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.food_amount.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.food_amount.Location = new System.Drawing.Point(587, 270);
+            this.food_amount.Name = "food_amount";
+            this.food_amount.Size = new System.Drawing.Size(123, 35);
+            this.food_amount.TabIndex = 4;
+            this.food_amount.Text = "Amount:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.label1.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(188, 270);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 35);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Food";
             // 
             // createCategoryButton
             // 
@@ -131,52 +203,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(109, 40);
             this.textBox1.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(587, 386);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 35);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Amount:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(587, 330);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 35);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Amount:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(188, 386);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(195, 35);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Entertainment";
-            this.label2.Click += new System.EventHandler(this.transportation_label_Click);
-            // 
-            // transportation_label
-            // 
-            this.transportation_label.AutoSize = true;
-            this.transportation_label.BackColor = System.Drawing.Color.Transparent;
-            this.transportation_label.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.transportation_label.Location = new System.Drawing.Point(188, 330);
-            this.transportation_label.Name = "transportation_label";
-            this.transportation_label.Size = new System.Drawing.Size(197, 35);
-            this.transportation_label.TabIndex = 3;
-            this.transportation_label.Text = "Transportation";
-            this.transportation_label.Click += new System.EventHandler(this.transportation_label_Click);
             // 
             // paymentHistoryButton
             // 
@@ -220,29 +246,24 @@
             this.food_input.Size = new System.Drawing.Size(109, 40);
             this.food_input.TabIndex = 5;
             // 
-            // food_amount
+            // panel1
             // 
-            this.food_amount.AutoSize = true;
-            this.food_amount.BackColor = System.Drawing.Color.Transparent;
-            this.food_amount.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.food_amount.Location = new System.Drawing.Point(587, 270);
-            this.food_amount.Name = "food_amount";
-            this.food_amount.Size = new System.Drawing.Size(123, 35);
-            this.food_amount.TabIndex = 4;
-            this.food_amount.Text = "Amount:";
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 133);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1006, 520);
+            this.panel1.TabIndex = 6;
             // 
-            // label1
+            // panel2
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(188, 270);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 35);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Food";
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Location = new System.Drawing.Point(135, 137);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(426, 40);
+            this.panel2.TabIndex = 0;
             // 
-            // SpendingCategorization
+            // SpendingCategorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -250,11 +271,12 @@
             this.ClientSize = new System.Drawing.Size(1006, 653);
             this.Controls.Add(this.mainPanel);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "SpendingCategorization";
-            this.Text = "SpendingCategorization";
+            this.Name = "SpendingCategorizationForm";
+            this.Text = "Smart Saver";
             this.Load += new System.EventHandler(this.SpendingCategorization_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -275,5 +297,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button createCategoryButton;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
