@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace SmartSaver.Forms.SpendingsCategorization
 {
-    public partial class SpendingCategorization : Form
+    public partial class SpendingCategorizationForm : Form
     {
         private TransactionsListDummyForm _transactionsListForm;
-        public SpendingCategorization()
+        public SpendingCategorizationForm()
         {
             InitializeComponent();
         }

@@ -8,16 +8,11 @@ using System.Windows.Forms;
 
 namespace SmartSaver.Forms.SpendingsCategorization
 {
-    public partial class QuickPaymentForm : Form
+    public partial class SpendForm : Form
     {
-        public QuickPaymentForm()
+        public SpendForm()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

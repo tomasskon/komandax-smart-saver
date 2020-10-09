@@ -15,7 +15,7 @@ namespace SmartSaver
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SpendingCategorization());
+            Application.Run(new SpendingCategorizationForm());
         }
     }
 }
