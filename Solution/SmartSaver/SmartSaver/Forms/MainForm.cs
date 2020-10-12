@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using SmartSaver.Domain.Repositories;
 using UserControls = SmartSaver.Forms.UserControls;
+using SmartSaver.Domain.Repositories.Interfaces;
 
-namespace SmartSaver
+namespace SmartSaver.Presentation.Forms
 {
     public partial class MainForm : Form
     {

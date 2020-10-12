@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>SmartSaver.Logic</AssemblyName>
+    <RootNamespace>SmartSaver.Logic</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartSaver.Domain\SmartSaver.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

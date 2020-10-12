@@ -1,4 +1,4 @@
-﻿namespace SmartSaver
+﻿namespace SmartSaver.Presentation.Forms
 {
     partial class MainForm
     {
