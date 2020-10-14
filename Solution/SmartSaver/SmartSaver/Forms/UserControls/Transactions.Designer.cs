@@ -28,32 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this._transactions = new System.Windows.Forms.ListView();
+            this.Amount = new System.Windows.Forms.ColumnHeader();
+            this.Description = new System.Windows.Forms.ColumnHeader();
+            this._loadData = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // _transactions
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Transactions";
+            this._transactions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Amount,
+            this.Description});
+            this._transactions.HideSelection = false;
+            this._transactions.Location = new System.Drawing.Point(84, 93);
+            this._transactions.Name = "_transactions";
+            this._transactions.Size = new System.Drawing.Size(1007, 464);
+            this._transactions.TabIndex = 0;
+            this._transactions.UseCompatibleStateImageBehavior = false;
+            this._transactions.View = System.Windows.Forms.View.Details;
+            this._transactions.SelectedIndexChanged += new System.EventHandler(this._transactions_SelectedIndexChanged);
+            // 
+            // Amount
+            // 
+            this.Amount.Text = "Amount";
+            this.Amount.Width = 150;
+            // 
+            // Description
+            // 
+            this.Description.Text = "Description";
+            this.Description.Width = 150;
+            // 
+            // _loadData
+            // 
+            this._loadData.Location = new System.Drawing.Point(84, 56);
+            this._loadData.Name = "_loadData";
+            this._loadData.Size = new System.Drawing.Size(75, 23);
+            this._loadData.TabIndex = 1;
+            this._loadData.Text = "Load Data";
+            this._loadData.UseVisualStyleBackColor = true;
+            this._loadData.Click += new System.EventHandler(this._loadData_Click);
             // 
             // Transactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this._loadData);
+            this.Controls.Add(this._transactions);
             this.Name = "Transactions";
             this.Size = new System.Drawing.Size(1280, 620);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView _transactions;
+        private System.Windows.Forms.ColumnHeader Amount;
+        private System.Windows.Forms.ColumnHeader Description;
+        private System.Windows.Forms.Button _loadData;
     }
 }
