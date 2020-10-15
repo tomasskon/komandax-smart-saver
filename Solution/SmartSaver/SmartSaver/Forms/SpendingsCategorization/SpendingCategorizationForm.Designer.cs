@@ -45,9 +45,7 @@
             this.spendButton = new System.Windows.Forms.Button();
             this.food_input = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -248,20 +246,11 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 133);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1006, 520);
             this.panel1.TabIndex = 6;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(135, 137);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(426, 40);
-            this.panel2.TabIndex = 0;
             // 
             // SpendingCategorizationForm
             // 
@@ -276,7 +265,6 @@
             this.Load += new System.EventHandler(this.SpendingCategorization_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -298,6 +286,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button createCategoryButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
     }
 }
