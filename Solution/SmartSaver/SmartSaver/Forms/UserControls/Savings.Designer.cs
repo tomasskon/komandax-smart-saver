@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Savings));
             this.button1 = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -36,7 +37,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.paymentHistoryButton = new System.Windows.Forms.Button();
             this.spendButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,12 +45,15 @@
             this.transportation_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.createCategoryButton = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.food_amount = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.food_input = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.label6 = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -81,33 +84,39 @@
             // 
             // panel1
             // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.monthCalendar1);
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.transportation_label);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.createCategoryButton);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.food_amount);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.food_input);
             this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.panel6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1280, 620);
             this.panel1.TabIndex = 6;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.InitialImage = null;
             this.pictureBox3.Location = new System.Drawing.Point(320, 351);
@@ -118,7 +127,8 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.InitialImage = null;
             this.pictureBox2.Location = new System.Drawing.Point(320, 293);
@@ -129,7 +139,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(320, 232);
@@ -141,7 +152,6 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(135)))));
-            this.panel3.Controls.Add(this.paymentHistoryButton);
             this.panel3.Controls.Add(this.spendButton);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 520);
@@ -149,29 +159,16 @@
             this.panel3.Size = new System.Drawing.Size(1280, 100);
             this.panel3.TabIndex = 0;
             // 
-            // paymentHistoryButton
-            // 
-            this.paymentHistoryButton.BackColor = System.Drawing.Color.White;
-            this.paymentHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.paymentHistoryButton.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.paymentHistoryButton.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.paymentHistoryButton.Location = new System.Drawing.Point(1069, 24);
-            this.paymentHistoryButton.Name = "paymentHistoryButton";
-            this.paymentHistoryButton.Size = new System.Drawing.Size(200, 50);
-            this.paymentHistoryButton.TabIndex = 1;
-            this.paymentHistoryButton.Text = "Payment History";
-            this.paymentHistoryButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.paymentHistoryButton.UseVisualStyleBackColor = false;
-            // 
             // spendButton
             // 
             this.spendButton.BackColor = System.Drawing.Color.White;
             this.spendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.spendButton.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.spendButton.Image = ((System.Drawing.Image)(resources.GetObject("spendButton.Image")));
             this.spendButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.spendButton.Location = new System.Drawing.Point(939, 24);
+            this.spendButton.Location = new System.Drawing.Point(589, 24);
             this.spendButton.Name = "spendButton";
-            this.spendButton.Size = new System.Drawing.Size(101, 50);
+            this.spendButton.Size = new System.Drawing.Size(150, 50);
             this.spendButton.TabIndex = 1;
             this.spendButton.Text = "Spend";
             this.spendButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -202,7 +199,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
             this.label2.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(377, 367);
             this.label2.Name = "label2";
@@ -213,7 +210,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
             this.label4.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(724, 367);
             this.label4.Name = "label4";
@@ -224,7 +221,7 @@
             // transportation_label
             // 
             this.transportation_label.AutoSize = true;
-            this.transportation_label.BackColor = System.Drawing.Color.Transparent;
+            this.transportation_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
             this.transportation_label.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.transportation_label.Location = new System.Drawing.Point(377, 309);
             this.transportation_label.Name = "transportation_label";
@@ -235,7 +232,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
             this.label1.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(377, 248);
             this.label1.Name = "label1";
@@ -246,28 +243,13 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
             this.label3.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(724, 309);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 27);
             this.label3.TabIndex = 4;
             this.label3.Text = "Amount:";
-            // 
-            // createCategoryButton
-            // 
-            this.createCategoryButton.BackColor = System.Drawing.Color.White;
-            this.createCategoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createCategoryButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.createCategoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.createCategoryButton.Location = new System.Drawing.Point(320, 424);
-            this.createCategoryButton.Name = "createCategoryButton";
-            this.createCategoryButton.Size = new System.Drawing.Size(610, 63);
-            this.createCategoryButton.TabIndex = 1;
-            this.createCategoryButton.Text = "Add a new category";
-            this.createCategoryButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.createCategoryButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.createCategoryButton.UseVisualStyleBackColor = false;
             // 
             // textBox2
             // 
@@ -281,7 +263,7 @@
             // food_amount
             // 
             this.food_amount.AutoSize = true;
-            this.food_amount.BackColor = System.Drawing.Color.Transparent;
+            this.food_amount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
             this.food_amount.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.food_amount.Location = new System.Drawing.Point(724, 251);
             this.food_amount.Name = "food_amount";
@@ -311,8 +293,43 @@
             // 
             this.panel4.Location = new System.Drawing.Point(320, 232);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 55);
+            this.panel4.Size = new System.Drawing.Size(643, 55);
             this.panel4.TabIndex = 4;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
+            // 
+            // panel5
+            // 
+            this.panel5.Location = new System.Drawing.Point(320, 293);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(643, 55);
+            this.panel5.TabIndex = 4;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
+            // 
+            // panel6
+            // 
+            this.panel6.Location = new System.Drawing.Point(320, 349);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(643, 55);
+            this.panel6.TabIndex = 4;
+            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(1025, 232);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Corbel", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(1053, 184);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(174, 39);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Enter Date:";
             // 
             // Savings
             // 
@@ -340,7 +357,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button paymentHistoryButton;
         private System.Windows.Forms.Button spendButton;
         private System.Windows.Forms.TextBox food_input;
         private System.Windows.Forms.Label food_amount;
@@ -350,7 +366,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button createCategoryButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
@@ -359,5 +374,9 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }
