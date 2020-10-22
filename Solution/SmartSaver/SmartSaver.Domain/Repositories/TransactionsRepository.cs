@@ -4,14 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SmartSaver.Domain.Models;
+using System.Linq.Expressions;
 
 namespace SmartSaver.Domain.Repositories
 {
     public class TransactionsRepository : GenericRepository<Transaction>
     {
-        public async Task<IReadOnlyList<Transaction>> GetUserTransactions(Guid userId)
+        public async Task<IReadOnlyList<Transaction>> GetSortedUserTransactions(Guid userId, SortingModel sortingModel)
         {
-            return await Set.Where(i => i.UserId == userId).ToListAsync();
+            var query = Set.Where(i => i.UserId == userId);
+
+            query = sortingModel.OrderByColumn(query);
+
+            return await query.ToListAsync();
         }
     }
 }
