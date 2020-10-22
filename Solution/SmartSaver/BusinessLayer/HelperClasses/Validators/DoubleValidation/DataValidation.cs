@@ -9,8 +9,8 @@ namespace SmartSaver
     {
         public Boolean ValidateMoneyInput(String text)
         {
-            var valid = double.TryParse(text, out double ignored);
-            return valid;
+            return double.TryParse(text, out double ignored);
+          
         }
     }
 }

@@ -18,9 +18,6 @@ namespace SmartSaver.Forms.UserControls
             InitializeComponent();
             UpdateIfExist();
         }
-
-
-
         private void Enter_Click(object sender, System.EventArgs e)
         {
             InputBox.ForeColor = Color.Black;
@@ -33,21 +30,16 @@ namespace SmartSaver.Forms.UserControls
                 {
                     case 0:
                         helper.AddCashToDb(InputBox.Text);
-                        
                         break;
-
                     case 1:
                         helper.AddCardToDb(InputBox.Text);
-                        
                         break;
-
                 }
                 UpdateIfExist();
             }
             else
                 InputBox.ForeColor = Color.Red;
         }
-
         private async void UpdateIfExist()
         {
             MoneyFormatter mf = new MoneyFormatter();

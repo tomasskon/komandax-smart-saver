@@ -10,10 +10,10 @@ namespace SmartSaver.Domain.Repositories
 {
     public class BalanceRepository : GenericRepository<Balance>
     {
-            public async Task<IReadOnlyList<Balance>> GetUserBalance(Guid userId)
-            {
-                return await Set.Where(i => i.UserId == userId).ToListAsync();
-            }
+        public async Task<IReadOnlyList<Balance>> GetUserBalance(Guid userId)
+        {
+            return await Set.Where(i => i.UserId == userId).ToListAsync();
+        }
 
         public async Task<Balance> GetBalanceIfExist(Guid userID)
         {
