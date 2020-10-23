@@ -18,6 +18,7 @@ namespace SmartSaver.Forms.UserControls
         };
 
         private SortingModel _sortingModel;
+        private MoneyFormatter _moneyFormatter = new MoneyFormatter();
 
         public Transactions()
         {
@@ -31,8 +32,8 @@ namespace SmartSaver.Forms.UserControls
 
             _sortingModel = new SortingModel()
             {
-                SortingColumn = getCurrentSortByField(),
-                IsAscending = getCurrentSortDirection()
+                SortingColumn = GetCurrentSortByField(),
+                IsAscending = GetCurrentSortDirection()
             };
 
             ReloadTransactions();
@@ -44,7 +45,7 @@ namespace SmartSaver.Forms.UserControls
 
             foreach (var transaction in transactions)
             {
-                var item = new ListViewItem(transaction.RealAmount.ToString());
+                var item = new ListViewItem(_moneyFormatter.FormatMoney(transaction.RealAmount));
                 item.SubItems.Add(transaction.Description);
                 item.SubItems.Add(transaction.CreatedAt.ToString());
                 
@@ -75,16 +76,16 @@ namespace SmartSaver.Forms.UserControls
 
         private void _loadData_Click(object sender, System.EventArgs e) => ReloadTransactions();
 
-        private string getCurrentSortByField() => _sortColumn.SelectedValue != null ? _sortColumn.SelectedValue.ToString() : "Amount";
+        private string GetCurrentSortByField() => _sortColumn.SelectedValue != null ? _sortColumn.SelectedValue.ToString() : "Amount";
 
-        private bool getCurrentSortDirection() => (bool)(_sortDirection.SelectedValue != null ? _sortDirection.SelectedValue : true);
+        private bool GetCurrentSortDirection() => (bool)(_sortDirection.SelectedValue != null ? _sortDirection.SelectedValue : true);
 
         private void _sort_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (_sortingModel != null)
             {
-                _sortingModel.SortingColumn = getCurrentSortByField();
-                _sortingModel.IsAscending = getCurrentSortDirection();
+                _sortingModel.SortingColumn = GetCurrentSortByField();
+                _sortingModel.IsAscending = GetCurrentSortDirection();
 
                 ReloadTransactions();
             }

@@ -14,9 +14,9 @@ namespace SmartSaver.Domain.Models
         public DateTime CreatedAt { get; set; }
 
         [NotMapped]
-        public decimal RealAmount
+        public double RealAmount
         {
-            get => (decimal)Amount / 100;
+            get => (double)Amount / 100;
             set => Amount = (int)value * 100;
         }
     }
