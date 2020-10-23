@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SmartSaver.Domain.Models;
-using System.Linq.Expressions;
 
 namespace SmartSaver.Domain.Repositories
 {
@@ -12,11 +11,9 @@ namespace SmartSaver.Domain.Repositories
     {
         public async Task<IReadOnlyList<Transaction>> GetSortedUserTransactions(Guid userId, SortingModel sortingModel)
         {
-            var query = Set.Where(i => i.UserId == userId);
-
-            query = sortingModel.OrderByColumn(query);
-
-            return await query.ToListAsync();
+            return await sortingModel
+                .OrderByColumn(Set.Where(i => i.UserId == userId))
+                .ToListAsync();
         }
     }
 }

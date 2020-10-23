@@ -22,12 +22,7 @@ namespace SmartSaver.Domain.Models
         {
             Expression<Func<TModel, object>> property = item => EF.Property<TModel>(item, SortingColumn);
 
-            if (IsAscending)
-            {
-                return query.OrderBy(property);
-            }
-
-            return query.OrderByDescending(property);
+            return IsAscending ? query.OrderBy(property) : query.OrderByDescending(property);
         }
     }
 }
