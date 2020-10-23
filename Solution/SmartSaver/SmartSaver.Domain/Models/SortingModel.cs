@@ -18,9 +18,9 @@ namespace SmartSaver.Domain.Models
 
         public bool IsAscending { get; set; }
 
-        public IOrderedQueryable<Transaction> OrderByColumn(IQueryable<Transaction> query) {
-
-            Expression<Func<Transaction, Object>> property = item => EF.Property<Transaction>(item, SortingColumn);
+        public IOrderedQueryable<TModel> OrderByColumn<TModel>(IQueryable<TModel> query) where TModel : IdentityModelBase
+        {
+            Expression<Func<TModel, object>> property = item => EF.Property<TModel>(item, SortingColumn);
 
             if (IsAscending)
             {

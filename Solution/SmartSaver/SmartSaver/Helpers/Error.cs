@@ -7,7 +7,7 @@ namespace SmartSaver.Presentation.Helpers
 {
     class Error
     {
-        public static bool ShowErrorDialog(string message)
+        public static bool ShowDialog(string message)
         {
             string title = "Error";
             MessageBoxButtons buttons = MessageBoxButtons.OK;

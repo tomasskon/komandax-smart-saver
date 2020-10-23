@@ -17,26 +17,28 @@ namespace SmartSaver.Forms.UserControls
             {"CreatedAt", "Created At"}
         };
 
-        public SortingModel _sortingModel = new SortingModel();
+        private SortingModel _sortingModel;
 
         public Transactions()
         {
             InitializeComponent();
 
-            reloadTransactions();
-
             _sortColumn.DataSource = new BindingSource(_sortColumnDictionary, null);
             _sortColumn.SelectedIndex = 2;
+
             _sortDirection.DataSource = new BindingSource(SortingModel.DirectionDictionary, null);
             _sortDirection.SelectedIndex = 1;
+
+            _sortingModel = new SortingModel()
+            {
+                SortingColumn = getCurrentSortByField(),
+                IsAscending = getCurrentSortDirection()
+            };
+
+            ReloadTransactions();
         }
 
-        private void _transactions_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-
-        }
-
-        private ListViewItem[] getTransactionsListViewItems(IReadOnlyList<Domain.Models.Transaction> transactions)
+        private ListViewItem[] GetTransactionsListViewItems(IReadOnlyList<Domain.Models.Transaction> transactions)
         {
             var listViewItems = new List<ListViewItem>();
 
@@ -52,26 +54,26 @@ namespace SmartSaver.Forms.UserControls
             return listViewItems.ToArray();
         }
 
-        private async void reloadTransactions()
+        private async void ReloadTransactions()
         {
             var transactionHelper = new TransactionsHelper(new TransactionsRepository());
-            //try
-            //{
+            try
+            {
                 var transactions = await transactionHelper
                     .GetUserTransactions(Domain.Constants.Constants.TestUserId, _sortingModel);
 
-                var listViewItems = getTransactionsListViewItems(transactions);
+                var listViewItems = GetTransactionsListViewItems(transactions);
 
                 _transactions.Items.Clear();
                 _transactions.Items.AddRange(listViewItems);
-            /*} 
+            } 
             catch (ArgumentNullException ex)
             {
-                Error.ShowErrorDialog(ex.Message);
-            }*/
+                Error.ShowDialog(ex.Message);
+            }
         }
 
-        private void _loadData_Click(object sender, System.EventArgs e) => reloadTransactions();
+        private void _loadData_Click(object sender, System.EventArgs e) => ReloadTransactions();
 
         private string getCurrentSortByField() => _sortColumn.SelectedValue != null ? _sortColumn.SelectedValue.ToString() : "Amount";
 
@@ -79,10 +81,13 @@ namespace SmartSaver.Forms.UserControls
 
         private void _sort_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            _sortingModel.SortingColumn = getCurrentSortByField();
-            _sortingModel.IsAscending = getCurrentSortDirection();
+            if (_sortingModel != null)
+            {
+                _sortingModel.SortingColumn = getCurrentSortByField();
+                _sortingModel.IsAscending = getCurrentSortDirection();
 
-            reloadTransactions();
+                ReloadTransactions();
+            }
         }
     }
 }

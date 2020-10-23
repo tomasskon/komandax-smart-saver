@@ -57,7 +57,6 @@
             this._transactions.TabIndex = 0;
             this._transactions.UseCompatibleStateImageBehavior = false;
             this._transactions.View = System.Windows.Forms.View.Details;
-            this._transactions.SelectedIndexChanged += new System.EventHandler(this._transactions_SelectedIndexChanged);
             // 
             // Amount
             // 
