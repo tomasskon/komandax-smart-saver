@@ -9,9 +9,11 @@ namespace SmartSaver.Domain.Repositories
 {
     public class TransactionsRepository : GenericRepository<Transaction>
     {
-        public async Task<IReadOnlyList<Transaction>> GetUserTransactions(Guid userId)
+        public async Task<IReadOnlyList<Transaction>> GetSortedUserTransactions(Guid userId, SortingModel sortingModel)
         {
-            return await Set.Where(i => i.UserId == userId).ToListAsync();
+            return await sortingModel
+                .OrderByColumn(Set.Where(i => i.UserId == userId))
+                .ToListAsync();
         }
     }
 }
