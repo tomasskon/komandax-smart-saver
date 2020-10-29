@@ -6,7 +6,7 @@ using SmartSaver.Domain.Repositories;
 
 namespace SmartSaver.Logic.HelperClasses.Savings
 {
-    class SavingsHelper
+    public class SavingsHelper
     {
         private SavingsRepository _savingsRepository;
 
@@ -15,7 +15,12 @@ namespace SmartSaver.Logic.HelperClasses.Savings
             _savingsRepository = savingsRepository;
         }
 
-      
+        
+        public async Task<IReadOnlyList<Domain.Models.Savings>> GetGoals(Guid userId, SortingModel sortingModel)
+        {
+            return await _savingsRepository.GetSortedUserGoals(userId, sortingModel);
+        }
+        
 
 
 

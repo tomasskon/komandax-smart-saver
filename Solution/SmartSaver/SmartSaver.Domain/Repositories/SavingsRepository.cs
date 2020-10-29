@@ -9,7 +9,7 @@ namespace SmartSaver.Domain.Repositories
 {
     public class SavingsRepository : GenericRepository<Savings>
     {
-
+        
         public async Task<IReadOnlyList<Savings>> GetUserGoals(Guid userId)
         {
             return await Set.Where(i => i.UserId == userId).ToListAsync();
@@ -18,7 +18,7 @@ namespace SmartSaver.Domain.Repositories
         {
             return await sortingModel.OrderByColumn(Set.Where(i => i.UserId == userId)).ToListAsync();
         }
-
+        
 
     }
 }

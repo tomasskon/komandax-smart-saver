@@ -33,15 +33,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this._sortColumn = new System.Windows.Forms.ComboBox();
+            this._sortDirection = new System.Windows.Forms.ComboBox();
             this.financialPlanLabel = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.savingsList = new System.Windows.Forms.ListView();
+            this.reloadSavingsButton = new System.Windows.Forms.Button();
+            this.savingGoalsList = new System.Windows.Forms.ListView();
             this.goalName = new System.Windows.Forms.ColumnHeader();
+            this.descriptionColumn = new System.Windows.Forms.ColumnHeader();
             this.moneyAmount = new System.Windows.Forms.ColumnHeader();
             this.startedDate = new System.Windows.Forms.ColumnHeader();
             this.progressAmount = new System.Windows.Forms.ColumnHeader();
             this.progressPercentage = new System.Windows.Forms.ColumnHeader();
-            this.finishDate = new System.Windows.Forms.ColumnHeader();
+            this.goalEnds = new System.Windows.Forms.ColumnHeader();
             this.panel3 = new System.Windows.Forms.Panel();
             this.generatePlanButton = new System.Windows.Forms.Button();
             this.createGoalButton = new System.Windows.Forms.Button();
@@ -50,9 +53,6 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.descriptionColumn = new System.Windows.Forms.ColumnHeader();
             this.mainPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -83,11 +83,11 @@
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this._sortColumn);
+            this.panel1.Controls.Add(this._sortDirection);
             this.panel1.Controls.Add(this.financialPlanLabel);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.savingsList);
+            this.panel1.Controls.Add(this.reloadSavingsButton);
+            this.panel1.Controls.Add(this.savingGoalsList);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -95,6 +95,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1463, 827);
             this.panel1.TabIndex = 6;
+            // 
+            // _sortColumn
+            // 
+            this._sortColumn.DisplayMember = "Value";
+            this._sortColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._sortColumn.FormattingEnabled = true;
+            this._sortColumn.Location = new System.Drawing.Point(779, 169);
+            this._sortColumn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._sortColumn.Name = "_sortColumn";
+            this._sortColumn.Size = new System.Drawing.Size(138, 28);
+            this._sortColumn.TabIndex = 2;
+            this._sortColumn.ValueMember = "Key";
+            this._sortColumn.SelectedIndexChanged += new System.EventHandler(this._sort_SelectedIndexChanged);
+            // 
+            // _sortDirection
+            // 
+            this._sortDirection.DisplayMember = "Value";
+            this._sortDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._sortDirection.FormattingEnabled = true;
+            this._sortDirection.Location = new System.Drawing.Point(933, 169);
+            this._sortDirection.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._sortDirection.Name = "_sortDirection";
+            this._sortDirection.Size = new System.Drawing.Size(132, 28);
+            this._sortDirection.TabIndex = 4;
+            this._sortDirection.ValueMember = "Key";
+            this._sortDirection.SelectedIndexChanged += new System.EventHandler(this._sort_SelectedIndexChanged);
             // 
             // financialPlanLabel
             // 
@@ -106,45 +132,51 @@
             this.financialPlanLabel.TabIndex = 7;
             this.financialPlanLabel.Text = "<financialPlanResult>";
             // 
-            // button3
+            // reloadSavingsButton
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(535, 151);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(145, 54);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Reload";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = false;
+            this.reloadSavingsButton.BackColor = System.Drawing.Color.White;
+            this.reloadSavingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reloadSavingsButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.reloadSavingsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reloadSavingsButton.Location = new System.Drawing.Point(535, 151);
+            this.reloadSavingsButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.reloadSavingsButton.Name = "reloadSavingsButton";
+            this.reloadSavingsButton.Size = new System.Drawing.Size(145, 54);
+            this.reloadSavingsButton.TabIndex = 1;
+            this.reloadSavingsButton.Text = "Reload";
+            this.reloadSavingsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.reloadSavingsButton.UseVisualStyleBackColor = false;
+            this.reloadSavingsButton.Click += new System.EventHandler(this.ReloadSavingsButton_Click);
             // 
-            // savingsList
+            // savingGoalsList
             // 
-            this.savingsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.savingGoalsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.goalName,
             this.descriptionColumn,
             this.moneyAmount,
             this.startedDate,
             this.progressAmount,
             this.progressPercentage,
-            this.finishDate});
-            this.savingsList.FullRowSelect = true;
-            this.savingsList.HideSelection = false;
-            this.savingsList.Location = new System.Drawing.Point(140, 213);
-            this.savingsList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.savingsList.Name = "savingsList";
-            this.savingsList.Size = new System.Drawing.Size(935, 473);
-            this.savingsList.TabIndex = 0;
-            this.savingsList.UseCompatibleStateImageBehavior = false;
-            this.savingsList.View = System.Windows.Forms.View.Details;
+            this.goalEnds});
+            this.savingGoalsList.FullRowSelect = true;
+            this.savingGoalsList.HideSelection = false;
+            this.savingGoalsList.Location = new System.Drawing.Point(140, 213);
+            this.savingGoalsList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.savingGoalsList.Name = "savingGoalsList";
+            this.savingGoalsList.Size = new System.Drawing.Size(935, 473);
+            this.savingGoalsList.TabIndex = 0;
+            this.savingGoalsList.UseCompatibleStateImageBehavior = false;
+            this.savingGoalsList.View = System.Windows.Forms.View.Details;
             // 
             // goalName
             // 
             this.goalName.Text = "Goal Name";
             this.goalName.Width = 150;
+            // 
+            // descriptionColumn
+            // 
+            this.descriptionColumn.Text = "Description";
+            this.descriptionColumn.Width = 200;
             // 
             // moneyAmount
             // 
@@ -167,11 +199,11 @@
             this.progressPercentage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.progressPercentage.Width = 120;
             // 
-            // finishDate
+            // goalEnds
             // 
-            this.finishDate.Text = "Goal Ends";
-            this.finishDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.finishDate.Width = 120;
+            this.goalEnds.Text = "Goal Ends";
+            this.goalEnds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.goalEnds.Width = 120;
             // 
             // panel3
             // 
@@ -214,6 +246,7 @@
             this.createGoalButton.Text = "Create a new Goal...";
             this.createGoalButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.createGoalButton.UseVisualStyleBackColor = false;
+            this.createGoalButton.Click += new System.EventHandler(this.createGoalButton_Click);
             // 
             // panel2
             // 
@@ -234,9 +267,9 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(13, 41);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(260, 49);
+            this.label5.Size = new System.Drawing.Size(243, 49);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Savings Goals";
+            this.label5.Text = "Saving Goals";
             // 
             // columnHeader1
             // 
@@ -252,37 +285,6 @@
             // 
             this.columnHeader3.Text = "Created At";
             this.columnHeader3.Width = 150;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DisplayMember = "Value";
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(933, 169);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 28);
-            this.comboBox1.TabIndex = 4;
-            this.comboBox1.ValueMember = "Key";
-            //this.comboBox1.SelectedIndexChanged += new System.EventHandler(this._sort_SelectedIndexChanged);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DisplayMember = "Value";
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(779, 169);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(138, 28);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.ValueMember = "Key";
-            //this.comboBox2.SelectedIndexChanged += new System.EventHandler(this._sort_SelectedIndexChanged);
-            // 
-            // descriptionColumn
-            // 
-            this.descriptionColumn.Text = "Description";
-            this.descriptionColumn.Width = 200;
             // 
             // Savings
             // 
@@ -311,11 +313,11 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListView savingsList;
+        private System.Windows.Forms.ListView savingGoalsList;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button reloadSavingsButton;
         private System.Windows.Forms.Button createGoalButton;
         private System.Windows.Forms.ColumnHeader goalName;
         private System.Windows.Forms.ColumnHeader amount;
@@ -323,11 +325,11 @@
         private System.Windows.Forms.ColumnHeader startedDate;
         private System.Windows.Forms.ColumnHeader progressAmount;
         private System.Windows.Forms.ColumnHeader progressPercentage;
-        private System.Windows.Forms.ColumnHeader finishDate;
+        private System.Windows.Forms.ColumnHeader goalEnds;
         private System.Windows.Forms.Label financialPlanLabel;
         private System.Windows.Forms.Button generatePlanButton;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _sortColumn;
+        private System.Windows.Forms.ComboBox _sortDirection;
         private System.Windows.Forms.ColumnHeader descriptionColumn;
     }
 }

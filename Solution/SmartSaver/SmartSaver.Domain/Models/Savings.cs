@@ -16,8 +16,8 @@ namespace SmartSaver.Domain.Models
 
         [NotMapped]
         public double ProgressPercentageValue {
-            get => (GoalAmount / AmountRemaining) * 100;
-            set => GoalAmount = (value / AmountRemaining)*100; 
+            get => (AmountRemaining / GoalAmount) * 100;
+            set => GoalAmount = (value / AmountRemaining) * 100; 
         }
         public Guid UserId { get; set; }
     }
