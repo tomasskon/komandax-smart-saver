@@ -49,6 +49,15 @@ namespace SmartSaver.Presentation.Forms
             {
                 Button button = (Button) sender;
                 UserControl pageControl = GetPageFromButtonName(button.Name);
+                
+                /*
+                 * Temporary
+                 */
+                if(pageControl.Name == "Savings" && UserControls.Savings.isUserFirstTime)
+                {
+                    MessageBox.Show("isUserFirstTime works!");
+                    UserControls.Savings.ShowSavingsGoal();
+                }
 
                 ChangePageView(pagePanel, pageControl);
             }

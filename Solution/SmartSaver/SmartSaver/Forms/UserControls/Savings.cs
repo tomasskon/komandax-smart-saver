@@ -9,25 +9,34 @@ using SmartSaver.Forms.Savings;
 
 namespace SmartSaver.Forms.UserControls
 {
+
+    private Dictionary<string, string> _sortColumnDictionary = new Dictionary<string, string>()
+    {
+        { }
+    };
+
     public partial class Savings : UserControl
     {
-        
-        SavingsGoalForm savingsGoalForm;
+        //temporary:
+        public static bool isUserFirstTime = true;
+        public double enteredGoal;
+        //temprary ends
+
+
+
+        static SavingsGoalForm _savingsGoalForm;
         public Savings()
         {
             InitializeComponent();
-            savingsGoalForm = new SavingsGoalForm();
             
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        public static void ShowSavingsGoal()
         {
-            
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
+            _savingsGoalForm = new SavingsGoalForm();
+            _savingsGoalForm.Show();
 
         }
+
     }
 }

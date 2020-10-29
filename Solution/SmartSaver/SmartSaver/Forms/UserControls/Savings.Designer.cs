@@ -33,32 +33,28 @@
             this.button1 = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.financialPlanLabel = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.savingsList = new System.Windows.Forms.ListView();
+            this.goalName = new System.Windows.Forms.ColumnHeader();
+            this.moneyAmount = new System.Windows.Forms.ColumnHeader();
+            this.startedDate = new System.Windows.Forms.ColumnHeader();
+            this.progressAmount = new System.Windows.Forms.ColumnHeader();
+            this.progressPercentage = new System.Windows.Forms.ColumnHeader();
+            this.finishDate = new System.Windows.Forms.ColumnHeader();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.spendButton = new System.Windows.Forms.Button();
+            this.generatePlanButton = new System.Windows.Forms.Button();
+            this.createGoalButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.transportation_label = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.food_amount = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.food_input = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.label6 = new System.Windows.Forms.Label();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.descriptionColumn = new System.Windows.Forms.ColumnHeader();
             this.mainPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -78,101 +74,146 @@
             this.mainPanel.Controls.Add(this.panel1);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1280, 620);
+            this.mainPanel.Size = new System.Drawing.Size(1463, 827);
             this.mainPanel.TabIndex = 2;
             // 
             // panel1
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.monthCalendar1);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.financialPlanLabel);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.savingsList);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.transportation_label);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.food_amount);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.food_input);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.panel6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1280, 620);
+            this.panel1.Size = new System.Drawing.Size(1463, 827);
             this.panel1.TabIndex = 6;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // pictureBox3
+            // financialPlanLabel
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.InitialImage = null;
-            this.pictureBox3.Location = new System.Drawing.Point(320, 351);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(51, 50);
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
+            this.financialPlanLabel.AutoSize = true;
+            this.financialPlanLabel.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.financialPlanLabel.Location = new System.Drawing.Point(1162, 364);
+            this.financialPlanLabel.Name = "financialPlanLabel";
+            this.financialPlanLabel.Size = new System.Drawing.Size(267, 35);
+            this.financialPlanLabel.TabIndex = 7;
+            this.financialPlanLabel.Text = "<financialPlanResult>";
             // 
-            // pictureBox2
+            // button3
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(320, 293);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(51, 50);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(535, 151);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(145, 54);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Reload";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
+            // savingsList
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(320, 232);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 50);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.savingsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.goalName,
+            this.descriptionColumn,
+            this.moneyAmount,
+            this.startedDate,
+            this.progressAmount,
+            this.progressPercentage,
+            this.finishDate});
+            this.savingsList.FullRowSelect = true;
+            this.savingsList.HideSelection = false;
+            this.savingsList.Location = new System.Drawing.Point(140, 213);
+            this.savingsList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.savingsList.Name = "savingsList";
+            this.savingsList.Size = new System.Drawing.Size(935, 473);
+            this.savingsList.TabIndex = 0;
+            this.savingsList.UseCompatibleStateImageBehavior = false;
+            this.savingsList.View = System.Windows.Forms.View.Details;
+            // 
+            // goalName
+            // 
+            this.goalName.Text = "Goal Name";
+            this.goalName.Width = 150;
+            // 
+            // moneyAmount
+            // 
+            this.moneyAmount.Text = "Amount";
+            this.moneyAmount.Width = 100;
+            // 
+            // startedDate
+            // 
+            this.startedDate.Text = "Started";
+            this.startedDate.Width = 120;
+            // 
+            // progressAmount
+            // 
+            this.progressAmount.Text = "Progress";
+            this.progressAmount.Width = 120;
+            // 
+            // progressPercentage
+            // 
+            this.progressPercentage.Text = "Progress (%)";
+            this.progressPercentage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.progressPercentage.Width = 120;
+            // 
+            // finishDate
+            // 
+            this.finishDate.Text = "Goal Ends";
+            this.finishDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.finishDate.Width = 120;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(135)))));
-            this.panel3.Controls.Add(this.spendButton);
+            this.panel3.Controls.Add(this.generatePlanButton);
+            this.panel3.Controls.Add(this.createGoalButton);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 520);
+            this.panel3.Location = new System.Drawing.Point(0, 694);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1280, 100);
+            this.panel3.Size = new System.Drawing.Size(1463, 133);
             this.panel3.TabIndex = 0;
             // 
-            // spendButton
+            // generatePlanButton
             // 
-            this.spendButton.BackColor = System.Drawing.Color.White;
-            this.spendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.spendButton.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.spendButton.Image = ((System.Drawing.Image)(resources.GetObject("spendButton.Image")));
-            this.spendButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.spendButton.Location = new System.Drawing.Point(589, 24);
-            this.spendButton.Name = "spendButton";
-            this.spendButton.Size = new System.Drawing.Size(150, 50);
-            this.spendButton.TabIndex = 1;
-            this.spendButton.Text = "Spend";
-            this.spendButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.spendButton.UseVisualStyleBackColor = false;
+            this.generatePlanButton.BackColor = System.Drawing.Color.White;
+            this.generatePlanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.generatePlanButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.generatePlanButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.generatePlanButton.Location = new System.Drawing.Point(1158, 16);
+            this.generatePlanButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.generatePlanButton.Name = "generatePlanButton";
+            this.generatePlanButton.Size = new System.Drawing.Size(271, 92);
+            this.generatePlanButton.TabIndex = 1;
+            this.generatePlanButton.Text = "Generate Financial Plan";
+            this.generatePlanButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.generatePlanButton.UseVisualStyleBackColor = false;
+            // 
+            // createGoalButton
+            // 
+            this.createGoalButton.BackColor = System.Drawing.Color.White;
+            this.createGoalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createGoalButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.createGoalButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.createGoalButton.Location = new System.Drawing.Point(463, 25);
+            this.createGoalButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.createGoalButton.Name = "createGoalButton";
+            this.createGoalButton.Size = new System.Drawing.Size(271, 54);
+            this.createGoalButton.TabIndex = 1;
+            this.createGoalButton.Text = "Create a new Goal...";
+            this.createGoalButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.createGoalButton.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -180,8 +221,9 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1280, 100);
+            this.panel2.Size = new System.Drawing.Size(1463, 133);
             this.panel2.TabIndex = 6;
             // 
             // label5
@@ -190,161 +232,70 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Corbel", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(11, 31);
+            this.label5.Location = new System.Drawing.Point(13, 41);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 39);
+            this.label5.Size = new System.Drawing.Size(260, 49);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Savings";
+            this.label5.Text = "Savings Goals";
             // 
-            // label2
+            // columnHeader1
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.label2.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(377, 367);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 27);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Entertainment";
+            this.columnHeader1.Text = "columnHeader1";
+            this.columnHeader1.Width = 150;
             // 
-            // label4
+            // columnHeader2
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.label4.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(724, 367);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 27);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Amount:";
+            this.columnHeader2.Text = "columnHeader2";
+            this.columnHeader2.Width = 300;
             // 
-            // transportation_label
+            // columnHeader3
             // 
-            this.transportation_label.AutoSize = true;
-            this.transportation_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.transportation_label.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.transportation_label.Location = new System.Drawing.Point(377, 309);
-            this.transportation_label.Name = "transportation_label";
-            this.transportation_label.Size = new System.Drawing.Size(152, 27);
-            this.transportation_label.TabIndex = 3;
-            this.transportation_label.Text = "Transportation";
+            this.columnHeader3.Text = "Created At";
+            this.columnHeader3.Width = 150;
             // 
-            // label1
+            // comboBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.label1.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(377, 248);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 27);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Food";
+            this.comboBox1.DisplayMember = "Value";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(933, 169);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(132, 28);
+            this.comboBox1.TabIndex = 4;
+            this.comboBox1.ValueMember = "Key";
+            //this.comboBox1.SelectedIndexChanged += new System.EventHandler(this._sort_SelectedIndexChanged);
             // 
-            // label3
+            // comboBox2
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.label3.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(724, 309);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 27);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Amount:";
+            this.comboBox2.DisplayMember = "Value";
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(779, 169);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(138, 28);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.ValueMember = "Key";
+            //this.comboBox2.SelectedIndexChanged += new System.EventHandler(this._sort_SelectedIndexChanged);
             // 
-            // textBox2
+            // descriptionColumn
             // 
-            this.textBox2.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(834, 367);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(96, 34);
-            this.textBox2.TabIndex = 5;
-            // 
-            // food_amount
-            // 
-            this.food_amount.AutoSize = true;
-            this.food_amount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
-            this.food_amount.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.food_amount.Location = new System.Drawing.Point(724, 251);
-            this.food_amount.Name = "food_amount";
-            this.food_amount.Size = new System.Drawing.Size(95, 27);
-            this.food_amount.TabIndex = 4;
-            this.food_amount.Text = "Amount:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(834, 309);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(96, 34);
-            this.textBox1.TabIndex = 5;
-            // 
-            // food_input
-            // 
-            this.food_input.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.food_input.Location = new System.Drawing.Point(834, 248);
-            this.food_input.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.food_input.Name = "food_input";
-            this.food_input.Size = new System.Drawing.Size(96, 34);
-            this.food_input.TabIndex = 5;
-            // 
-            // panel4
-            // 
-            this.panel4.Location = new System.Drawing.Point(320, 232);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(643, 55);
-            this.panel4.TabIndex = 4;
-            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
-            // 
-            // panel5
-            // 
-            this.panel5.Location = new System.Drawing.Point(320, 293);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(643, 55);
-            this.panel5.TabIndex = 4;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
-            // 
-            // panel6
-            // 
-            this.panel6.Location = new System.Drawing.Point(320, 349);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(643, 55);
-            this.panel6.TabIndex = 4;
-            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(1025, 232);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Corbel", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(1053, 184);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(174, 39);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Enter Date:";
+            this.descriptionColumn.Text = "Description";
+            this.descriptionColumn.Width = 200;
             // 
             // Savings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
             this.Controls.Add(this.mainPanel);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Savings";
-            this.Size = new System.Drawing.Size(1280, 620);
+            this.Size = new System.Drawing.Size(1463, 827);
             this.mainPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -356,27 +307,27 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button spendButton;
-        private System.Windows.Forms.TextBox food_input;
-        private System.Windows.Forms.Label food_amount;
-        private System.Windows.Forms.Label transportation_label;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.ListView savingsList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button createGoalButton;
+        private System.Windows.Forms.ColumnHeader goalName;
+        private System.Windows.Forms.ColumnHeader amount;
+        private System.Windows.Forms.ColumnHeader moneyAmount;
+        private System.Windows.Forms.ColumnHeader startedDate;
+        private System.Windows.Forms.ColumnHeader progressAmount;
+        private System.Windows.Forms.ColumnHeader progressPercentage;
+        private System.Windows.Forms.ColumnHeader finishDate;
+        private System.Windows.Forms.Label financialPlanLabel;
+        private System.Windows.Forms.Button generatePlanButton;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ColumnHeader descriptionColumn;
     }
 }

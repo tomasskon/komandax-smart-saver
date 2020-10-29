@@ -42,6 +42,7 @@ namespace SmartSaver.Forms.UserControls
         }
         private async void UpdateIfExist()
         {
+            /*
             MoneyFormatter mf = new MoneyFormatter();
             var repository = new BalanceRepository();
             var helper = new BalanceHelper(repository);
@@ -50,6 +51,7 @@ namespace SmartSaver.Forms.UserControls
             BankBox.Text = mf.FormatMoney(userBalance.Card);
             double total = userBalance.Cash + userBalance.Card;
             TotalBox.Text = mf.FormatMoney(total);
+            */
         }
 
     }
