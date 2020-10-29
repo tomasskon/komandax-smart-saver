@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.warningLabel = new System.Windows.Forms.Label();
             this.createCategory = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.newCategoryInput = new System.Windows.Forms.TextBox();
@@ -73,6 +74,7 @@
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.warningLabel);
             this.panel1.Controls.Add(this.createCategory);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.newCategoryInput);
@@ -86,6 +88,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1280, 620);
             this.panel1.TabIndex = 6;
+            // 
+            // warningLabel
+            // 
+            this.warningLabel.AutoSize = true;
+            this.warningLabel.BackColor = System.Drawing.Color.Transparent;
+            this.warningLabel.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.warningLabel.ForeColor = System.Drawing.Color.Red;
+            this.warningLabel.Location = new System.Drawing.Point(481, 332);
+            this.warningLabel.Name = "warningLabel";
+            this.warningLabel.Size = new System.Drawing.Size(0, 14);
+            this.warningLabel.TabIndex = 3;
             // 
             // createCategory
             // 
@@ -254,5 +267,6 @@
         private System.Windows.Forms.TextBox newCategoryInput;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button createCategory;
+        private System.Windows.Forms.Label warningLabel;
     }
 }

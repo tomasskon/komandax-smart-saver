@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Windows.Forms;
 using SmartSaver.Domain.Models;
 using SmartSaver.Domain.Repositories;
@@ -16,16 +17,24 @@ namespace SmartSaver.Forms.UserControls
 
         private async void createCategory_Click(object sender, System.EventArgs e)
         {
-            var helper = new CategoriesHelper(new CategoriesRepository());
-            var newCategory = new Category
+            if (String.IsNullOrEmpty(newCategoryInput.Text))
             {
-                Name = newCategoryInput.Text,
-                UserId = Domain.Constants.Constants.TestUserId
-            };
+                warningLabel.Text = "Input Field cannot be empty";
+            }
+            else
+            {
+                var helper = new CategoriesHelper(new CategoriesRepository());
+                var newCategory = new Category
+                {
+                    Name = newCategoryInput.Text,
+                    UserId = Domain.Constants.Constants.TestUserId
+                };
 
-            await helper.AddNewCategory(newCategory);
-            newCategoryInput.Text = String.Empty;
-            ReloadData();
+                await helper.AddNewCategory(newCategory);
+                newCategoryInput.Text = String.Empty;
+                warningLabel.Text = String.Empty;
+                ReloadData();
+            }
         }
 
         private async void ReloadData()
