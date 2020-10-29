@@ -28,7 +28,6 @@ namespace SmartSaver.Forms.UserControls
                 item.SubItems.Add(transaction.Description);
                 _transactions.Items.Add(item);
             }
-            
         }
     }
 }

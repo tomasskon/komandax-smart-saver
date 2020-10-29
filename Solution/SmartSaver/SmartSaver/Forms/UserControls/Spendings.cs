@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
+using SmartSaver.Domain.Models;
+using SmartSaver.Domain.Repositories;
+using SmartSaver.Logic.HelperClasses.Categories;
 
 namespace SmartSaver.Forms.UserControls
 {
@@ -13,11 +11,35 @@ namespace SmartSaver.Forms.UserControls
         public Spendings()
         {
             InitializeComponent();
+            ReloadData();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private async void createCategory_Click(object sender, System.EventArgs e)
         {
+            var helper = new CategoriesHelper(new CategoriesRepository());
+            var newCategory = new Category
+            {
+                Name = newCategoryInput.Text,
+                UserId = Domain.Constants.Constants.TestUserId
+            };
 
+            await helper.AddNewCategory(newCategory);
+            newCategoryInput.Text = String.Empty;
+            ReloadData();
+        }
+
+        private async void ReloadData()
+        {
+            categoriesList.Items.Clear();
+            var categoriesHelper = new CategoriesHelper(new CategoriesRepository());
+            var categories = await categoriesHelper
+                .GetUserCategories(Domain.Constants.Constants.TestUserId);
+
+            foreach (var category in categories)
+            {
+                var item = new ListViewItem(category.Name);
+                categoriesList.Items.Add(item);
+            }
         }
     }
 }
