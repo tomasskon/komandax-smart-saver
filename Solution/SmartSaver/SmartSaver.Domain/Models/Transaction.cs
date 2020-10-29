@@ -23,7 +23,7 @@ namespace SmartSaver.Domain.Models
         public double RealAmount
         {
             get => (double)Amount / 100;
-            set => Amount = (int)value * 100;
+            set => Amount = (int)(value * 100);
         }
     }
 }
