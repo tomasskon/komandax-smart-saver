@@ -13,6 +13,5 @@ namespace SmartSaver.Logic.HelperClasses.Images
                 hex.AppendFormat("{0:x2}", b);
             return hex.ToString();
         }
-      
     }
 }

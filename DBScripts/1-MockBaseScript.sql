@@ -17,9 +17,6 @@ CREATE TABLE [dbo].[Users](
 	[Id] [uniqueidentifier] NOT NULL,
 	[FullName] [nvarchar](50) NOT NULL,
 	[Gmail] [nvarchar](50) NOT NULL,
-	[Cash] [float] NOT NULL,
-	[Card] [float] NOT NULL,
-	[UserImage] [image] NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

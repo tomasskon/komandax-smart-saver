@@ -19,7 +19,7 @@ namespace SmartSaver.Forms.UserControls
         public Main()
         {
             InitializeComponent();
-            UpdateImg();
+            UpdateInfo();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace SmartSaver.Forms.UserControls
             }
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void SaveImageClick(object sender, EventArgs e)
         {
             var _userRepository = new UserRepository();
             var helper = new BalanceHelper(_userRepository);
@@ -66,17 +66,18 @@ namespace SmartSaver.Forms.UserControls
             return null;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void RefreshClick(object sender, EventArgs e)
         {
-            UpdateImg();
+            UpdateInfo();
         }
 
-        public async void UpdateImg()
+        public async void UpdateInfo()
         {
             var _userRepository = new UserRepository();
             var helper = new BalanceHelper(_userRepository);
             _user = await helper.GetUserBalance(userId: Domain.Constants.Constants.TestUserId);
             MoneyFormatter moneyFormatter= new MoneyFormatter();
+            if(_user.Cash + _user.Card != null)
             textBox1.Text = moneyFormatter.FormatMoney(_user.Cash + _user.Card);
             pictureBox1.Image = ByteArrayToImage(_user.UserImage);
             await _userRepository.Update(_user.Id, _user);
