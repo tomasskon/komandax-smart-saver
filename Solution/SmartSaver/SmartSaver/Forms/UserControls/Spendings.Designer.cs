@@ -158,6 +158,7 @@
             // 
             // Category
             // 
+            this.Category.Text = "Category";
             this.Category.Width = 250;
             // 
             // panel3
