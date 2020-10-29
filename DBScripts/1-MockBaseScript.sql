@@ -17,6 +17,9 @@ CREATE TABLE [dbo].[Users](
 	[Id] [uniqueidentifier] NOT NULL,
 	[FullName] [nvarchar](50) NOT NULL,
 	[Gmail] [nvarchar](50) NOT NULL,
+	[Cash] [float] NOT NULL,
+	[Card] [float] NOT NULL,
+	[UserImage] [image] NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -34,7 +37,7 @@ GO
 INSERT INTO [Users] ([Id], [FullName], [Gmail]) VALUES ('6e33fa08-bc0f-438c-a21b-bcf4fc227661', 'Test Testington', 'test@gmail.com')
 GO
 
-INSERT INTO [Transactions] ([Amount], [Description], [UserId]) VALUES (5, 'Buying Coffe', '6e33fa08-bc0f-438c-a21b-bcf4fc227661')
+INSERT INTO [Transactions] ([Amount], [Description], [UserId]) VALUES (5, 'Buying Coffee', '6e33fa08-bc0f-438c-a21b-bcf4fc227661')
 GO
 
 INSERT INTO [Transactions] ([Amount], [Description], [UserId]) VALUES (7, 'Buying Pizza', '6e33fa08-bc0f-438c-a21b-bcf4fc227661')

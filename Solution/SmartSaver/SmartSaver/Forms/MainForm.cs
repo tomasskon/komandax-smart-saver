@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using SmartSaver.Domain.Repositories;
 using UserControls = SmartSaver.Forms.UserControls;
 using SmartSaver.Domain.Repositories.Interfaces;
+using SmartSaver.Forms.UserControls;
 
 namespace SmartSaver.Presentation.Forms
 {
@@ -49,7 +50,6 @@ namespace SmartSaver.Presentation.Forms
             {
                 Button button = (Button) sender;
                 UserControl pageControl = GetPageFromButtonName(button.Name);
-
                 ChangePageView(pagePanel, pageControl);
             }
         }

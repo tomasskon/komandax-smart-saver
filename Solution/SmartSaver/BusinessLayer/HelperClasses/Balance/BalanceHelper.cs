@@ -7,53 +7,26 @@ namespace SmartSaver.Logic.HelperClasses.Balance
 {
     public class BalanceHelper
     {
-        private BalanceRepository _balanceRepository;
-        public BalanceHelper(BalanceRepository balanceRepository)
+        private UserRepository _userRepository;
+        public BalanceHelper(UserRepository UserRepository)
         {
-            _balanceRepository = balanceRepository;
+            _userRepository = UserRepository;
         }
-        public async Task<IReadOnlyList<Domain.Models.Balance>> GetUserBalance(Guid userId)
+        public async Task<Domain.Models.User> GetUserBalance(Guid userId)
         {
-            return await _balanceRepository.GetUserBalance(userId);
+            return await _userRepository.GetById(userId);
         }
-        public async void AddCashToDb(string text)
+        public async void AddCashToDb(string text, Domain.Models.User user)
         {
-            var balance = new Domain.Models.Balance
-            {
-                Cash = double.Parse(text),
-                UserId = Domain.Constants.Constants.TestUserId
-            };
-            var repository = new BalanceRepository();
-            var userBalance = await repository.GetBalanceIfExist(Domain.Constants.Constants.TestUserId);
-            
+            user.Cash = double.Parse(text);
+            await _userRepository.Update(user.Id, user);
+        }
+        public async void AddCardToDb(string text, Domain.Models.User user)
+        {
+            user.Card = double.Parse(text);
+            await _userRepository.Update(user.Id, user);
+        }
 
-            if (userBalance != null)
-            {
 
-                balance.Card = userBalance.Card;
-                
-                await repository.Update(userBalance.Id, balance);
-            }
-            else
-                await repository.Create(balance);
-        }
-        public async void AddCardToDb(string text)
-        {
-            var balance = new Domain.Models.Balance
-            {
-                Card = double.Parse(text),
-                UserId = Domain.Constants.Constants.TestUserId
-            };
-            var repository = new BalanceRepository();
-            var userBalance = await repository.GetBalanceIfExist(Domain.Constants.Constants.TestUserId);
-            
-            if (userBalance != null)
-            {
-                balance.Cash = userBalance.Cash;
-                await repository.Update(userBalance.Id, balance);
-            }
-            else
-                await repository.Create(balance);
-        }
     }
 }
