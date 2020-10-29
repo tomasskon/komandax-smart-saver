@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SmartSaver.Domain.Models;
 using SmartSaver.Domain.Repositories;
 
 namespace SmartSaver.Logic.HelperClasses.Transactions
@@ -14,9 +15,9 @@ namespace SmartSaver.Logic.HelperClasses.Transactions
             _transactionsRepository = transactionsRepository;
         }
 
-        public async Task<IReadOnlyList<Domain.Models.Transaction>> GetUserTransactions(Guid userId)
+        public async Task<IReadOnlyList<Transaction>> GetUserTransactions(Guid userId, SortingModel sortingModel)
         {
-            return await _transactionsRepository.GetUserTransactions(userId);
+            return await _transactionsRepository.GetSortedUserTransactions(userId, sortingModel);
         }
     }
 }

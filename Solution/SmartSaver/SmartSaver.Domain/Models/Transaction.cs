@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartSaver.Domain.Models
 {
@@ -9,5 +10,14 @@ namespace SmartSaver.Domain.Models
         public string Description { get; set; }
 
         public Guid UserId { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        [NotMapped]
+        public double RealAmount
+        {
+            get => (double)Amount / 100;
+            set => Amount = (int)value * 100;
+        }
     }
 }
