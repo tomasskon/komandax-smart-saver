@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CoreKit.Cryptography.PBKDF2" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SmartSaver.Domain\SmartSaver.Domain.csproj" />
   </ItemGroup>
 
