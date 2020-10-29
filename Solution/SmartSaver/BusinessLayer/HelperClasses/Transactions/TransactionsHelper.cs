@@ -19,5 +19,10 @@ namespace SmartSaver.Logic.HelperClasses.Transactions
         {
             return await _transactionsRepository.GetSortedUserTransactions(userId, sortingModel);
         }
+
+        public async Task AddNewTransaction(Transaction transaction)
+        {
+            await _transactionsRepository.Create(transaction);
+        }
     }
 }

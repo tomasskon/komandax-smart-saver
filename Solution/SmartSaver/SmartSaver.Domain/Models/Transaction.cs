@@ -11,7 +11,13 @@ namespace SmartSaver.Domain.Models
 
         public Guid UserId { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime? CreatedAt { get; set; }
+
+        public Guid CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
 
         [NotMapped]
         public double RealAmount

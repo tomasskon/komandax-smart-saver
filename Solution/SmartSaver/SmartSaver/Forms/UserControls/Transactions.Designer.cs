@@ -39,6 +39,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Category = new System.Windows.Forms.ColumnHeader();
+            this.Id = new System.Windows.Forms.ColumnHeader();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -46,8 +48,10 @@
             // _transactions
             // 
             this._transactions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Id,
             this.Amount,
             this.Description,
+            this.Category,
             this.CreatedAt});
             this._transactions.FullRowSelect = true;
             this._transactions.HideSelection = false;
@@ -142,6 +146,15 @@
             this.panel2.Size = new System.Drawing.Size(1280, 100);
             this.panel2.TabIndex = 0;
             // 
+            // Category
+            // 
+            this.Category.Text = "Category Name";
+            this.Category.Width = 150;
+            // 
+            // Id
+            // 
+            this.Id.Text = "Id";
+            // 
             // Transactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -173,5 +186,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ColumnHeader Category;
+        private System.Windows.Forms.ColumnHeader Id;
     }
 }
