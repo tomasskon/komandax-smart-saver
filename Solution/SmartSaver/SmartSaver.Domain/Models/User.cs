@@ -4,13 +4,16 @@ using System.Text;
 
 namespace SmartSaver.Domain.Models
 {
-    public class Balance : IdentityModelBase
+    public class User : IdentityModelBase
     {
         public double Cash { get; set; }
 
         public double Card { get; set; }
 
-        public Guid UserId { get; set; }
+        public string FullName { get; set; }
 
+        public byte[] UserImage { get; set; }
+
+        
     }
 }

@@ -10,9 +10,11 @@ namespace SmartSaver.Domain.Repositories
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-
         internal DbSet<Transaction> Transactions { get; set; }
-        internal DbSet<Balance> Balances { get; set; }
+
+        internal DbSet<User> Users { get; set; }
+
         internal DbSet<Category> Categories { get; set; }
+
     }
 }

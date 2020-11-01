@@ -31,7 +31,6 @@ namespace SmartSaver.Forms.UserControls
             private void InitializeComponent()
             {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Balance));
-            this._loadData = new System.Windows.Forms.Button();
             this.BtEnter = new System.Windows.Forms.Button();
             this.CashBox = new System.Windows.Forms.TextBox();
             this.BankBox = new System.Windows.Forms.TextBox();
@@ -42,21 +41,9 @@ namespace SmartSaver.Forms.UserControls
             this.TotalBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.BtReset = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // _loadData
-            // 
-            this._loadData.Location = new System.Drawing.Point(799, 421);
-            this._loadData.Name = "_loadData";
-            this._loadData.Size = new System.Drawing.Size(75, 23);
-            this._loadData.TabIndex = 1;
-            this._loadData.Text = "Load Data";
-            this._loadData.UseVisualStyleBackColor = true;
-            //this._loadData.Click += new System.EventHandler(this._loadData_Click);
-            this._loadData.Visible = false;
             // 
             // BtEnter
             // 
@@ -97,8 +84,6 @@ namespace SmartSaver.Forms.UserControls
             // 
             // InputComboBox
             // 
-            this.InputComboBox.SelectedItem = null;
-            this.InputComboBox.SelectedText = "Select";
             this.InputComboBox.FormattingEnabled = true;
             this.InputComboBox.Items.AddRange(new object[] {
             "Cash",
@@ -107,6 +92,7 @@ namespace SmartSaver.Forms.UserControls
             this.InputComboBox.Name = "InputComboBox";
             this.InputComboBox.Size = new System.Drawing.Size(121, 23);
             this.InputComboBox.TabIndex = 6;
+            this.InputComboBox.Text = "Select";
             // 
             // label1
             // 
@@ -161,17 +147,6 @@ namespace SmartSaver.Forms.UserControls
             this.label4.TabIndex = 9;
             this.label4.Text = "Enter your balance";
             // 
-            // BtReset
-            // 
-            this.BtReset.Location = new System.Drawing.Point(708, 451);
-            this.BtReset.Name = "BtReset";
-            this.BtReset.Size = new System.Drawing.Size(75, 23);
-            this.BtReset.TabIndex = 0;
-            this.BtReset.Text = "Reset";
-            this.BtReset.UseVisualStyleBackColor = true;
-            //this.BtReset.Click += new System.EventHandler(this.Reset_Click);
-            this.BtReset.Visible = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -186,7 +161,6 @@ namespace SmartSaver.Forms.UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.BtReset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TotalBox);
@@ -197,7 +171,6 @@ namespace SmartSaver.Forms.UserControls
             this.Controls.Add(this.BankBox);
             this.Controls.Add(this.CashBox);
             this.Controls.Add(this.BtEnter);
-            this.Controls.Add(this._loadData);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Balance";
             this.Size = new System.Drawing.Size(1266, 703);
@@ -208,7 +181,6 @@ namespace SmartSaver.Forms.UserControls
             }
 
             #endregion
-            private System.Windows.Forms.Button _loadData;
             private System.Windows.Forms.Button BtEnter;
             public System.Windows.Forms.TextBox CashBox;
             private System.Windows.Forms.TextBox BankBox;
@@ -219,7 +191,6 @@ namespace SmartSaver.Forms.UserControls
             private System.Windows.Forms.TextBox TotalBox;
             private System.Windows.Forms.Label label3;
             private System.Windows.Forms.Label label4;
-            private System.Windows.Forms.Button BtReset;
             private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
