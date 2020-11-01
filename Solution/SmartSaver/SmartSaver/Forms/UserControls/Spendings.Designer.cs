@@ -105,7 +105,7 @@
             this.spendBalance.FormattingEnabled = true;
             this.spendBalance.Items.AddRange(new object[] {
             "Cash",
-            "Balance"});
+            "Card"});
             this.spendBalance.Location = new System.Drawing.Point(901, 379);
             this.spendBalance.Name = "spendBalance";
             this.spendBalance.Size = new System.Drawing.Size(243, 23);

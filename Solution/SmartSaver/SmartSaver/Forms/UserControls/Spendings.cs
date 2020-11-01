@@ -11,6 +11,7 @@ namespace SmartSaver.Forms.UserControls
     public partial class Spendings : UserControl
     {
         private ListViewItem _lastSelectedCategory;
+        private UserRepository _userRepository;
 
         public Spendings()
         {
@@ -55,25 +56,34 @@ namespace SmartSaver.Forms.UserControls
             }
         }
 
-        private void CreateTransactionFieldsValidation(out double amount, out string warningText)
+        private void CreateTransactionFieldsValidation(out double amount, out string warningText, User user)
         {
             amount = Double.NaN;
             warningText = String.Empty;
 
-            if (String.IsNullOrEmpty(spendMoneyInput.Text)) {
+            if (String.IsNullOrEmpty(spendMoneyInput.Text))
+            {
                 warningText = "Spend Money Input Field cannot be empty";
-            } 
+            }
             else if (!Double.TryParse(spendMoneyInput.Text, out amount))
             {
                 warningText = "Spend Money Input Field must be decimal";
-            } 
+            }
             else if (_lastSelectedCategory is null)
             {
                 warningText = "You must select a category before spending";
-            } 
+            }
             else if (spendBalance.SelectedIndex < 0)
             {
                 warningText = "You must select a balance to spend from";
+            }
+            else if (user is null)
+            {
+                warningText = "User not found, try to log in again";
+            }
+            else if ((spendBalance.SelectedIndex == 0 ? user.Cash : user.Card) < amount)
+            {
+                warningText = "Insufficient balance amount";
             }
         }
 
@@ -81,10 +91,14 @@ namespace SmartSaver.Forms.UserControls
         {
             double amount;
             string warningText;
+            Guid userId = Domain.Constants.Constants.TestUserId;
 
-            CreateTransactionFieldsValidation(out amount, out warningText);
+            _userRepository = new UserRepository();
+            User user = await _userRepository.GetById(userId);
 
-            if (warningText != "")
+            CreateTransactionFieldsValidation(out amount, out warningText, user);
+
+            if (warningText != String.Empty)
             {
                 warningLabel.Text = warningText;
                 return;
@@ -100,7 +114,7 @@ namespace SmartSaver.Forms.UserControls
                 BalanceType = spendBalance.SelectedItem.ToString(),
                 CategoryId = Guid.Parse(categoryId)
             };
-            await helper.AddNewTransaction(newTransaction);
+            await helper.AddNewSpending(newTransaction, user, _userRepository);
             spendMoneyInput.Text = String.Empty;
             warningLabel.Text = String.Empty;
             ReloadData();
