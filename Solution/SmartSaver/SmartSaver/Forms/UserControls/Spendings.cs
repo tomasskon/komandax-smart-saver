@@ -4,6 +4,7 @@ using SmartSaver.Domain.Models;
 using SmartSaver.Domain.Repositories;
 using SmartSaver.Logic.HelperClasses.Categories;
 using SmartSaver.Logic.HelperClasses.Transactions;
+using SmartSaver.Presentation.Forms;
 
 namespace SmartSaver.Forms.UserControls
 {
@@ -77,7 +78,6 @@ namespace SmartSaver.Forms.UserControls
             }
 
             var categoryId = _lastSelectedCategory.Text;
-            System.Diagnostics.Debug.WriteLine(categoryId);
             var helper = new TransactionsHelper(new TransactionsRepository());
             var newTransaction = new Transaction
             {
@@ -98,6 +98,13 @@ namespace SmartSaver.Forms.UserControls
             {
                 _lastSelectedCategory = categoriesList.SelectedItems[0];
             }
+        }
+
+        private void paymentHistoryButton_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = (MainForm) this.FindForm();
+
+            mainForm.ChangePageView(mainForm.transactionsPage);
         }
     }
 }

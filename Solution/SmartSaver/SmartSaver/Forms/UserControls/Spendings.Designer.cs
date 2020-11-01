@@ -243,6 +243,7 @@
             this.paymentHistoryButton.Text = "Payment History";
             this.paymentHistoryButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.paymentHistoryButton.UseVisualStyleBackColor = false;
+            this.paymentHistoryButton.Click += new System.EventHandler(this.paymentHistoryButton_Click);
             // 
             // panel2
             // 
