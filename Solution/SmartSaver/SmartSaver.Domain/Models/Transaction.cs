@@ -19,6 +19,8 @@ namespace SmartSaver.Domain.Models
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
+        public string BalanceType { get; set; }
+
         [NotMapped]
         public double RealAmount
         {

@@ -2,7 +2,8 @@ DELETE FROM [dbo].[Transactions]
 GO
 
 ALTER TABLE [dbo].[Transactions]
-	ADD [CategoryId] [uniqueidentifier] NOT NULL
+	ADD [CategoryId] [uniqueidentifier] NOT NULL,
+		[BalanceType] [varchar](16) NOT NULL
 GO
 
 ALTER TABLE [dbo].[Transactions] 

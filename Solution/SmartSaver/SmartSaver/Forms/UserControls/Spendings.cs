@@ -55,25 +55,38 @@ namespace SmartSaver.Forms.UserControls
             }
         }
 
+        private void CreateTransactionFieldsValidation(out double amount, out string warningText)
+        {
+            amount = Double.NaN;
+            warningText = String.Empty;
+
+            if (String.IsNullOrEmpty(spendMoneyInput.Text)) {
+                warningText = "Spend Money Input Field cannot be empty";
+            } 
+            else if (!Double.TryParse(spendMoneyInput.Text, out amount))
+            {
+                warningText = "Spend Money Input Field must be decimal";
+            } 
+            else if (_lastSelectedCategory is null)
+            {
+                warningText = "You must select a category before spending";
+            } 
+            else if (spendBalance.SelectedIndex < 0)
+            {
+                warningText = "You must select a balance to spend from";
+            }
+        }
+
         private async void createTransaction_Click(object sender, System.EventArgs e)
         {
             double amount;
+            string warningText;
 
-            if (String.IsNullOrEmpty(spendMoneyInput.Text))
-            {
-                warningLabel.Text = "Spend Money Input Field cannot be empty";
-                return;
-            }
+            CreateTransactionFieldsValidation(out amount, out warningText);
 
-            if (!Double.TryParse(spendMoneyInput.Text, out amount))
+            if (warningText != "")
             {
-                warningLabel.Text = "Spend Money Input Field must be decimal";
-                return;
-            }
-
-            if (_lastSelectedCategory is null)
-            {
-                warningLabel.Text = "You must select a category before spending";
+                warningLabel.Text = warningText;
                 return;
             }
 
@@ -84,6 +97,7 @@ namespace SmartSaver.Forms.UserControls
                 RealAmount = amount,
                 Description = "Spending from Spendings page",
                 UserId = Domain.Constants.Constants.TestUserId,
+                BalanceType = spendBalance.SelectedItem.ToString(),
                 CategoryId = Guid.Parse(categoryId)
             };
             await helper.AddNewTransaction(newTransaction);

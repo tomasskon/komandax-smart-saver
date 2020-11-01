@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.spendBalance = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.spendMoneyInput = new System.Windows.Forms.TextBox();
@@ -78,6 +79,7 @@
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.spendBalance);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.spendMoneyInput);
@@ -97,6 +99,18 @@
             this.panel1.Size = new System.Drawing.Size(1280, 620);
             this.panel1.TabIndex = 6;
             // 
+            // spendBalance
+            // 
+            this.spendBalance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.spendBalance.FormattingEnabled = true;
+            this.spendBalance.Items.AddRange(new object[] {
+            "Cash",
+            "Balance"});
+            this.spendBalance.Location = new System.Drawing.Point(901, 379);
+            this.spendBalance.Name = "spendBalance";
+            this.spendBalance.Size = new System.Drawing.Size(243, 23);
+            this.spendBalance.TabIndex = 10;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -113,7 +127,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Corbel", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(907, 356);
+            this.label2.Location = new System.Drawing.Point(901, 337);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 39);
             this.label2.TabIndex = 3;
@@ -131,7 +145,7 @@
             // 
             this.createTransaction.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.createTransaction.ForeColor = System.Drawing.Color.Snow;
-            this.createTransaction.Location = new System.Drawing.Point(1043, 443);
+            this.createTransaction.Location = new System.Drawing.Point(1043, 448);
             this.createTransaction.Name = "createTransaction";
             this.createTransaction.Size = new System.Drawing.Size(101, 30);
             this.createTransaction.TabIndex = 8;
@@ -154,7 +168,7 @@
             // 
             this.createCategory.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.createCategory.ForeColor = System.Drawing.Color.Snow;
-            this.createCategory.Location = new System.Drawing.Point(1043, 296);
+            this.createCategory.Location = new System.Drawing.Point(1043, 289);
             this.createCategory.Name = "createCategory";
             this.createCategory.Size = new System.Drawing.Size(101, 30);
             this.createCategory.TabIndex = 8;
@@ -168,7 +182,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Corbel", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(901, 209);
+            this.label1.Location = new System.Drawing.Point(901, 211);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 39);
             this.label1.TabIndex = 3;
@@ -176,7 +190,7 @@
             // 
             // newCategoryInput
             // 
-            this.newCategoryInput.Location = new System.Drawing.Point(901, 261);
+            this.newCategoryInput.Location = new System.Drawing.Point(901, 253);
             this.newCategoryInput.Multiline = true;
             this.newCategoryInput.Name = "newCategoryInput";
             this.newCategoryInput.Size = new System.Drawing.Size(243, 29);
@@ -316,5 +330,6 @@
         private System.Windows.Forms.Button createTransaction;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ComboBox spendBalance;
     }
 }
