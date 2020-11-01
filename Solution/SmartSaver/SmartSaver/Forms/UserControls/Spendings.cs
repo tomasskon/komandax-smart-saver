@@ -94,7 +94,7 @@ namespace SmartSaver.Forms.UserControls
             var helper = new TransactionsHelper(new TransactionsRepository());
             var newTransaction = new Transaction
             {
-                RealAmount = amount,
+                AmountDouble = amount,
                 Description = "Spending from Spendings page",
                 UserId = Domain.Constants.Constants.TestUserId,
                 BalanceType = spendBalance.SelectedItem.ToString(),
