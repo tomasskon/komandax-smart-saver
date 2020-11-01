@@ -226,12 +226,12 @@
             // 
             // Id
             // 
-            this.Id.Text = "Id";
+            this.Id.Text = "ID";
             // 
             // Category
             // 
             this.Category.Text = "Category";
-            this.Category.Width = 750;
+            this.Category.Width = 705;
             // 
             // panel3
             // 

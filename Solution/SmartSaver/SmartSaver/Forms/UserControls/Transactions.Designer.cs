@@ -31,9 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Transactions));
             this._transactions = new System.Windows.Forms.ListView();
             this.Id = new System.Windows.Forms.ColumnHeader();
-            this.Amount = new System.Windows.Forms.ColumnHeader();
-            this.Description = new System.Windows.Forms.ColumnHeader();
             this.Category = new System.Windows.Forms.ColumnHeader();
+            this.Amount = new System.Windows.Forms.ColumnHeader();
+            this.BalanceType = new System.Windows.Forms.ColumnHeader();
+            this.Description = new System.Windows.Forms.ColumnHeader();
             this.CreatedAt = new System.Windows.Forms.ColumnHeader();
             this._loadData = new System.Windows.Forms.Button();
             this._sortColumn = new System.Windows.Forms.ComboBox();
@@ -41,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.BalanceType = new System.Windows.Forms.ColumnHeader();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,31 +57,36 @@
             this.CreatedAt});
             this._transactions.FullRowSelect = true;
             this._transactions.HideSelection = false;
-            this._transactions.Location = new System.Drawing.Point(134, 116);
+            this._transactions.Location = new System.Drawing.Point(132, 116);
             this._transactions.Name = "_transactions";
-            this._transactions.Size = new System.Drawing.Size(1007, 389);
+            this._transactions.Size = new System.Drawing.Size(1015, 389);
             this._transactions.TabIndex = 0;
             this._transactions.UseCompatibleStateImageBehavior = false;
             this._transactions.View = System.Windows.Forms.View.Details;
             // 
             // Id
             // 
-            this.Id.Text = "Id";
+            this.Id.Text = "ID";
+            // 
+            // Category
+            // 
+            this.Category.Text = "Category Name";
+            this.Category.Width = 150;
             // 
             // Amount
             // 
             this.Amount.Text = "Amount";
             this.Amount.Width = 100;
             // 
+            // BalanceType
+            // 
+            this.BalanceType.Text = "Balance";
+            this.BalanceType.Width = 100;
+            // 
             // Description
             // 
             this.Description.Text = "Description";
             this.Description.Width = 450;
-            // 
-            // Category
-            // 
-            this.Category.Text = "Category Name";
-            this.Category.Width = 150;
             // 
             // CreatedAt
             // 
@@ -156,11 +161,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1280, 100);
             this.panel2.TabIndex = 0;
-            // 
-            // BalanceType
-            // 
-            this.BalanceType.Text = "Balance";
-            this.BalanceType.Width = 100;
             // 
             // Transactions
             // 
