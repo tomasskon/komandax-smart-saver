@@ -44,7 +44,6 @@ namespace SmartSaver.Forms.UserControls
 
             foreach (var transaction in transactions)
             {
-                var item = new ListViewItem(transaction.RealAmount.FormatMoney());
                 var item = new ListViewItem(transaction.Id.ToString());
                 item.SubItems.Add(transaction.Category.Name);
                 item.SubItems.Add(transaction.AmountDouble.FormatMoney());
