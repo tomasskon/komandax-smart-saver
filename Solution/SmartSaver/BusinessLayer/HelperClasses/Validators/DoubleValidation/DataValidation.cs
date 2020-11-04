@@ -9,10 +9,7 @@ namespace SmartSaver
     {
         public Boolean ValidateMoneyInput(String text)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(text, "^[0-9]*$"))
-                return false;
-            else
-                return true;
+            return System.Text.RegularExpressions.Regex.IsMatch(text, "^[0-9]*$");
         }
         // REQUIREMENT: REGEX
     }
