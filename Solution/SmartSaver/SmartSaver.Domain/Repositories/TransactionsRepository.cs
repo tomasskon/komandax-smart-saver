@@ -13,6 +13,7 @@ namespace SmartSaver.Domain.Repositories
         {
             return await sortingModel
                 .OrderByColumn(Set.Where(i => i.UserId == userId))
+                .Include(u => u.Category)
                 .ToListAsync();
         }
     }
