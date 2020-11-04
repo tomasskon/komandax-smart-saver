@@ -28,7 +28,7 @@ namespace SmartSaver.Forms.UserControls
             PictureBox p = sender as PictureBox;
             if(p != null)
             {
-                open.Filter = "(*.jpg;*.jpeg;*.bmp)| *.jpg; *.jpeg; *.bmp";
+                open.Filter = "(*.jpg;*.jpeg;*.bmp;*.png)| *.jpg; *.jpeg; *.bmp; *.png" ;
                 if(open.ShowDialog() == DialogResult.OK)
                 {
                     p.Image = Image.FromFile(open.FileName);
@@ -76,9 +76,10 @@ namespace SmartSaver.Forms.UserControls
             var _userRepository = new UserRepository();
             var helper = new BalanceHelper(_userRepository);
             _user = await helper.GetUserBalance(userId: Domain.Constants.Constants.TestUserId);
-            MoneyFormatter moneyFormatter= new MoneyFormatter();
-            if(_user.Cash + _user.Card != null)
-            textBox1.Text = moneyFormatter.FormatMoney(_user.Cash + _user.Card);
+            
+#pragma warning disable CS0472 
+            if (_user.Cash + _user.Card != null)
+                textBox1.Text = (_user.Cash + _user.Card).FormatMoney();
             pictureBox1.Image = ByteArrayToImage(_user.UserImage);
             await _userRepository.Update(_user.Id, _user);
         }

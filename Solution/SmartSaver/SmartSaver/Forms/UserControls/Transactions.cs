@@ -18,7 +18,6 @@ namespace SmartSaver.Forms.UserControls
         };
 
         private SortingModel _sortingModel;
-        private MoneyFormatter _moneyFormatter = new MoneyFormatter();
 
         public Transactions()
         {
@@ -45,7 +44,7 @@ namespace SmartSaver.Forms.UserControls
 
             foreach (var transaction in transactions)
             {
-                var item = new ListViewItem(_moneyFormatter.FormatMoney(transaction.RealAmount));
+                var item = new ListViewItem(transaction.RealAmount.FormatMoney());
                 item.SubItems.Add(transaction.Description);
                 item.SubItems.Add(transaction.CreatedAt.ToString());
                 
