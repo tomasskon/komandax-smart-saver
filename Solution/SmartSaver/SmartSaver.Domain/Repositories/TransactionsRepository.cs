@@ -23,7 +23,7 @@ namespace SmartSaver.Domain.Repositories
                 .Where(i => i.UserId == userId)
                 .Include(i => i.Category)
                 .OrderByDescending(i => i.CreatedAt)
-                .Take(5)
+                .Take(count)
                 .ToListAsync();
         }
     }
