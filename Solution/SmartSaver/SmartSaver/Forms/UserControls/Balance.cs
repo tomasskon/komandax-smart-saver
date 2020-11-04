@@ -43,17 +43,13 @@ namespace SmartSaver.Forms.UserControls
         }
         private async void UpdateIfExist()
         {
-            //MoneyFormatter mf = new MoneyFormatter();
             var repository = new UserRepository();
             var helper = new BalanceHelper(repository);
             var userBalance = await helper.GetUserBalance(Domain.Constants.Constants.TestUserId);
             CashBox.Text = userBalance.Cash.FormatMoney();
             BankBox.Text = userBalance.Card.FormatMoney();
-           // CashBox.Text = mf.FormatMoney(userBalance.Cash);
-           // BankBox.Text = mf.FormatMoney(userBalance.Card);
             double total = userBalance.Cash + userBalance.Card;
             TotalBox.Text = total.FormatMoney();
-            //TotalBox.Text = mf.FormatMoney(total);
         }
 
     }
