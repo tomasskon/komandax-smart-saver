@@ -16,5 +16,15 @@ namespace SmartSaver.Domain.Repositories
                 .Include(u => u.Category)
                 .ToListAsync();
         }
+
+        public async Task<IReadOnlyList<Transaction>> GetLastTransactions(Guid userId, int count = 5)
+        {
+            return await Set
+                .Where(i => i.UserId == userId)
+                .Include(i => i.Category)
+                .OrderByDescending(i => i.CreatedAt)
+                .Take(5)
+                .ToListAsync();
+        }
     }
 }

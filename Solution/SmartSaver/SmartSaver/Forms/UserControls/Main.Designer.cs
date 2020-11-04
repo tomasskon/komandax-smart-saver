@@ -37,6 +37,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lastTransactions = new System.Windows.Forms.ListView();
+            this.Amount = new System.Windows.Forms.ColumnHeader();
+            this.CategoryName = new System.Windows.Forms.ColumnHeader();
+            this.Balance = new System.Windows.Forms.ColumnHeader();
+            this.CreatedAt = new System.Windows.Forms.ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -124,10 +130,58 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.RefreshClick);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Trebuchet MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(604, 101);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(190, 26);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Last 5 transactions";
+            // 
+            // lastTransactions
+            // 
+            this.lastTransactions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Amount,
+            this.CategoryName,
+            this.Balance,
+            this.CreatedAt});
+            this.lastTransactions.FullRowSelect = true;
+            this.lastTransactions.HideSelection = false;
+            this.lastTransactions.Location = new System.Drawing.Point(604, 130);
+            this.lastTransactions.Name = "lastTransactions";
+            this.lastTransactions.Size = new System.Drawing.Size(661, 167);
+            this.lastTransactions.TabIndex = 9;
+            this.lastTransactions.UseCompatibleStateImageBehavior = false;
+            this.lastTransactions.View = System.Windows.Forms.View.Details;
+            // 
+            // Amount
+            // 
+            this.Amount.Text = "Amount";
+            this.Amount.Width = 100;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.Text = "Category Name";
+            this.CategoryName.Width = 305;
+            // 
+            // Balance
+            // 
+            this.Balance.Text = "Balance";
+            this.Balance.Width = 100;
+            // 
+            // CreatedAt
+            // 
+            this.CreatedAt.Text = "Created At";
+            this.CreatedAt.Width = 150;
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lastTransactions);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
@@ -155,5 +209,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView lastTransactions;
+        private System.Windows.Forms.ColumnHeader Amount;
+        private System.Windows.Forms.ColumnHeader CategoryName;
+        private System.Windows.Forms.ColumnHeader Balance;
+        private System.Windows.Forms.ColumnHeader CreatedAt;
     }
 }

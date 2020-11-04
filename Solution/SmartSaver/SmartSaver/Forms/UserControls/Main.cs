@@ -10,6 +10,8 @@ using SmartSaver.Logic.HelperClasses.Images;
 using SmartSaver.Domain.Repositories;
 using SmartSaver.Logic.HelperClasses.Balance;
 using SmartSaver.Domain.Models;
+using SmartSaver.Logic.HelperClasses.Transactions;
+using SmartSaver.Presentation.Helpers;
 
 namespace SmartSaver.Forms.UserControls
 {
@@ -20,6 +22,7 @@ namespace SmartSaver.Forms.UserControls
         {
             InitializeComponent();
             UpdateInfo();
+            ReloadLastTransactions();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -69,6 +72,7 @@ namespace SmartSaver.Forms.UserControls
         private void RefreshClick(object sender, EventArgs e)
         {
             UpdateInfo();
+            ReloadLastTransactions();
         }
 
         public async void UpdateInfo()
@@ -84,5 +88,40 @@ namespace SmartSaver.Forms.UserControls
             await _userRepository.Update(_user.Id, _user);
         }
 
+        private ListViewItem[] GetTransactionsListViewItems(IReadOnlyList<Transaction> transactions)
+        {
+            var listViewItems = new List<ListViewItem>();
+
+            foreach (var transaction in transactions)
+            {
+                var item = new ListViewItem(transaction.AmountDouble.FormatMoney());
+                item.SubItems.Add(transaction.Category.Name);
+                item.SubItems.Add(transaction.BalanceType);
+                item.SubItems.Add(transaction.CreatedAt.ToString("yyyy-MM-dd HH:mm"));
+
+                listViewItems.Add(item);
+            }
+
+            return listViewItems.ToArray();
+        }
+
+        private async void ReloadLastTransactions()
+        {
+            var transactionHelper = new TransactionsHelper(new TransactionsRepository());
+            try
+            {
+                var transactions = await transactionHelper
+                    .GetLastUserTransactions(Domain.Constants.Constants.TestUserId, 5);
+
+                var listViewItems = GetTransactionsListViewItems(transactions);
+
+                lastTransactions.Items.Clear();
+                lastTransactions.Items.AddRange(listViewItems);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Error.ShowDialog(ex.Message);
+            }
+        }
     }
 }

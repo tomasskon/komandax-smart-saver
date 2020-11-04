@@ -38,5 +38,10 @@ namespace SmartSaver.Logic.HelperClasses.Transactions
         {
             await _transactionsRepository.Create(transaction);
         }
+
+        public async Task<IReadOnlyList<Transaction>> GetLastUserTransactions(Guid userId, int count)
+        {
+            return await _transactionsRepository.GetLastTransactions(userId, count);
+        }
     }
 }
