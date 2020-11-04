@@ -21,7 +21,7 @@ namespace SmartSaver.Forms.UserControls
 
         private async void createCategory_Click(object sender, System.EventArgs e)
         {
-            if (String.IsNullOrEmpty(newCategoryInput.Text))
+            if (string.IsNullOrEmpty(newCategoryInput.Text))
             {
                 warningLabel.Text = "Input Field cannot be empty";
             }
@@ -35,8 +35,8 @@ namespace SmartSaver.Forms.UserControls
                 };
 
                 await helper.AddNewCategory(newCategory);
-                newCategoryInput.Text = String.Empty;
-                warningLabel.Text = String.Empty;
+                newCategoryInput.Text = string.Empty;
+                warningLabel.Text = string.Empty;
                 ReloadData();
             }
         }
@@ -58,14 +58,14 @@ namespace SmartSaver.Forms.UserControls
 
         private void CreateTransactionFieldsValidation(out double amount, out string warningText, User user)
         {
-            amount = Double.NaN;
-            warningText = String.Empty;
+            amount = double.NaN;
+            warningText = string.Empty;
 
-            if (String.IsNullOrEmpty(spendMoneyInput.Text))
+            if (string.IsNullOrEmpty(spendMoneyInput.Text))
             {
                 warningText = "Spend Money Input Field cannot be empty";
             }
-            else if (!Double.TryParse(spendMoneyInput.Text, out amount))
+            else if (!double.TryParse(spendMoneyInput.Text, out amount))
             {
                 warningText = "Spend Money Input Field must be decimal";
             }
@@ -89,16 +89,13 @@ namespace SmartSaver.Forms.UserControls
 
         private async void createTransaction_Click(object sender, System.EventArgs e)
         {
-            double amount;
-            string warningText;
-            Guid userId = Domain.Constants.Constants.TestUserId;
-
             _userRepository = new UserRepository();
-            User user = await _userRepository.GetById(userId);
+            var userId = Domain.Constants.Constants.TestUserId;
+            var user = await _userRepository.GetById(userId);
 
-            CreateTransactionFieldsValidation(out amount, out warningText, user);
+            CreateTransactionFieldsValidation(out double amount, out string warningText, user);
 
-            if (warningText != String.Empty)
+            if (warningText != string.Empty)
             {
                 warningLabel.Text = warningText;
                 return;
@@ -115,8 +112,8 @@ namespace SmartSaver.Forms.UserControls
                 CategoryId = Guid.Parse(categoryId)
             };
             await helper.AddNewSpending(newTransaction, user, _userRepository);
-            spendMoneyInput.Text = String.Empty;
-            warningLabel.Text = String.Empty;
+            spendMoneyInput.Text = string.Empty;
+            warningLabel.Text = string.Empty;
             ReloadData();
         }
 
@@ -130,7 +127,7 @@ namespace SmartSaver.Forms.UserControls
 
         private void paymentHistoryButton_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = (MainForm) this.FindForm();
+            var mainForm = (MainForm) this.FindForm();
 
             mainForm.ChangePageView(mainForm.transactionsPage);
         }

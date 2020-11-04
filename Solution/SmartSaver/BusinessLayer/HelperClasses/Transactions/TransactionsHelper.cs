@@ -22,12 +22,12 @@ namespace SmartSaver.Logic.HelperClasses.Transactions
 
         public async Task AddNewSpending(Transaction transaction, User user, UserRepository userRepository)
         {
-            bool isCash = transaction.BalanceType == "Cash";
             var balance = user.GetType().GetProperty(transaction.BalanceType);
+            var balanceAmount = (double) balance.GetValue(user);
 
-            if ((double)balance.GetValue(user) >= transaction.AmountDouble)
+            if (balanceAmount >= transaction.AmountDouble)
             {
-                balance.SetValue(user, (double)balance.GetValue(user) - transaction.AmountDouble);
+                balance.SetValue(user, balanceAmount - transaction.AmountDouble);
 
                 await userRepository.Update(user.Id, user);
                 await AddNewTransaction(transaction);
