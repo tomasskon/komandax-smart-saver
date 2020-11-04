@@ -9,8 +9,8 @@ namespace SmartSaver
     {
         public Boolean ValidateMoneyInput(String text)
         {
-            return double.TryParse(text, out double ignored);
-          
+            return System.Text.RegularExpressions.Regex.IsMatch(text, "^[0-9]*$");
         }
+        // REQUIREMENT: REGEX
     }
 }

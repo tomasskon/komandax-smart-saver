@@ -18,7 +18,6 @@ namespace SmartSaver.Forms.UserControls
         };
 
         private SortingModel _sortingModel;
-        private MoneyFormatter _moneyFormatter = new MoneyFormatter();
 
         public Transactions()
         {
@@ -47,8 +46,9 @@ namespace SmartSaver.Forms.UserControls
             {
                 var item = new ListViewItem(transaction.Id.ToString());
                 item.SubItems.Add(transaction.Category.Name);
-                item.SubItems.Add(_moneyFormatter.FormatMoney(transaction.AmountDouble));
+                item.SubItems.Add(transaction.AmountDouble.FormatMoney());
                 item.SubItems.Add(transaction.BalanceType);
+
                 item.SubItems.Add(transaction.Description);
                 item.SubItems.Add(transaction.CreatedAt.ToString("yyyy-MM-dd HH:mm"));
                 
