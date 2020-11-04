@@ -12,6 +12,7 @@ using SmartSaver.Logic.HelperClasses.Balance;
 using SmartSaver.Domain.Models;
 using SmartSaver.Logic.HelperClasses.Transactions;
 using SmartSaver.Presentation.Helpers;
+using SmartSaver.Logic.HelperClasses.Categories;
 
 namespace SmartSaver.Forms.UserControls
 {
@@ -23,6 +24,7 @@ namespace SmartSaver.Forms.UserControls
             InitializeComponent();
             UpdateInfo();
             ReloadLastTransactions();
+            ReloadSpentPerCategoryList();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -73,6 +75,7 @@ namespace SmartSaver.Forms.UserControls
         {
             UpdateInfo();
             ReloadLastTransactions();
+            ReloadSpentPerCategoryList();
         }
 
         public async void UpdateInfo()
@@ -123,5 +126,40 @@ namespace SmartSaver.Forms.UserControls
                 Error.ShowDialog(ex.Message);
             }
         }
+
+        private ListViewItem[] GetSpentPerCategoryListViewItems(IReadOnlyList<GroupedTransaction> transactions)
+        {
+            var listViewItems = new List<ListViewItem>();
+
+            foreach (var transaction in transactions)
+            {
+                var item = new ListViewItem(transaction.Key);
+                item.SubItems.Add(transaction.SumDouble.FormatMoney());
+
+                listViewItems.Add(item);
+            }
+
+            return listViewItems.ToArray();
+        }
+
+        private async void ReloadSpentPerCategoryList()
+        {
+            var categoriesHelper = new TransactionsHelper(new TransactionsRepository());
+            try
+            {
+                var transactions = await categoriesHelper
+                    .GetAmountSpentPerCategory(Domain.Constants.Constants.TestUserId);
+
+                var listViewItems = GetSpentPerCategoryListViewItems(transactions);
+
+                spentPerCategoryList.Items.Clear();
+                spentPerCategoryList.Items.AddRange(listViewItems);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Error.ShowDialog(ex.Message);
+            }
+        }
+
     }
 }

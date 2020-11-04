@@ -43,6 +43,10 @@
             this.CategoryName = new System.Windows.Forms.ColumnHeader();
             this.Balance = new System.Windows.Forms.ColumnHeader();
             this.CreatedAt = new System.Windows.Forms.ColumnHeader();
+            this.label5 = new System.Windows.Forms.Label();
+            this.spentPerCategoryList = new System.Windows.Forms.ListView();
+            this.Category = new System.Windows.Forms.ColumnHeader();
+            this.Spent = new System.Windows.Forms.ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -176,10 +180,48 @@
             // 
             this.CreatedAt.Text = "Created At";
             this.CreatedAt.Width = 150;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Trebuchet MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(604, 316);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(271, 26);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Amount spent per category";
+            // 
+            // spentPerCategoryList
+            // 
+            this.spentPerCategoryList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Category,
+            this.Spent});
+            this.spentPerCategoryList.FullRowSelect = true;
+            this.spentPerCategoryList.HideSelection = false;
+            this.spentPerCategoryList.Location = new System.Drawing.Point(604, 345);
+            this.spentPerCategoryList.Name = "spentPerCategoryList";
+            this.spentPerCategoryList.Size = new System.Drawing.Size(661, 236);
+            this.spentPerCategoryList.TabIndex = 9;
+            this.spentPerCategoryList.UseCompatibleStateImageBehavior = false;
+            this.spentPerCategoryList.View = System.Windows.Forms.View.Details;
+            // 
+            // Category
+            // 
+            this.Category.Text = "Category Name";
+            this.Category.Width = 505;
+            // 
+            // Spent
+            // 
+            this.Spent.Text = "Amount Spent";
+            this.Spent.Width = 150;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.spentPerCategoryList);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lastTransactions);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
@@ -215,5 +257,9 @@
         private System.Windows.Forms.ColumnHeader CategoryName;
         private System.Windows.Forms.ColumnHeader Balance;
         private System.Windows.Forms.ColumnHeader CreatedAt;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListView spentPerCategoryList;
+        private System.Windows.Forms.ColumnHeader Category;
+        private System.Windows.Forms.ColumnHeader Spent;
     }
 }

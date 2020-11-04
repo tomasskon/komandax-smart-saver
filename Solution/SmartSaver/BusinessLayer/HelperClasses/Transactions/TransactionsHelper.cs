@@ -43,5 +43,10 @@ namespace SmartSaver.Logic.HelperClasses.Transactions
         {
             return await _transactionsRepository.GetLastTransactions(userId, count);
         }
+
+        public async Task<IReadOnlyList<GroupedTransaction>> GetAmountSpentPerCategory(Guid userId)
+        {
+            return await _transactionsRepository.GetAmountSpentPerCategory(userId);
+        }
     }
 }
