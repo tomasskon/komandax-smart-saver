@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SmartSaver.Domain.Enums;
 using SmartSaver.Domain.Models;
 using SmartSaver.Domain.Repositories;
+using SmartSaver.Domain.SortingDirection;
 using SmartSaver.Logic.HelperClasses.Transactions;
 using SmartSaver.Presentation.Helpers;
 
@@ -10,29 +12,22 @@ namespace SmartSaver.Forms.UserControls
 {
     public partial class Transactions : UserControl
     {
-        private Dictionary<string, string> _sortColumnDictionary = new Dictionary<string, string>()
-        {
-            {"Amount", "Amount"},
-            {"Description", "Description"},
-            {"CreatedAt", "Created At"}
-        };
-
         private SortingModel _sortingModel;
 
         public Transactions()
         {
             InitializeComponent();
 
-            _sortColumn.DataSource = new BindingSource(_sortColumnDictionary, null);
+            _sortColumn.DataSource = new BindingSource(Enum.GetValues(typeof(TransactionsSortingColumns)), null);
             _sortColumn.SelectedIndex = 2;
 
-            _sortDirection.DataSource = new BindingSource(SortingModel.DirectionDictionary, null);
+            _sortDirection.DataSource = new BindingSource(Enum.GetValues(typeof(SortingDirections)), null);
             _sortDirection.SelectedIndex = 1;
 
             _sortingModel = new SortingModel()
             {
-                SortingColumn = GetCurrentSortByField(),
-                IsAscending = GetCurrentSortDirection()
+                SortingColumn = "CreatedAt",
+                IsAscending = false
             };
 
             ReloadTransactions();
@@ -79,16 +74,12 @@ namespace SmartSaver.Forms.UserControls
 
         private void _loadData_Click(object sender, System.EventArgs e) => ReloadTransactions();
 
-        private string GetCurrentSortByField() => _sortColumn.SelectedValue != null ? _sortColumn.SelectedValue.ToString() : "Amount";
-
-        private bool GetCurrentSortDirection() => (bool)(_sortDirection.SelectedValue != null ? _sortDirection.SelectedValue : true);
-
         private void _sort_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (_sortingModel != null)
             {
-                _sortingModel.SortingColumn = GetCurrentSortByField();
-                _sortingModel.IsAscending = GetCurrentSortDirection();
+                _sortingModel.SortingColumn = _sortColumn.SelectedValue.ToString();
+                _sortingModel.IsAscending = _sortDirection.SelectedItem.Equals(SortingDirections.Ascending);
 
                 ReloadTransactions();
             }
