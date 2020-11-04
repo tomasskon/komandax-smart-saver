@@ -30,7 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Transactions));
             this._transactions = new System.Windows.Forms.ListView();
+            this.Id = new System.Windows.Forms.ColumnHeader();
+            this.Category = new System.Windows.Forms.ColumnHeader();
             this.Amount = new System.Windows.Forms.ColumnHeader();
+            this.BalanceType = new System.Windows.Forms.ColumnHeader();
             this.Description = new System.Windows.Forms.ColumnHeader();
             this.CreatedAt = new System.Windows.Forms.ColumnHeader();
             this._loadData = new System.Windows.Forms.Button();
@@ -46,27 +49,44 @@
             // _transactions
             // 
             this._transactions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Id,
+            this.Category,
             this.Amount,
+            this.BalanceType,
             this.Description,
             this.CreatedAt});
             this._transactions.FullRowSelect = true;
             this._transactions.HideSelection = false;
-            this._transactions.Location = new System.Drawing.Point(134, 116);
+            this._transactions.Location = new System.Drawing.Point(132, 116);
             this._transactions.Name = "_transactions";
-            this._transactions.Size = new System.Drawing.Size(1007, 389);
+            this._transactions.Size = new System.Drawing.Size(1015, 389);
             this._transactions.TabIndex = 0;
             this._transactions.UseCompatibleStateImageBehavior = false;
             this._transactions.View = System.Windows.Forms.View.Details;
             // 
+            // Id
+            // 
+            this.Id.Text = "ID";
+            // 
+            // Category
+            // 
+            this.Category.Text = "Category Name";
+            this.Category.Width = 150;
+            // 
             // Amount
             // 
             this.Amount.Text = "Amount";
-            this.Amount.Width = 150;
+            this.Amount.Width = 100;
+            // 
+            // BalanceType
+            // 
+            this.BalanceType.Text = "Balance";
+            this.BalanceType.Width = 100;
             // 
             // Description
             // 
             this.Description.Text = "Description";
-            this.Description.Width = 300;
+            this.Description.Width = 450;
             // 
             // CreatedAt
             // 
@@ -173,5 +193,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ColumnHeader Category;
+        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader BalanceType;
     }
 }
