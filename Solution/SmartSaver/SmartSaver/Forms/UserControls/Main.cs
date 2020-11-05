@@ -10,6 +10,8 @@ using SmartSaver.Logic.HelperClasses.Images;
 using SmartSaver.Domain.Repositories;
 using SmartSaver.Logic.HelperClasses.Balance;
 using SmartSaver.Domain.Models;
+using System.Drawing.Imaging;
+
 
 namespace SmartSaver.Forms.UserControls
 {
@@ -38,11 +40,14 @@ namespace SmartSaver.Forms.UserControls
 
         private byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
+            if(pictureBox1.Image != null)
             using (MemoryStream ms = new MemoryStream())
             {
-                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
+                    Bitmap bmp = new Bitmap(imageIn);
+                    bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    return ms.ToArray();
             }
+            return null;
         }
 
         private async void SaveImageClick(object sender, EventArgs e)
@@ -53,6 +58,9 @@ namespace SmartSaver.Forms.UserControls
             byte[] file_byte = ImageToByteArray(pictureBox1.Image);
             _user.UserImage = file_byte;
             await _userRepository.Update(_user.Id, _user);
+            string text = "Image successfully saved!";
+            MessageBox.Show(text);
+        
         }
 
         public Image ByteArrayToImage(byte[] ba)
@@ -80,7 +88,8 @@ namespace SmartSaver.Forms.UserControls
 #pragma warning disable CS0472 
             if (_user.Cash + _user.Card != null)
                 textBox1.Text = (_user.Cash + _user.Card).FormatMoney();
-            pictureBox1.Image = ByteArrayToImage(_user.UserImage);
+            if(_user.UserImage != null)
+                pictureBox1.Image = ByteArrayToImage(_user.UserImage);
             await _userRepository.Update(_user.Id, _user);
         }
 
