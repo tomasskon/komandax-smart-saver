@@ -43,6 +43,11 @@ namespace SmartSaver.Forms.UserControls
 
         private async void ReloadData()
         {
+            _userRepository = new UserRepository();
+            var userId = Domain.Constants.Constants.TestUserId;
+            var user = await _userRepository.GetById(userId);
+            textBox1.Text = user.Card.FormatMoney();
+            textBox2.Text = user.Cash.FormatMoney();
             categoriesList.Items.Clear();
             var categoriesHelper = new CategoriesHelper(new CategoriesRepository());
             var categories = await categoriesHelper
@@ -130,6 +135,11 @@ namespace SmartSaver.Forms.UserControls
             var mainForm = (MainForm) this.FindForm();
 
             mainForm.ChangePageView(mainForm.transactionsPage);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ReloadData();
         }
     }
 }
