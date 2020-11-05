@@ -8,12 +8,6 @@ namespace SmartSaver.Domain.Models
 {
     public class SortingModel
     {
-        public static Dictionary<bool, string> DirectionDictionary = new Dictionary<bool, string>()
-        {
-            { true, "Ascending" },
-            { false, "Descending" }
-        };
-
         public string SortingColumn { get; set; }
 
         public bool IsAscending { get; set; }

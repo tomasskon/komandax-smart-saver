@@ -3,29 +3,30 @@ using System.Windows.Forms;
 using SmartSaver.Domain.Repositories;
 using UserControls = SmartSaver.Forms.UserControls;
 using SmartSaver.Domain.Repositories.Interfaces;
+using SmartSaver.Forms.UserControls;
 
 namespace SmartSaver.Presentation.Forms
 {
     public partial class MainForm : Form
     {
-        protected UserControl mainPage = new UserControls.Main();
-        protected UserControl transactionsPage = new UserControls.Transactions();
-        protected UserControl savingsPage = new UserControls.Savings();
-        protected UserControl spendingsPage = new UserControls.Spendings();
-        protected UserControl balancePage = new UserControls.Balance();
-        protected UserControl morePage = new UserControls.More();
+        public UserControl mainPage = new UserControls.Main();
+        public UserControl transactionsPage = new UserControls.Transactions();
+        public UserControl savingsPage = new UserControls.Savings();
+        public UserControl spendingsPage = new UserControls.Spendings();
+        public UserControl balancePage = new UserControls.Balance();
+        public UserControl morePage = new UserControls.More();
 
         public MainForm()
         {
             InitializeComponent();
 
-            ChangePageView(pagePanel, mainPage);
+            ChangePageView(mainPage);
         }
 
-        protected void ChangePageView(Panel panel, UserControl userControl)
+        public void ChangePageView(UserControl userControl)
         {
-            panel.Controls.Clear();
-            panel.Controls.Add(userControl);
+            pagePanel.Controls.Clear();
+            pagePanel.Controls.Add(userControl);
         }
 
         protected UserControl GetPageFromButtonName(string buttonName)
@@ -49,8 +50,7 @@ namespace SmartSaver.Presentation.Forms
             {
                 Button button = (Button) sender;
                 UserControl pageControl = GetPageFromButtonName(button.Name);
-
-                ChangePageView(pagePanel, pageControl);
+                ChangePageView(pageControl);
             }
         }
     }

@@ -13,26 +13,27 @@ namespace SmartSaver.Forms.UserControls
 {
     public partial class Balance : UserControl
     {
+        private User _user;
         public Balance()
         {
             InitializeComponent();
             UpdateIfExist();
         }
-        private void Enter_Click(object sender, System.EventArgs e)
+        private async void Enter_Click(object sender, System.EventArgs e)
         {
             InputBox.ForeColor = Color.Black;
             DataValidation dv = new DataValidation();
-            var helper = new BalanceHelper(new BalanceRepository());
-
+            var helper = new BalanceHelper(new UserRepository());
+            _user = await helper.GetUserBalance(userId: Domain.Constants.Constants.TestUserId);
             if (dv.ValidateMoneyInput(InputBox.Text))
             {
                 switch (InputComboBox.SelectedIndex)
                 {
                     case 0:
-                        helper.AddCashToDb(InputBox.Text);
+                        helper.AddCashToDb(InputBox.Text, _user);
                         break;
                     case 1:
-                        helper.AddCardToDb(InputBox.Text);
+                        helper.AddCardToDb(InputBox.Text, _user);
                         break;
                 }
                 UpdateIfExist();
@@ -40,20 +41,22 @@ namespace SmartSaver.Forms.UserControls
             else
                 InputBox.ForeColor = Color.Red;
         }
+
         private async void UpdateIfExist()
         {
-            /*
-            MoneyFormatter mf = new MoneyFormatter();
-            var repository = new BalanceRepository();
+            var repository = new UserRepository();
             var helper = new BalanceHelper(repository);
-            var userBalance = await repository.GetBalanceIfExist(Domain.Constants.Constants.TestUserId);
-            CashBox.Text = mf.FormatMoney(userBalance.Cash);
-            BankBox.Text = mf.FormatMoney(userBalance.Card);
+            var userBalance = await helper.GetUserBalance(Domain.Constants.Constants.TestUserId);
+            CashBox.Text = userBalance.Cash.FormatMoney();
+            BankBox.Text = userBalance.Card.FormatMoney();
             double total = userBalance.Cash + userBalance.Card;
-            TotalBox.Text = mf.FormatMoney(total);
-            */
+            TotalBox.Text = total.FormatMoney();
         }
 
+        private void BtRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateIfExist();
+        }
     }
 }
 
