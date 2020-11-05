@@ -60,12 +60,11 @@
             this.resultLabel.AutoSize = true;
             this.resultLabel.BackColor = System.Drawing.Color.Transparent;
             this.resultLabel.Font = new System.Drawing.Font("Corbel", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.resultLabel.Location = new System.Drawing.Point(21, 55);
+            this.resultLabel.Location = new System.Drawing.Point(0, 53);
             this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(448, 73);
+            this.resultLabel.Size = new System.Drawing.Size(485, 73);
             this.resultLabel.TabIndex = 3;
-            this.resultLabel.Text = "*colored result*";
-            this.resultLabel.Click += new System.EventHandler(this.label1_Click);
+            this.resultLabel.Text = "*need more info*";
             // 
             // button1
             // 
@@ -81,6 +80,7 @@
             this.button1.Text = "Ok";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DesignatedFinancialPlanForm
             // 
@@ -94,7 +94,9 @@
             this.Controls.Add(this.designatedPlanLabel);
             this.DoubleBuffered = true;
             this.Name = "DesignatedFinancialPlanForm";
-            this.Text = "DesignatedFinancialPlanForm";
+            this.Text = "Your financial plan:";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DesignatedFinancialPlanForm_FormClosing);
+            this.Load += new System.EventHandler(this.DesignatedFinancialPlanForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

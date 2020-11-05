@@ -96,7 +96,7 @@
             // goalAmountTextBox
             // 
             this.goalAmountTextBox.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.goalAmountTextBox.Location = new System.Drawing.Point(647, 117);
+            this.goalAmountTextBox.Location = new System.Drawing.Point(172, 298);
             this.goalAmountTextBox.Name = "goalAmountTextBox";
             this.goalAmountTextBox.PlaceholderText = "                  $";
             this.goalAmountTextBox.Size = new System.Drawing.Size(133, 40);
@@ -107,7 +107,7 @@
             this.goalLabel.AutoSize = true;
             this.goalLabel.BackColor = System.Drawing.Color.Transparent;
             this.goalLabel.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.goalLabel.Location = new System.Drawing.Point(562, 120);
+            this.goalLabel.Location = new System.Drawing.Point(83, 301);
             this.goalLabel.Name = "goalLabel";
             this.goalLabel.Size = new System.Drawing.Size(79, 35);
             this.goalLabel.TabIndex = 3;
@@ -115,7 +115,8 @@
             // 
             // endDateCalendar
             // 
-            this.endDateCalendar.Location = new System.Drawing.Point(567, 228);
+            this.endDateCalendar.Location = new System.Drawing.Point(535, 163);
+            this.endDateCalendar.MaxSelectionCount = 1;
             this.endDateCalendar.Name = "endDateCalendar";
             this.endDateCalendar.TabIndex = 6;
             // 
@@ -124,22 +125,22 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(637, 184);
+            this.label1.Location = new System.Drawing.Point(583, 119);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 35);
+            this.label1.Size = new System.Drawing.Size(181, 35);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Set Date:";
+            this.label1.Text = "Set Goal Date";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(0, 122);
+            this.label2.Location = new System.Drawing.Point(67, 122);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(157, 35);
+            this.label2.Size = new System.Drawing.Size(95, 35);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Goal Name:";
+            this.label2.Text = "Name:";
             // 
             // goalNameTextBox
             // 
@@ -156,7 +157,8 @@
             this.goalDescriptionTextBox.Location = new System.Drawing.Point(172, 190);
             this.goalDescriptionTextBox.Multiline = true;
             this.goalDescriptionTextBox.Name = "goalDescriptionTextBox";
-            this.goalDescriptionTextBox.Size = new System.Drawing.Size(228, 85);
+            this.goalDescriptionTextBox.PlaceholderText = "Enter a description...";
+            this.goalDescriptionTextBox.Size = new System.Drawing.Size(262, 85);
             this.goalDescriptionTextBox.TabIndex = 5;
             // 
             // label3

@@ -7,18 +7,21 @@ using SmartSaver.Domain.Models;
 
 namespace SmartSaver.Domain.Repositories
 {
-    public class SavingsRepository : GenericRepository<Savings>
+    public class SavingsRepository : GenericRepository<SavingGoal>
     {
         
-        public async Task<IReadOnlyList<Savings>> GetUserGoals(Guid userId)
+        public async Task<SavingGoal> GetUserGoalIfExists(SavingGoal goal)
         {
-            return await Set.Where(i => i.UserId == userId).ToListAsync();
+            return await Set.SingleOrDefaultAsync(i => i.GoalName == goal.GoalName);
         }
-        public async Task<IReadOnlyList<Savings>> GetSortedUserGoals(Guid userId, SortingModel sortingModel)
+        public async Task<IReadOnlyList<SavingGoal>> GetSortedUserGoals(Guid userId, SortingModel sortingModel)
         {
-            return await sortingModel.OrderByColumn(Set.Where(i => i.UserId == userId)).ToListAsync();
+            return await sortingModel
+                .OrderByColumn(Set.Where(i => i.UserId == userId))
+                .ToListAsync();
         }
         
+
 
     }
 }

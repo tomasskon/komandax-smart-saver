@@ -22,6 +22,7 @@ namespace SmartSaver.Forms.UserControls
 
         public Transactions()
         {
+            /*
             InitializeComponent();
 
             _sortColumn.DataSource = new BindingSource(_sortColumnDictionary, null);
@@ -37,6 +38,7 @@ namespace SmartSaver.Forms.UserControls
             };
 
             ReloadTransactions();
+            */
         }
 
         private ListViewItem[] GetTransactionsListViewItems(IReadOnlyList<Domain.Models.Transaction> transactions)
@@ -57,7 +59,7 @@ namespace SmartSaver.Forms.UserControls
 
         private async void ReloadTransactions()
         {
-            /*
+            
             var transactionHelper = new TransactionsHelper(new TransactionsRepository());
             try
             {
@@ -73,7 +75,7 @@ namespace SmartSaver.Forms.UserControls
             {
                 Error.ShowDialog(ex.Message);
             }
-            */
+            
         }
 
         private void _loadData_Click(object sender, System.EventArgs e) => ReloadTransactions();

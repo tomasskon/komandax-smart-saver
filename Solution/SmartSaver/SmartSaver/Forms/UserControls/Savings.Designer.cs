@@ -30,6 +30,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Savings));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.button1 = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -46,6 +47,7 @@
             this.progressPercentage = new System.Windows.Forms.ColumnHeader();
             this.goalEnds = new System.Windows.Forms.ColumnHeader();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.removeGoalButton = new System.Windows.Forms.Button();
             this.generatePlanButton = new System.Windows.Forms.Button();
             this.createGoalButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -53,6 +55,7 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.editGoalButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -126,7 +129,7 @@
             // 
             this.financialPlanLabel.AutoSize = true;
             this.financialPlanLabel.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.financialPlanLabel.Location = new System.Drawing.Point(1162, 364);
+            this.financialPlanLabel.Location = new System.Drawing.Point(1132, 170);
             this.financialPlanLabel.Name = "financialPlanLabel";
             this.financialPlanLabel.Size = new System.Drawing.Size(267, 35);
             this.financialPlanLabel.TabIndex = 7;
@@ -150,6 +153,7 @@
             // 
             // savingGoalsList
             // 
+            this.savingGoalsList.Activation = System.Windows.Forms.ItemActivation.TwoClick;
             this.savingGoalsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.goalName,
             this.descriptionColumn,
@@ -159,7 +163,10 @@
             this.progressPercentage,
             this.goalEnds});
             this.savingGoalsList.FullRowSelect = true;
+            this.savingGoalsList.GridLines = true;
             this.savingGoalsList.HideSelection = false;
+            this.savingGoalsList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
             this.savingGoalsList.Location = new System.Drawing.Point(140, 213);
             this.savingGoalsList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.savingGoalsList.Name = "savingGoalsList";
@@ -208,6 +215,8 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(135)))));
+            this.panel3.Controls.Add(this.editGoalButton);
+            this.panel3.Controls.Add(this.removeGoalButton);
             this.panel3.Controls.Add(this.generatePlanButton);
             this.panel3.Controls.Add(this.createGoalButton);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -217,13 +226,29 @@
             this.panel3.Size = new System.Drawing.Size(1463, 133);
             this.panel3.TabIndex = 0;
             // 
+            // removeGoalButton
+            // 
+            this.removeGoalButton.BackColor = System.Drawing.Color.White;
+            this.removeGoalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeGoalButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.removeGoalButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.removeGoalButton.Location = new System.Drawing.Point(804, 15);
+            this.removeGoalButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.removeGoalButton.Name = "removeGoalButton";
+            this.removeGoalButton.Size = new System.Drawing.Size(271, 54);
+            this.removeGoalButton.TabIndex = 1;
+            this.removeGoalButton.Text = "Remove Goal";
+            this.removeGoalButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.removeGoalButton.UseVisualStyleBackColor = false;
+            this.removeGoalButton.Click += new System.EventHandler(this.removeGoalButton_Click);
+            // 
             // generatePlanButton
             // 
             this.generatePlanButton.BackColor = System.Drawing.Color.White;
             this.generatePlanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.generatePlanButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.generatePlanButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.generatePlanButton.Location = new System.Drawing.Point(1158, 16);
+            this.generatePlanButton.Location = new System.Drawing.Point(1128, 15);
             this.generatePlanButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.generatePlanButton.Name = "generatePlanButton";
             this.generatePlanButton.Size = new System.Drawing.Size(271, 92);
@@ -231,6 +256,7 @@
             this.generatePlanButton.Text = "Generate Financial Plan";
             this.generatePlanButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.generatePlanButton.UseVisualStyleBackColor = false;
+            this.generatePlanButton.Click += new System.EventHandler(this.generatePlanButton_Click);
             // 
             // createGoalButton
             // 
@@ -238,7 +264,7 @@
             this.createGoalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createGoalButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.createGoalButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.createGoalButton.Location = new System.Drawing.Point(463, 25);
+            this.createGoalButton.Location = new System.Drawing.Point(140, 15);
             this.createGoalButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createGoalButton.Name = "createGoalButton";
             this.createGoalButton.Size = new System.Drawing.Size(271, 54);
@@ -286,6 +312,22 @@
             this.columnHeader3.Text = "Created At";
             this.columnHeader3.Width = 150;
             // 
+            // editGoalButton
+            // 
+            this.editGoalButton.BackColor = System.Drawing.Color.White;
+            this.editGoalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editGoalButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.editGoalButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editGoalButton.Location = new System.Drawing.Point(472, 15);
+            this.editGoalButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.editGoalButton.Name = "editGoalButton";
+            this.editGoalButton.Size = new System.Drawing.Size(271, 54);
+            this.editGoalButton.TabIndex = 1;
+            this.editGoalButton.Text = "Add funds";
+            this.editGoalButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.editGoalButton.UseVisualStyleBackColor = false;
+            this.editGoalButton.Click += new System.EventHandler(this.editGoalButton_Click);
+            // 
             // Savings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -304,6 +346,8 @@
             this.ResumeLayout(false);
 
         }
+
+
 
         #endregion
 
@@ -331,5 +375,8 @@
         private System.Windows.Forms.ComboBox _sortColumn;
         private System.Windows.Forms.ComboBox _sortDirection;
         private System.Windows.Forms.ColumnHeader descriptionColumn;
+        private System.Windows.Forms.Button removeGoalButton;
+        private System.Windows.Forms.Button v;
+        private System.Windows.Forms.Button editGoalButton;
     }
 }

@@ -7,17 +7,21 @@ using System.Text;
 using System.Windows.Forms;
 using SmartSaver.Forms.Savings;
 using SmartSaver.Domain.Models;
-using SmartSaver.Domain.Repositories;
 using SmartSaver.Logic.HelperClasses.Savings;
+using SmartSaver.Domain.Repositories;
 using SmartSaver.Presentation.Helpers;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace SmartSaver.Forms.UserControls
 {
+
     public partial class Savings : UserControl
     {
         //temporary variables:
-        SavingsGoalForm goalForm = new SavingsGoalForm();
-
+        SavingsHelper savingsHelper;
+        SavingsGoalForm goalForm;
+        DesignatedFinancialPlanForm planForm;
+        GoalEditForm editForm;
         //temporary ends
 
         private Dictionary<string, string> _sortColumnDictionary = new Dictionary<string, string>()
@@ -25,16 +29,19 @@ namespace SmartSaver.Forms.UserControls
             {"goalName", "Goal Name"},
             {"moneyAmount","Amount" },
             {"startedDate","Started" },
-            {"progressAmount","Progress" },
+            {"progressAmount","Progress"},
             {"goalEnds","Goal Ends" },
         };
 
         private SortingModel _sortingModel;
-        //private MoneyFormatter _moneyFormatter = new MoneyFormatter();
+        private MoneyFormatter _moneyFormatter = new MoneyFormatter();
 
         public Savings()
         {
             InitializeComponent();
+            goalForm = new SavingsGoalForm(savingsHelper);
+            savingsHelper = new SavingsHelper(new SavingsRepository());
+            planForm = new DesignatedFinancialPlanForm();
 
             _sortColumn.DataSource = new BindingSource(_sortColumnDictionary, null);
             _sortColumn.SelectedIndex = 1;
@@ -42,45 +49,57 @@ namespace SmartSaver.Forms.UserControls
             _sortDirection.DataSource = new BindingSource(SortingModel.DirectionDictionary, null);
             _sortDirection.SelectedIndex = 1;
 
-
-            Domain.Models.Savings savings = new Domain.Models.Savings()
-            {
-                GoalName = "Emergency Fund",
-                GoalAmount = 500.0,
-                Description = "For emergency purposes",
-                StartDate = DateTime.Now,
-                FinishDate = DateTime.Now,
-                AmountRemaining = 200.0,
-            };
-
-            ListViewItem item = new ListViewItem(savings.GoalName);
-            item.SubItems.Add(savings.Description);
-            item.SubItems.Add(savings.GoalAmount.ToString());
-            item.SubItems.Add(savings.StartDate.ToString("yyyy-MM-dd"));
-            item.SubItems.Add(savings.AmountRemaining.ToString());
-            item.SubItems.Add(savings.ProgressPercentageValue.ToString());
-            item.SubItems.Add(savings.FinishDate.ToString("yyyy-MM-dd"));
-
-
-            savingGoalsList.Items.Add(item);
-
-            /*
             _sortingModel = new SortingModel()
             {
                 SortingColumn = GetCurrentSortByField(),
                 IsAscending = GetCurrentSortDirection()
             };
 
+
+            //Temporary (Mock Info)
+            SavingGoal savings = new SavingGoal()
+            {
+                GoalName = "Emergency Fund",
+                GoalAmount = 500.0,
+                Description = "For emergency purposes",
+                StartDate = DateTime.Now,
+                FinishDate = DateTime.Now,
+                Progress = 200.0,
+            };
+            editForm = new GoalEditForm(savings, savingsHelper);
+
+            ListViewItem item = new ListViewItem(savings.GoalName);
+            item.SubItems.Add(savings.Description);
+            item.SubItems.Add(savings.GoalAmount.ToString());
+            item.SubItems.Add(savings.StartDate.ToString("yyyy-MM-dd"));
+            item.SubItems.Add(savings.Progress.ToString());
+            item.SubItems.Add(savings.ProgressPercentageValue.ToString());
+            item.SubItems.Add(savings.FinishDate.ToString("yyyy-MM-dd"));
+
+            savingGoalsList.Items.Add(item);
+
+
+
+            /*
             ReloadSavingGoals();
+                
+
+            
             */
         }
 
-        private ListViewItem[] GetGoalsListViewItems(IReadOnlyList<Domain.Models.Savings> savings)
+        private ListViewItem[] GetGoalsListViewItems(IReadOnlyList<SavingGoal> savingGoals)
         {
             var listViewItems = new List<ListViewItem>();
-            foreach(var goal in savings)
+            foreach (var goal in savingGoals)
             {
-                var item = new ListViewItem();
+                var item = new ListViewItem(goal.GoalName);
+                item.SubItems.Add(goal.Description);
+                item.SubItems.Add(goal.GoalAmount.ToString());
+                item.SubItems.Add(goal.StartDate.ToString());
+                item.SubItems.Add(goal.Progress.ToString());
+                item.SubItems.Add(goal.FinishDate.ToString());
+
                 listViewItems.Add(item);
             }
             return listViewItems.ToArray();
@@ -88,11 +107,7 @@ namespace SmartSaver.Forms.UserControls
 
         private async void ReloadSavingGoals()
         {
-
-            
             /*
-            var savingsHelper = new SavingsHelper(new SavingsRepository());
-
             
             try
             {
@@ -116,7 +131,7 @@ namespace SmartSaver.Forms.UserControls
         private bool GetCurrentSortDirection() => (bool)(_sortDirection.SelectedValue != null ? _sortDirection.SelectedValue : true);
         private void _sort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_sortingModel != null)
+            if (_sortingModel != null)
             {
                 _sortingModel.SortingColumn = GetCurrentSortByField();
                 _sortingModel.IsAscending = GetCurrentSortDirection();
@@ -128,6 +143,50 @@ namespace SmartSaver.Forms.UserControls
         private void createGoalButton_Click(object sender, EventArgs e)
         {
             goalForm.Show();
+        }
+
+        private void removeGoalButton_Click(object sender, EventArgs e)
+        {
+            if (savingGoalsList.Items.Count > 0)
+            {
+                savingGoalsList.Items.Remove(savingGoalsList.SelectedItems[0]);
+                //REMOVE FROM DB
+
+            }
+        }
+
+        private void editGoalButton_Click(object sender, EventArgs e)
+        {
+            string parseInfo;
+            List<string> stringsToGoal = new List<string>();
+            if (savingGoalsList.Items.Count > 0)
+            {
+                ListViewItem item = savingGoalsList.SelectedItems[0];
+                foreach (ListViewItem.ListViewSubItem listItem in item.SubItems)
+                {
+                    stringsToGoal.Add(listItem.Text);
+                }
+            }
+
+
+
+            var goal = SavingsHelper.StringListToGoal(stringsToGoal, out parseInfo);
+            if (goal != null)
+            {
+                editForm = new GoalEditForm(goal, savingsHelper);
+                editForm.Show();
+            } else
+            {
+                Error.ShowDialog(parseInfo);
+                return;
+            }
+
+
+        }
+
+        private void generatePlanButton_Click(object sender, EventArgs e)
+        {
+            planForm.Show();
         }
     }
 }

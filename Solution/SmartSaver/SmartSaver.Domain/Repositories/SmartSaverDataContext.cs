@@ -13,5 +13,6 @@ namespace SmartSaver.Domain.Repositories
 
         internal DbSet<Transaction> Transactions { get; set; }
         internal DbSet<Balance> Balances { get; set; }
+        internal DbSet<SavingGoal> Goals { get; set; }
     }
 }

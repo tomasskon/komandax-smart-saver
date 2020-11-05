@@ -15,9 +15,23 @@ namespace SmartSaver.Forms.Savings
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void DesignatedFinancialPlanForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void DesignatedFinancialPlanForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
         }
     }
 }
