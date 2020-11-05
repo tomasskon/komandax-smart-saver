@@ -41,6 +41,7 @@ namespace SmartSaver.Forms.UserControls
             else
                 InputBox.ForeColor = Color.Red;
         }
+
         private async void UpdateIfExist()
         {
             var repository = new UserRepository();
@@ -52,6 +53,10 @@ namespace SmartSaver.Forms.UserControls
             TotalBox.Text = total.FormatMoney();
         }
 
+        private void BtRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateIfExist();
+        }
     }
 }
 
