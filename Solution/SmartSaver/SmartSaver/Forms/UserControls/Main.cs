@@ -31,10 +31,10 @@ namespace SmartSaver.Forms.UserControls
         {
             OpenFileDialog open = new OpenFileDialog();
             PictureBox p = sender as PictureBox;
-            if(p != null)
+            if (p != null)
             {
-                open.Filter = "(*.jpg;*.jpeg;*.bmp;*.png)| *.jpg; *.jpeg; *.bmp; *.png" ;
-                if(open.ShowDialog() == DialogResult.OK)
+                open.Filter = "(*.jpg;*.jpeg;*.bmp;*.png)| *.jpg; *.jpeg; *.bmp; *.png";
+                if (open.ShowDialog() == DialogResult.OK)
                 {
                     p.Image = Image.FromFile(open.FileName);
                 }
@@ -43,11 +43,14 @@ namespace SmartSaver.Forms.UserControls
 
         private byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
-            }
+            if (pictureBox1.Image != null)
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Bitmap bmp = new Bitmap(imageIn);
+                    bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    return ms.ToArray();
+                }
+            return null;
         }
 
         private async void SaveImageClick(object sender, EventArgs e)
@@ -58,16 +61,19 @@ namespace SmartSaver.Forms.UserControls
             byte[] file_byte = ImageToByteArray(pictureBox1.Image);
             _user.UserImage = file_byte;
             await _userRepository.Update(_user.Id, _user);
+            string text = "Image successfully saved!";
+            MessageBox.Show(text);
+
         }
 
         public Image ByteArrayToImage(byte[] ba)
         {
-            if(ba != null)
-            using (MemoryStream ms = new MemoryStream(ba))
-            {
-                Image returnImage = Image.FromStream(ms);
-                return returnImage;
-            }
+            if (ba != null)
+                using (MemoryStream ms = new MemoryStream(ba))
+                {
+                    Image returnImage = Image.FromStream(ms);
+                    return returnImage;
+                }
             return null;
         }
 
@@ -83,11 +89,12 @@ namespace SmartSaver.Forms.UserControls
             var _userRepository = new UserRepository();
             var helper = new BalanceHelper(_userRepository);
             _user = await helper.GetUserBalance(userId: Domain.Constants.Constants.TestUserId);
-            
-#pragma warning disable CS0472 
+
+#pragma warning disable CS0472
             if (_user.Cash + _user.Card != null)
                 textBox1.Text = (_user.Cash + _user.Card).FormatMoney();
-            pictureBox1.Image = ByteArrayToImage(_user.UserImage);
+            if (_user.UserImage != null)
+                pictureBox1.Image = ByteArrayToImage(_user.UserImage);
             await _userRepository.Update(_user.Id, _user);
         }
 

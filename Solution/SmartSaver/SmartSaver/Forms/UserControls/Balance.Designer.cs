@@ -87,8 +87,8 @@ namespace SmartSaver.Forms.UserControls
             this.InputComboBox.FormattingEnabled = true;
             this.InputComboBox.Items.AddRange(new object[] {
             "Cash",
-            "Balance"});
-            this.InputComboBox.Location = new System.Drawing.Point(581, 452);
+            "Card});"});
+            this.InputComboBox.Location = new System.Drawing.Point(0, 0);
             this.InputComboBox.Name = "InputComboBox";
             this.InputComboBox.Size = new System.Drawing.Size(121, 23);
             this.InputComboBox.TabIndex = 6;
@@ -110,11 +110,11 @@ namespace SmartSaver.Forms.UserControls
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(252)))));
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(212, 262);
+            this.label2.Location = new System.Drawing.Point(168, 255);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 24);
+            this.label2.Size = new System.Drawing.Size(121, 24);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Balance";
+            this.label2.Text = "Card Balance";
             // 
             // TotalBox
             // 
