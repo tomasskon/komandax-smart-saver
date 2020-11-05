@@ -10,8 +10,6 @@ using SmartSaver.Logic.HelperClasses.Images;
 using SmartSaver.Domain.Repositories;
 using SmartSaver.Logic.HelperClasses.Balance;
 using SmartSaver.Domain.Models;
-using System.Drawing.Imaging;
-
 
 namespace SmartSaver.Forms.UserControls
 {
