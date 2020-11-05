@@ -16,6 +16,7 @@ namespace SmartSaver.Forms.Savings
     {
         SavingGoal _goal;
         SavingsHelper _savingsHelper;
+
         public GoalEditForm(SavingGoal goal, SavingsHelper savingsHelper)
         {
             InitializeComponent();
@@ -30,12 +31,11 @@ namespace SmartSaver.Forms.Savings
 
         private void GoalEditForm_Load(object sender, EventArgs e)
         {
-            goalNameLabel.Text = _goal.GoalName;
-            goalDescriptionLabel.Text = _goal.Description;
-            goalRemainingLabel.Text = "Amount left: " + _goal.Progress.ToString();
+            goalNameLabel.Text = "Name: " + _goal.GoalName;
+            goalRemainingLabel.Text = "Amount left: " + (_goal.GoalAmount - _goal.Progress).ToString();
         }
 
-        private void addToGoalButton_Click(object sender, EventArgs e)
+        private async void addToGoalButton_Click(object sender, EventArgs e)
         {
             bool isValid;
             double parsedAmount;
@@ -47,11 +47,12 @@ namespace SmartSaver.Forms.Savings
                 if(_goal.Progress >= _goal.GoalAmount)
                 {
                     MessageBox.Show($"The {1} goal has been reached!", _goal.GoalName);
+                    await _savingsHelper.DeleteGoalById(_goal.Id);
                 }
                 Close();
             } else
             {
-                Error.ShowDialog(parseInfo);
+                MessageBox.Show(parseInfo);
                 return;
             }
         }

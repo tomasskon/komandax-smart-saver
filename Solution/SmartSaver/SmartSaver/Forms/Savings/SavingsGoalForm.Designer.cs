@@ -98,7 +98,7 @@
             this.goalAmountTextBox.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             this.goalAmountTextBox.Location = new System.Drawing.Point(172, 298);
             this.goalAmountTextBox.Name = "goalAmountTextBox";
-            this.goalAmountTextBox.PlaceholderText = "                  $";
+            this.goalAmountTextBox.PlaceholderText = "                  €";
             this.goalAmountTextBox.Size = new System.Drawing.Size(133, 40);
             this.goalAmountTextBox.TabIndex = 5;
             // 

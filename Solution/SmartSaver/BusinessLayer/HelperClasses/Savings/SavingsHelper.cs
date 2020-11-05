@@ -8,7 +8,7 @@ namespace SmartSaver.Logic.HelperClasses.Savings
 {
     public class SavingsHelper
     {
-        private SavingsRepository _savingsRepository;
+        private readonly SavingsRepository _savingsRepository;
 
         public SavingsHelper(SavingsRepository savingsRepository)
         {
@@ -16,11 +16,21 @@ namespace SmartSaver.Logic.HelperClasses.Savings
         }
 
         
-        public async Task<IReadOnlyList<SavingGoal>> GetGoals(Guid userId, SortingModel sortingModel)
+        public async Task<IReadOnlyList<SavingGoal>> GetGoals(Guid userId)
         {
-            return await _savingsRepository.GetSortedUserGoals(userId, sortingModel);
+            return await _savingsRepository.GetUserGoals(userId);
         }
-        
+
+        public async Task<IReadOnlyList<SavingGoal>> GetSortedGoals(Guid userId, SortingModel sortingModel)
+        {
+            return await _savingsRepository.GetSortedGoals(userId, sortingModel);
+        }
+
+        public async Task DeleteGoalById(Guid id)
+        {
+             await _savingsRepository.Delete(id);
+        }
+
         public static string AmountValidator(string amountText, out bool success, out double amountParsed)
         {
             double amount;
@@ -32,7 +42,7 @@ namespace SmartSaver.Logic.HelperClasses.Savings
             catch (FormatException ex)
             {
                 success = false;
-                return "Invalid goal amount input. Exception: " + ex.Message;
+                return "Invalid goal amount input.";
             }
 
             if (amount <= 0)
@@ -47,8 +57,7 @@ namespace SmartSaver.Logic.HelperClasses.Savings
 
         public static string GoalDateValidator(DateTime finishDate, out bool isValid)
         {
-            
-            if(DateTime.Now < finishDate)
+            if(DateTime.Now.Day-1 < finishDate.Day)
             {
                 isValid = true;
                 return "Goal Date Validation Success";
@@ -67,22 +76,21 @@ namespace SmartSaver.Logic.HelperClasses.Savings
 
             if(goal.Progress >= goal.GoalAmount)
             {
-                //goal has been reached => delete goal
-                //DELETE
+                //goal COMPLETED
                 return;
             }
 
 
             if(tempGoal != null)
             {
-                await repository.Update(goal.UserId, goal);
+                await repository.Update(goal.Id, goal);
             } else
             {
                 await repository.Create(goal);
             }
         }
 
-        public static SavingGoal StringListToGoal(List<string> info, out string parseInfo)
+        public SavingGoal StringListToGoal(List<string> info, out string parseInfo)
         {
             parseInfo = "";
             try
@@ -91,8 +99,8 @@ namespace SmartSaver.Logic.HelperClasses.Savings
                 DateTime startDate = DateTime.Parse(info[3]);
                 double amountRemaining = double.Parse(info[4]);
                 DateTime finishDate = DateTime.Parse(info[6]);
+                Guid id = Guid.Parse(info[7]);
                 parseInfo = "Success";
-
                 return new SavingGoal()
                 {
                     GoalName = info[0],
@@ -101,6 +109,8 @@ namespace SmartSaver.Logic.HelperClasses.Savings
                     StartDate = startDate,
                     Progress = amountRemaining,
                     FinishDate = finishDate,
+                    UserId = Domain.Constants.Constants.TestUserId,
+                    Id = id,
                 };
 
             } catch(Exception ex)

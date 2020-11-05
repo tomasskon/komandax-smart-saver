@@ -33,7 +33,6 @@
             this.addAmountTextBox = new System.Windows.Forms.TextBox();
             this.addAmount = new System.Windows.Forms.Label();
             this.goalNameLabel = new System.Windows.Forms.Label();
-            this.goalDescriptionLabel = new System.Windows.Forms.Label();
             this.addToGoalButton = new System.Windows.Forms.Button();
             this.goalRemainingLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -44,7 +43,7 @@
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(643, 291);
+            this.backButton.Location = new System.Drawing.Point(643, 181);
             this.backButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(145, 54);
@@ -57,9 +56,9 @@
             // addAmountTextBox
             // 
             this.addAmountTextBox.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.addAmountTextBox.Location = new System.Drawing.Point(353, 203);
+            this.addAmountTextBox.Location = new System.Drawing.Point(356, 118);
             this.addAmountTextBox.Name = "addAmountTextBox";
-            this.addAmountTextBox.PlaceholderText = "               $";
+            this.addAmountTextBox.PlaceholderText = "               €";
             this.addAmountTextBox.Size = new System.Drawing.Size(111, 40);
             this.addAmountTextBox.TabIndex = 5;
             // 
@@ -68,7 +67,7 @@
             this.addAmount.AutoSize = true;
             this.addAmount.BackColor = System.Drawing.Color.Transparent;
             this.addAmount.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addAmount.Location = new System.Drawing.Point(184, 203);
+            this.addAmount.Location = new System.Drawing.Point(187, 118);
             this.addAmount.Name = "addAmount";
             this.addAmount.Size = new System.Drawing.Size(163, 35);
             this.addAmount.TabIndex = 3;
@@ -76,25 +75,18 @@
             // 
             // goalNameLabel
             // 
+            this.goalNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.goalNameLabel.AutoSize = true;
             this.goalNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.goalNameLabel.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.goalNameLabel.Location = new System.Drawing.Point(322, 9);
+            this.goalNameLabel.Location = new System.Drawing.Point(288, 9);
             this.goalNameLabel.Name = "goalNameLabel";
             this.goalNameLabel.Size = new System.Drawing.Size(179, 35);
             this.goalNameLabel.TabIndex = 3;
             this.goalNameLabel.Text = "<Goal Name>";
-            // 
-            // goalDescriptionLabel
-            // 
-            this.goalDescriptionLabel.AutoSize = true;
-            this.goalDescriptionLabel.BackColor = System.Drawing.Color.Transparent;
-            this.goalDescriptionLabel.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.goalDescriptionLabel.Location = new System.Drawing.Point(287, 58);
-            this.goalDescriptionLabel.Name = "goalDescriptionLabel";
-            this.goalDescriptionLabel.Size = new System.Drawing.Size(246, 35);
-            this.goalDescriptionLabel.TabIndex = 3;
-            this.goalDescriptionLabel.Text = "<Goal Description>";
+            this.goalNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // addToGoalButton
             // 
@@ -102,7 +94,7 @@
             this.addToGoalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addToGoalButton.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addToGoalButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addToGoalButton.Location = new System.Drawing.Point(288, 291);
+            this.addToGoalButton.Location = new System.Drawing.Point(288, 181);
             this.addToGoalButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addToGoalButton.Name = "addToGoalButton";
             this.addToGoalButton.Size = new System.Drawing.Size(245, 54);
@@ -114,14 +106,18 @@
             // 
             // goalRemainingLabel
             // 
+            this.goalRemainingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.goalRemainingLabel.AutoSize = true;
             this.goalRemainingLabel.BackColor = System.Drawing.Color.Transparent;
             this.goalRemainingLabel.Font = new System.Drawing.Font("Corbel", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.goalRemainingLabel.Location = new System.Drawing.Point(322, 107);
+            this.goalRemainingLabel.Location = new System.Drawing.Point(288, 56);
             this.goalRemainingLabel.Name = "goalRemainingLabel";
             this.goalRemainingLabel.Size = new System.Drawing.Size(342, 35);
             this.goalRemainingLabel.TabIndex = 3;
             this.goalRemainingLabel.Text = "<Goal Remaining Amount>";
+            this.goalRemainingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GoalEditForm
             // 
@@ -129,10 +125,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 373);
+            this.ClientSize = new System.Drawing.Size(800, 248);
             this.Controls.Add(this.goalRemainingLabel);
             this.Controls.Add(this.addToGoalButton);
-            this.Controls.Add(this.goalDescriptionLabel);
             this.Controls.Add(this.goalNameLabel);
             this.Controls.Add(this.addAmount);
             this.Controls.Add(this.addAmountTextBox);
@@ -151,7 +146,6 @@
         private System.Windows.Forms.TextBox addAmountTextBox;
         private System.Windows.Forms.Label addAmount;
         private System.Windows.Forms.Label goalNameLabel;
-        private System.Windows.Forms.Label goalDescriptionLabel;
         private System.Windows.Forms.Button addToGoalButton;
         private System.Windows.Forms.Label goalRemainingLabel;
     }

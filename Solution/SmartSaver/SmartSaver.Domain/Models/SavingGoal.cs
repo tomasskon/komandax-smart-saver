@@ -13,11 +13,11 @@ namespace SmartSaver.Domain.Models
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
         public double Progress { get; set; }
+        public Guid UserId { get; set; }
 
         [NotMapped]
         public double ProgressPercentageValue {
             get => (Progress / GoalAmount) * 100;
         }
-        public Guid UserId { get; set; }
     }
 }

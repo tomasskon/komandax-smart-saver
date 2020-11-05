@@ -14,7 +14,12 @@ namespace SmartSaver.Domain.Repositories
         {
             return await Set.SingleOrDefaultAsync(i => i.GoalName == goal.GoalName);
         }
-        public async Task<IReadOnlyList<SavingGoal>> GetSortedUserGoals(Guid userId, SortingModel sortingModel)
+
+        public async Task<IReadOnlyList<SavingGoal>> GetUserGoals(Guid userId)
+        {
+            return await Set.Where(i => i.UserId == userId).ToListAsync();
+        }
+        public async Task<IReadOnlyList<SavingGoal>> GetSortedGoals(Guid userId, SortingModel sortingModel)
         {
             return await sortingModel
                 .OrderByColumn(Set.Where(i => i.UserId == userId))

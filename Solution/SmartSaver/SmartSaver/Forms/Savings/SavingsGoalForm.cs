@@ -50,11 +50,21 @@ namespace SmartSaver.Forms.Savings
                 GoalAmount = goalAmount,
                 StartDate = DateTime.Now,
                 FinishDate = endDateCalendar.SelectionStart,
+                UserId = Domain.Constants.Constants.TestUserId,
             };
 
             SendGoalToDB(goal);
+            ResetTextBoxValues();
+            Hide();
             
+        }
 
+        private void ResetTextBoxValues()
+        {
+            goalNameTextBox.Text = "";
+            goalDescriptionTextBox.Text = "";
+            goalAmountTextBox.Text = "";
+            endDateCalendar.SetDate(DateTime.Now);
         }
 
         private void SendGoalToDB(SavingGoal goal)
