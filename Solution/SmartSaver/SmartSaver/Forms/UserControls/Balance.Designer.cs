@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Media;
 
 namespace SmartSaver.Forms.UserControls
 {
@@ -42,6 +43,7 @@ namespace SmartSaver.Forms.UserControls
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BtRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,8 +89,8 @@ namespace SmartSaver.Forms.UserControls
             this.InputComboBox.FormattingEnabled = true;
             this.InputComboBox.Items.AddRange(new object[] {
             "Cash",
-            "Card});"});
-            this.InputComboBox.Location = new System.Drawing.Point(0, 0);
+            "Card"});
+            this.InputComboBox.Location = new System.Drawing.Point(581, 452);
             this.InputComboBox.Name = "InputComboBox";
             this.InputComboBox.Size = new System.Drawing.Size(121, 23);
             this.InputComboBox.TabIndex = 6;
@@ -157,10 +159,21 @@ namespace SmartSaver.Forms.UserControls
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // BtRefresh
+            // 
+            this.BtRefresh.Location = new System.Drawing.Point(708, 452);
+            this.BtRefresh.Name = "BtRefresh";
+            this.BtRefresh.Size = new System.Drawing.Size(75, 23);
+            this.BtRefresh.TabIndex = 11;
+            this.BtRefresh.Text = "Refresh";
+            this.BtRefresh.UseVisualStyleBackColor = true;
+            this.BtRefresh.Click += new System.EventHandler(this.BtRefresh_Click);
+            // 
             // Balance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.BtRefresh);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TotalBox);
@@ -192,5 +205,6 @@ namespace SmartSaver.Forms.UserControls
             private System.Windows.Forms.Label label3;
             private System.Windows.Forms.Label label4;
             private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button BtRefresh;
     }
 }
