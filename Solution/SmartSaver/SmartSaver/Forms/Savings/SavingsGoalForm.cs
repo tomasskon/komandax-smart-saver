@@ -43,6 +43,16 @@ namespace SmartSaver.Forms.Savings
                 return;
             }
 
+            if(string.IsNullOrEmpty(goalNameTextBox.Text))
+            {
+                MessageBox.Show("Please provide a name for your goal.");
+                return;
+            } else if(string.IsNullOrEmpty(goalAmountTextBox.Text))
+            {
+                MessageBox.Show("Please provide an amount you want to reach for your goal.");
+            }
+
+
             SavingGoal goal = new SavingGoal()
             {
                 GoalName = goalNameTextBox.Text,
