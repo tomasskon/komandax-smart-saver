@@ -19,7 +19,6 @@ namespace SmartSaver.Forms.UserControls
         private GoalEditForm _editForm;
         private SortingModel _sortingModel;
 
-
         public Savings()
         {
             InitializeComponent();
@@ -30,8 +29,6 @@ namespace SmartSaver.Forms.UserControls
             _sortDirection.DataSource = new BindingSource(Enum.GetValues(typeof(SortingDirections)), null);
             _sortDirection.SelectedIndex = 1;
 
-
-
             _sortingModel = new SortingModel()
             {
                 SortingColumn = "GoalName",
@@ -39,7 +36,6 @@ namespace SmartSaver.Forms.UserControls
             };
 
             ReloadSavingGoals();            
-           
         }
 
         private ListViewItem[] GetGoalsListViewItems(IReadOnlyList<SavingGoal> savingGoals)
@@ -108,7 +104,7 @@ namespace SmartSaver.Forms.UserControls
         private void editGoalButton_Click(object sender, EventArgs e)
         {
             string parseInfo;
-            List<string> stringsToGoal = new List<string>();
+            var stringsToGoal = new List<string>();
             if (savingGoalsList.Items.Count > 0)
             {
                 ListViewItem item = savingGoalsList.SelectedItems[0];
@@ -117,8 +113,6 @@ namespace SmartSaver.Forms.UserControls
                     stringsToGoal.Add(listItem.Text);
                 }
             }
-
-            
 
             var goal = _savingsHelper.StringListToGoal(stringsToGoal, out parseInfo);
             if (goal != null)
@@ -131,11 +125,6 @@ namespace SmartSaver.Forms.UserControls
                 Error.ShowDialog(parseInfo);
                 return;
             }
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

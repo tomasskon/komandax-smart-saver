@@ -9,7 +9,6 @@ namespace SmartSaver.Domain.Repositories
 {
     public class SavingsRepository : GenericRepository<SavingGoal>
     {
-        
         public async Task<SavingGoal> GetUserGoalIfExists(SavingGoal goal)
         {
             return await Set.SingleOrDefaultAsync(i => i.GoalName == goal.GoalName);
@@ -19,14 +18,12 @@ namespace SmartSaver.Domain.Repositories
         {
             return await Set.Where(i => i.UserId == userId).ToListAsync();
         }
+
         public async Task<IReadOnlyList<SavingGoal>> GetSortedGoals(Guid userId, SortingModel sortingModel)
         {
             return await sortingModel
                 .OrderByColumn(Set.Where(i => i.UserId == userId))
                 .ToListAsync();
         }
-        
-
-
     }
 }

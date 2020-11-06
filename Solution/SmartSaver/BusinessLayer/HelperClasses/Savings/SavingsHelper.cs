@@ -14,8 +14,6 @@ namespace SmartSaver.Logic.HelperClasses.Savings
         {
             _savingsRepository = savingsRepository;
         }
-
-        
         public async Task<IReadOnlyList<SavingGoal>> GetGoals(Guid userId)
         {
             return await _savingsRepository.GetUserGoals(userId);
@@ -71,22 +69,18 @@ namespace SmartSaver.Logic.HelperClasses.Savings
 
         public async void AddOrUpdateGoalToDB(SavingGoal goal)
         {
-            var repository = new SavingsRepository();
-            var tempGoal = await repository.GetUserGoalIfExists(goal);
-
+            var tempGoal = await _savingsRepository.GetUserGoalIfExists(goal);
             if(goal.Progress >= goal.GoalAmount)
             {
-                //goal COMPLETED
+                //Goal Completed
                 return;
             }
-
-
             if(tempGoal != null)
             {
-                await repository.Update(goal.Id, goal);
+                await _savingsRepository.Update(goal.Id, goal);
             } else
             {
-                await repository.Create(goal);
+                await _savingsRepository.Create(goal);
             }
         }
 
@@ -120,8 +114,5 @@ namespace SmartSaver.Logic.HelperClasses.Savings
             }
 
         }
-
-
-
     }
 }
