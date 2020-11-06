@@ -16,3 +16,7 @@ GO
 
 ALTER TABLE [dbo].[Goals] ADD  CONSTRAINT [DF_Goals_Id]  DEFAULT (newsequentialid()) FOR [Id]
 GO
+
+ALTER TABLE [dbo].[Goals]  WITH CHECK ADD  CONSTRAINT [FK_Goals_Users] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([Id])
+GO
