@@ -46,7 +46,7 @@ namespace SmartSaver.Forms.Savings
                 _savingsHelper.AddOrUpdateGoalToDB(_goal); //=> will delete goal if the goal amount is reached
                 if(_goal.Progress >= _goal.GoalAmount)
                 {
-                    MessageBox.Show($"The {1} goal has been reached!", _goal.GoalName);
+                    MessageBox.Show("The " + _goal.GoalName + " goal has been reached!");
                     await _savingsHelper.DeleteGoalById(_goal.Id);
                 }
                 Close();

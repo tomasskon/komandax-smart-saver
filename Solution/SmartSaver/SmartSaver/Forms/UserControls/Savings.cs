@@ -132,5 +132,10 @@ namespace SmartSaver.Forms.UserControls
                 return;
             }
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
