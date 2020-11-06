@@ -47,5 +47,6 @@ namespace SmartSaver.Domain.Repositories
             Set.Remove(model);
             await Context.SaveChangesAsync();
         }
+
     }
 }
