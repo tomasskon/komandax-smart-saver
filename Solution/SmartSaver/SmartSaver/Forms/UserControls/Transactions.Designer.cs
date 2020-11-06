@@ -57,9 +57,9 @@
             this.CreatedAt});
             this._transactions.FullRowSelect = true;
             this._transactions.HideSelection = false;
-            this._transactions.Location = new System.Drawing.Point(132, 116);
+            this._transactions.Location = new System.Drawing.Point(210, 187);
             this._transactions.Name = "_transactions";
-            this._transactions.Size = new System.Drawing.Size(1015, 389);
+            this._transactions.Size = new System.Drawing.Size(1015, 484);
             this._transactions.TabIndex = 0;
             this._transactions.UseCompatibleStateImageBehavior = false;
             this._transactions.View = System.Windows.Forms.View.Details;
