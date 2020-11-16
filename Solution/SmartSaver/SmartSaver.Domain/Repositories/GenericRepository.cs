@@ -10,8 +10,7 @@ namespace SmartSaver.Domain.Repositories
 {
     public class GenericRepository<TModel> : IGenericRepository<TModel> where TModel : IdentityModelBase
     {
-        private SmartSaverDataContext Context = new SmartSaverDataContext(new DbContextOptionsBuilder<SmartSaverDataContext>()
-            .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=SmartSaver;Integrated Security=True").Options);
+        private SmartSaverContext Context = new SmartSaverContext();
 
         protected DbSet<TModel> Set => Context.Set<TModel>();
 

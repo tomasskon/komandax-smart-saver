@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartSaver.Domain.Models
 {
-    public class Transaction : IdentityModelBase
+    public partial class Transaction : IdentityModelBase
     {
         public int Amount { get; set; }
 
@@ -18,6 +18,8 @@ namespace SmartSaver.Domain.Models
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+
+        public virtual User User { get; set; }
 
         public string BalanceType { get; set; }
 
