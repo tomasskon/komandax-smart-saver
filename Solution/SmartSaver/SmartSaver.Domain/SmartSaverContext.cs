@@ -109,6 +109,14 @@ namespace SmartSaver.Domain
                 entity.Property(e => e.UserImage).HasColumnType("image");
             });
 
+            modelBuilder.Entity<User>()
+                .HasData(new User
+                {
+                    Id = new Guid("6e33fa08-bc0f-438c-a21b-bcf4fc227661"),
+                    FullName = "Test Testington",
+                    Gmail = "test@gmail.com"
+                });
+
             OnModelCreatingPartial(modelBuilder);
         }
 
