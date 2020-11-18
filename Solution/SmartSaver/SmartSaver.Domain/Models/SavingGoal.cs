@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmartSaver.Domain.Models
 {
-    public class SavingGoal : IdentityModelBase
+    public partial class SavingGoal : IdentityModelBase
     {
         public string GoalName { get; set; }
 
@@ -21,6 +21,7 @@ namespace SmartSaver.Domain.Models
 
         public Guid UserId { get; set; }
 
+        public virtual User User { get; set; }
 
         [NotMapped]
         public double ProgressPercentageValue {

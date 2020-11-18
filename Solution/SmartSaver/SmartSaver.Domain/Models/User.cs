@@ -4,8 +4,16 @@ using System.Text;
 
 namespace SmartSaver.Domain.Models
 {
-    public class User : IdentityModelBase
+    public partial class User : IdentityModelBase
     {
+        public User()
+        {
+            Goals = new HashSet<SavingGoal>();
+            Transactions = new HashSet<Transaction>();
+        }
+
+        public string Gmail { get; set; }
+
         public double Cash { get; set; }
 
         public double Card { get; set; }
@@ -14,6 +22,7 @@ namespace SmartSaver.Domain.Models
 
         public byte[] UserImage { get; set; }
 
-        
+        public virtual ICollection<SavingGoal> Goals { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }
