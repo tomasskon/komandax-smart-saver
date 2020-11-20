@@ -1,16 +1,31 @@
 ﻿@page "/counter"
+@using SmartSaver.Presentation.Models
+@inject HttpClient Http
+<h1>Balances</h1>
 
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cash</th>
+            <th>Card</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in _user)
+        {
+            <tr>
+                <td>@user.Cash</td>
+                <td>@user.Card</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 @code {
-    private int currentCount = 0;
+    private User[] _user;
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        _user = await Http.GetFromJsonAsync<User[]>("http://localhost:5000/transactions");
     }
 }
