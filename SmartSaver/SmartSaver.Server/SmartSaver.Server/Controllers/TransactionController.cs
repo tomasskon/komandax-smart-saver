@@ -20,7 +20,7 @@ namespace SmartSaver.Server.Controllers
         [HttpGet]
         public async Task<IReadOnlyList<Transaction>> Get()
         {
-            return await _transactionsRepository.GetAll(); ;
+            return await _transactionsRepository.GetAll();
         }
     }
 }

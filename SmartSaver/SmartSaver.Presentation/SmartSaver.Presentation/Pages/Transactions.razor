@@ -25,7 +25,7 @@ else
             @foreach (var transaction in _transactions)
             {
                 <tr>
-                    <td>@transaction.Amount</td>
+                    <td>@transaction.AmountDouble</td>
                     <td>@transaction.Description</td>
                     <td>@transaction.CreatedAt</td>
                     <td>@transaction.BalanceType</td>
