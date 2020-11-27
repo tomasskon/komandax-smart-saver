@@ -1,0 +1,64 @@
+﻿@page "/savings/goalcreation"
+
+@using SmartSaver.Presentation.Models
+@using System.Text.Json
+
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+
+<style>
+    body {
+        background-color: #ebf5fc;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%235982ed' fill-opacity='1' d='M0,32L26.7,37.3C53.3,43,107,53,160,80C213.3,107,267,149,320,160C373.3,171,427,149,480,149.3C533.3,149,587,171,640,202.7C693.3,235,747,277,800,256C853.3,235,907,149,960,122.7C1013.3,96,1067,128,1120,133.3C1173.3,139,1227,117,1280,101.3C1333.3,85,1387,75,1413,69.3L1440,64L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
+    .sidebar {
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 70%, #fff 100%);
+    }
+</style>
+
+
+<div class="topnav">
+    <a href="savings">Goals</a>
+    <a class="active" href="savings/goalcreation">Create a new Goal</a>
+    <a href="savings/goaledit">Add funds to your goal </a>
+</div>
+
+
+<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_ev_ondblclick2 -->
+
+
+<div class="styled-form center">
+    <form>
+        <fieldset>
+            <legend>Create a new goal</legend>
+            <label for="goalname"><span>Goal Name: <span class="required">*</span></span><input type="text" class="input-field" name="goalname" placeholder="Enter your goal name" @bind-value="@tempGoal.GoalName" /></label>
+            <label for="goalamount"><span>Goal Amount: <span class="required">*</span></span><input type="number" class="input-field" name="goalamount" placeholder="$" @bind-value="@tempGoal.GoalAmount"/></label>
+            <label for="finishdate"><span>Set your goal date: <span class="required">*</span></span><input type="date" class="input-field" name="finishdate" @bind-value="@tempGoal.FinishDate"/></label>
+        </fieldset>
+        <fieldset>
+            <legend>Description</legend>
+            <label for="description"><span>Enter a Description:</span><textarea name="description" class="textarea-field" @bind="@tempGoal.Description"></textarea></label>
+            <label><span> </span><input type="button" value="Create a new goal" @onclick="printGoal"/></label>
+            <label><span> </span><input type="reset" value="Reset" /></label>
+        </fieldset>
+    </form>
+</div>
+
+
+@code {
+    
+    SavingGoal tempGoal = new SavingGoal()
+    {
+        StartDate = DateTime.Now,
+    };
+
+
+
+    public void printGoal()
+    {
+        Console.WriteLine(JsonSerializer.Serialize(tempGoal));
+    }
+}

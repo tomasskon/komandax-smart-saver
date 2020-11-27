@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SmartSaver.Domain.Models;
+using SmartSaver.Domain.Repositories.Interfaces;
 
 namespace SmartSaver.Domain.Repositories
 {
-    public class SavingsRepository : GenericRepository<SavingGoal>
+    public class SavingsRepository : GenericRepository<SavingGoal>, ISavingGoalsRepository
     {
         public async Task<SavingGoal> GetUserGoalIfExists(SavingGoal goal)
         {
