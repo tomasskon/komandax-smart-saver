@@ -5,10 +5,7 @@ namespace SmartSaver.Domain.Models
 {
     public partial class Transaction : IdentityModelBase
     {
-        public int Amount
-        {
-            get; set;
-        }
+        public int Amount { get; set; }
 
         public string Description { get; set; }
 
