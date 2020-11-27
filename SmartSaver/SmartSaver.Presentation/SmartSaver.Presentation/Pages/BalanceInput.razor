@@ -1,0 +1,37 @@
+﻿@page "/balances"
+@using SmartSaver.Presentation.Models
+@inject HttpClient Http
+<h1>Balances</h1>
+@if (_user == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="form-control-lg">
+    <EditForm Model="@_user" OnValidSubmit="@HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <p><label> Cash balance:</label>
+        <InputNumber id="cash" @bind-Value="@_user.Cash" />
+        </p>
+        <p><label> Card balance:</label>
+        <InputNumber id="card" @bind-Value="@_user.Card" />
+        </p>
+        <button type="submit" class="btn btn-primary" >Submit</button>
+    </EditForm>
+      </div>
+}
+    @code
+{
+private User _user;
+    protected override async Task OnInitializedAsync()
+    {
+        _user = await Http.GetFromJsonAsync<User>("https://localhost:44392/users");
+    }
+
+    protected async Task HandleSubmit()
+    {
+        await Http.PutAsJsonAsync(@"https://localhost:44392/users", _user);
+    }
+    }

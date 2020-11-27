@@ -9,7 +9,7 @@ using SmartSaver.Domain.Repositories.Interfaces;
 
 namespace SmartSaver.Domain.Repositories
 {
-    public class UserRepository : GenericRepository<User>
+    public class UserRepository : GenericRepository<User>, IUsersRepository
     {
 
     }
