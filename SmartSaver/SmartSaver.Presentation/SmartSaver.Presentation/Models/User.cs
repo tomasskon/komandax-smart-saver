@@ -12,11 +12,11 @@ namespace SmartSaver.Presentation.Models
         public string Gmail { get; set; }
         [Required]
         [Range(0, double.MaxValue,
-            ErrorMessage = "Price must be between 0 and 100.00")]
+            ErrorMessage = "Amount must be non-negative")]
         public double Cash { get; set; }
         [Required]
         [Range(0, double.MaxValue,
-            ErrorMessage = "Price must be between 0 and 100.00")]
+            ErrorMessage = "Amount must be non-negative")]
         public double Card { get; set; }
 
         public string FullName { get; set; }
