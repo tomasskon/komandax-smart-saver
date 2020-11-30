@@ -4,37 +4,104 @@
 
 @inject HttpClient Http
 
-<h1>Spendings Categories</h1>
+<h1>Spendings</h1>
 
-@if (_spendingCategories == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var category in _spendingCategories)
-            {
-                <tr>
-                    <td>@category.Name</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<Alert Type="success" Message="@_alertMessage" />
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Categories</h3>
+        @if (_spendingCategories == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th width="90"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (_spendingCategories.Count() == 0)
+                    {
+                        <tr rowspan="1">
+                            <td class="text-center">There are no categories</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var category in _spendingCategories)
+                        {
+                            <tr>
+                                <td>@category.Name</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger" @onclick="@(e => DeleteCategory(e, category.Id))">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+    <div class="col-md-6">
+        <h3>Add new category</h3>
+        <EditForm Model="_newCategory" OnValidSubmit="@CreateCategory">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label id="name">Name</label>
+                <InputText id="name" class="form-control" @bind-Value="_newCategory.Name" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
 
 @code {
     private Category[] _spendingCategories;
+    private Category _newCategory = new Category();
+    public string _alertMessage = "";
+
+    protected async Task ReloadCategories()
+    {
+        _spendingCategories = await Http.GetFromJsonAsync<Category[]>("http://localhost:5000/categories");
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        _spendingCategories = await Http.GetFromJsonAsync<Category[]>("http://localhost:5000/categories");
+        await ReloadCategories();
+    }
+
+    private async Task CreateCategory()
+    {
+        _alertMessage = "";
+        var response = await Http.PostAsJsonAsync<Category>("http://localhost:5000/categories", _newCategory);
+
+        await ReloadCategories();
+        _newCategory.Name = "";
+        _alertMessage = "Category created successfully";
+    }
+
+    private async Task DeleteCategory(MouseEventArgs e, Guid id)
+    {
+        _alertMessage = "";
+        var response = await Http.DeleteAsync("http://localhost:5000/categories/" + id.ToString());
+
+        if (response.IsSuccessStatusCode)
+        {
+            _spendingCategories = _spendingCategories.Where(c => c.Id != id).ToArray();
+        }
+
+        _alertMessage = "Category deleted successfully";
     }
 }
 

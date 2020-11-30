@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SmartSaver.Domain.Models;
@@ -20,7 +21,24 @@ namespace SmartSaver.Server.Controllers
         [HttpGet]
         public async Task<IReadOnlyList<Category>> Get()
         {
-            return await _categoriesRepository.GetAll(); // GetAllUserCategories(Domain.Constants.Constants.TestUserId);
+            return await _categoriesRepository.GetAllUserCategories(Domain.Constants.Constants.TestUserId);
+        }
+
+        [HttpPost]
+        public async Task<Guid> Store(Category category)
+        {
+            category.UserId = Domain.Constants.Constants.TestUserId;
+
+            return await _categoriesRepository.Create(category);
+        }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<NoContentResult> Delete(Guid id)
+        {
+            await _categoriesRepository.Delete(id);
+
+            return NoContent();
         }
     }
 }

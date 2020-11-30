@@ -42,6 +42,8 @@ namespace SmartSaver.Server
 
             services.AddTransient<ITransactionsRepository, TransactionsRepository>();
 
+            services.AddTransient<ICategoriesRepository, CategoriesRepository>();
+
             services.AddControllers();
         }
 
