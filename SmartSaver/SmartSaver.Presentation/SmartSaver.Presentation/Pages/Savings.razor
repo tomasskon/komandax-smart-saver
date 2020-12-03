@@ -75,16 +75,15 @@
 @code {
 
     //Static:
-    //private List<SavingGoal> _savingGoals = SavingGoalsHelper.staticGoals;
+    private List<SavingGoal> _savingGoals = SavingGoalsHelper.staticGoals;
     //DB:
+    /*
     private SavingGoal[] _savingGoals;
-
-
     protected override async Task OnInitializedAsync()
     {
         _savingGoals = await Http.GetFromJsonAsync<SavingGoal[]>("http://localhost:5000/savings");
     }
-
+    */
 
 
 
