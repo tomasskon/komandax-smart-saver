@@ -73,7 +73,7 @@
 
     protected async Task ReloadCategories()
     {
-        _spendingCategories = await Http.GetFromJsonAsync<Category[]>("http://localhost:5000/categories");
+        _spendingCategories = await Http.GetFromJsonAsync<Category[]>("https://localhost:44301/categories");
     }
 
     protected override async Task OnInitializedAsync()
@@ -84,7 +84,7 @@
     private async Task CreateCategory()
     {
         _alertMessage = "";
-        var response = await Http.PostAsJsonAsync<Category>("http://localhost:5000/categories", _newCategory);
+        var response = await Http.PostAsJsonAsync<Category>("https://localhost:44301/categories", _newCategory);
 
         await ReloadCategories();
         _newCategory.Name = "";
@@ -94,7 +94,7 @@
     private async Task DeleteCategory(MouseEventArgs e, Guid id)
     {
         _alertMessage = "";
-        var response = await Http.DeleteAsync("http://localhost:5000/categories/" + id.ToString());
+        var response = await Http.DeleteAsync("https://localhost:44301/categories/" + id.ToString());
 
         if (response.IsSuccessStatusCode)
         {

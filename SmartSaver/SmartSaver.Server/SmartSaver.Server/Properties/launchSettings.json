@@ -2,9 +2,13 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/SmartSaver.Server",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:51643",
-      "sslPort": 44392
+      "sslPort": 44301
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",

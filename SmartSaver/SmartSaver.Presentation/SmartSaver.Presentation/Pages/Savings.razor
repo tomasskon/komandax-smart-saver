@@ -81,7 +81,7 @@
     private SavingGoal[] _savingGoals;
     protected override async Task OnInitializedAsync()
     {
-        _savingGoals = await Http.GetFromJsonAsync<SavingGoal[]>("http://localhost:5000/savings");
+        _savingGoals = await Http.GetFromJsonAsync<SavingGoal[]>("https://localhost:44301/savings");
     }
     */
 
