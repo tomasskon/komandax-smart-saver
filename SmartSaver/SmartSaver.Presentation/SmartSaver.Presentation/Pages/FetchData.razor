@@ -40,9 +40,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine(await Http.GetFromJsonAsync<object>("http://localhost:5000/transactions"));
-
-        //_transactions = await Http.GetFromJsonAsync<Transaction[]>("http://localhost:5000/transactions");
+        _transactions = await Http.GetFromJsonAsync<Transaction[]>("http://localhost:5000/transactions");
     }
 }
 
