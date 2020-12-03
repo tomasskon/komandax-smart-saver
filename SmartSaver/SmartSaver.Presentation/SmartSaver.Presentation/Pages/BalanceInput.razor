@@ -1,10 +1,12 @@
 ﻿@page "/balances"
 @using SmartSaver.Presentation.Models
+@using SmartSaver.Presentation.Shared.LoadingSpinner
 @inject HttpClient Http
+@inject NavigationManager NavigationManager;
 <h1>Balances</h1>
 @if (_user == null)
 {
-    <p><em>Loading...</em></p>
+    <LoadingSpinner />
 }
 else
 {
@@ -27,11 +29,25 @@ else
 private User _user;
     protected override async Task OnInitializedAsync()
     {
-        _user = await Http.GetFromJsonAsync<User>("https://localhost:44301/users");
+        try
+        {
+            _user = await Http.GetFromJsonAsync<User>("https://localhost:44301/users");
+        }
+        catch (Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
     }
 
     protected async Task HandleSubmit()
     {
-        await Http.PutAsJsonAsync(@"https://localhost:44301/users", _user);
+        try
+        {
+            await Http.PutAsJsonAsync(@"https://localhost:44301/users", _user);
+        }
+        catch (Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
     }
 }

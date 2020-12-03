@@ -118,9 +118,16 @@ else
 
     private async Task GetSortedTransactions()
     {
-        var requestUri = $"https://localhost:44301/transactions/{Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
-        _transactions = await Http.GetFromJsonAsync<Transaction[]>(requestUri);
-        NavigationManager.NavigateTo($"transactions/{_sortingModel.SortingColumn}/{_sortingModel.IsAscending}");
+        try
+        {
+            var requestUri = $"https://localhost:44301/transactions/{Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
+            _transactions = await Http.GetFromJsonAsync<Transaction[]>(requestUri);
+            NavigationManager.NavigateTo($"transactions/{_sortingModel.SortingColumn}/{_sortingModel.IsAscending}");
+        }
+        catch (Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
     }
 
     private void ParseUrlParameters()
