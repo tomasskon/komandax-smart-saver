@@ -1,6 +1,7 @@
 ﻿@page "/savings/goaledit"
 
 @using SmartSaver.Presentation.Models
+@using SmartSaver.Presentation.Helpers
 @using System.Text.Json
 
 @inject HttpClient Http
@@ -29,33 +30,105 @@
 
 <!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_ev_ondblclick2 -->
 
-
-<div class="styled-form center">
-    <form>
-        <fieldset>
-            <legend>Add funds to your goal</legend>
-            <label for="goalselection">
-                <span>Select your goal</span><select name="goalselect" class="select-field">
-                @foreach(var goal in _savingGoals)
-                {
-                    <option>@goal.GoalName</option>
-                }
-                </select>
-            </label>
-            <label for="goalamount"><span>Goal Amount: <span class="required">*</span></span><input type="number" class="input-field" name="goalamount" placeholder="$" /></label>
-            <label for="balance">
-                <span>Select your balance</span><select name="balancetype" class="select-field">
-                    <option value="cash">Cash</option>
-                    <option value="card">Card</option>
-                </select>
-            </label>
-            <label><span> </span><input type="submit" value="Add funds" /></label>
-        </fieldset>
-    </form>
-</div>
+@if (_savingGoals == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="styled-form center">
+        <form>
+            <fieldset>
+                <legend>Add funds to your goal</legend>
+                <label for="goalselection">
+                    <span>Select your goal<span class="required">*</span></span>
+                    <select name="goalselect" @bind="selectedValueName" class="select-field">
+                        @foreach (var goal in _savingGoals)
+                        {
+                            <option value="@goal.GoalName">@goal.GoalName</option>
+                        }
+                    </select>
+                </label>
+                <label for="goalamount"><span>Goal Amount: <span class="required">*</span></span><input type="number" @bind-value="tempAmount" class="input-field" name="goalamount" placeholder="$" /></label>
+                <label for="balance">
+                    <span>Select your balance</span><select name="balancetype" @bind="tempPaymentType" class="select-field">
+                        <option value="cash">Cash</option>
+                        <option value="card">Card</option>
+                    </select>
+                </label>
+                <label><span> </span><input type="button" value="Add funds" @onclick="EditGoal" /></label>
+            </fieldset>
+        </form>
+    </div>
+}
 
 
 @code {
-    private SavingGoal[] _savingGoals = SavingGoal.GenerateMockData();
+    string selectedValueName = "";
+    string tempPaymentType = "";
+    double tempAmount = 0;
 
+    //Static
+    //private List<SavingGoal> _savingGoals = SavingGoalsHelper.staticGoals;
+    //DB
+    SavingGoal[] _savingGoals;
+    protected override async Task OnInitializedAsync()
+    {
+        _savingGoals = await Http.GetFromJsonAsync<SavingGoal[]>("http://localhost:5000/savings");
+    }
+
+
+
+    private void EditGoal()
+    {
+        Console.WriteLine(selectedValueName + " " + tempPaymentType + " " + tempAmount + "$");
+
+
+        if (string.IsNullOrEmpty(selectedValueName))
+        {
+            Console.WriteLine("There was an error when selecting a goal...");
+            return;
+        }
+        else if (tempAmount <= 0)
+        {
+            Console.WriteLine("Invalid goal amount input!");
+            return;
+        }
+        else
+        {
+            //Static
+            /*
+            SavingGoal foundGoal = _savingGoals.Find(x => x.GoalName.Contains(selectedValueName));
+            if(foundGoal == null)
+            {
+                Console.WriteLine("There was an error finding an existing goal");
+            } else
+            {
+                Console.WriteLine("The goal was found! Payment type: " + tempPaymentType);
+                //doing statically:
+                _savingGoals.Find(x => x.GoalName.Contains(selectedValueName)).Progress += tempAmount;
+                //do db update operation, do transaction with tempPaymentType:
+
+                Console.WriteLine("Goal updated successfully!");
+
+                if(_savingGoals.Find(x => x.GoalName.Contains(selectedValueName)).Progress >= _savingGoals.Find(x => x.GoalName.Contains(selectedValueName)).GoalAmount)
+                {
+                    Console.WriteLine("The goal has been reached! => Deleting the goal");
+                    _savingGoals.Remove(_savingGoals.Find(x => x.GoalName.Contains(selectedValueName)));
+                }
+
+            }
+            */
+            //DB
+            SavingGoal foundGoal = Array.Find(_savingGoals, goal => goal.GoalName == selectedValueName);
+            if(foundGoal != null)
+            {
+                Console.WriteLine("There was an error finding an existing goal");
+            } else
+            {
+                Console.WriteLine("The goal was found! Payment type: " + tempPaymentType);
+                foundGoal.Progress += tempAmount;
+            }
+        }
+    }
 }

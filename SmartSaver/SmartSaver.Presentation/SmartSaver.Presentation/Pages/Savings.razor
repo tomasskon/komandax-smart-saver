@@ -1,6 +1,7 @@
 ﻿@page "/savings"
 
 @using SmartSaver.Presentation.Models
+@using SmartSaver.Presentation.Helpers
 @using System.Text.Json
 
 @inject HttpClient Http
@@ -32,6 +33,11 @@
 
 <h1>Saving Goals</h1>
 
+@if (_savingGoals == null)
+{
+    <p><em>Loading...</em></p>
+} else
+{
 
 <table class="styled-table">
     <thead>
@@ -46,7 +52,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var goal in _savingGoals)
+        @foreach (var goal in _savingGoals)
         {
             <tr>
                 <td>@goal.GoalName</td>
@@ -54,12 +60,13 @@
                 <td>@goal.GoalAmount $</td>
                 <td>@goal.StartDate.ToString("MM/dd/yyyy")</td>
                 <td>@goal.FinishDate.ToString("MM/dd/yyyy")</td>
-                <td>@goal.Progress</td>
+                <td>@goal.Progress $</td>
                 <td>@goal.ProgressPercentageValue.ToString("0.00") %</td>
             </tr>
         }
     </tbody>
 </table>
+}
 
 
 
@@ -67,14 +74,17 @@
 
 @code {
 
-    private SavingGoal[] _savingGoals = SavingGoal.GenerateMockData();
+    //Static:
+    //private List<SavingGoal> _savingGoals = SavingGoalsHelper.staticGoals;
+    //DB:
+    private SavingGoal[] _savingGoals;
 
-    /*
+
     protected override async Task OnInitializedAsync()
     {
         _savingGoals = await Http.GetFromJsonAsync<SavingGoal[]>("http://localhost:5000/savings");
     }
-    */
+
 
 
 

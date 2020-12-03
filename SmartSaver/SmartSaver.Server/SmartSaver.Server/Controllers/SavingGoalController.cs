@@ -22,5 +22,13 @@ namespace SmartSaver.Server.Controllers
         {
             return await _savingGoalsRepository.GetAll();
         }
+
+        [HttpPut]
+        public async void Put(SavingGoal goal)
+        {
+            await _savingGoalsRepository.Update(Domain.Constants.Constants.TestUserId, goal);
+        }
+        
+
     }
 }

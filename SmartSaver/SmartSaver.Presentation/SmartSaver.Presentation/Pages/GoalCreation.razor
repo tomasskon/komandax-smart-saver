@@ -1,6 +1,7 @@
 ﻿@page "/savings/goalcreation"
 
 @using SmartSaver.Presentation.Models
+@using SmartSaver.Presentation.Helpers
 @using System.Text.Json
 
 @inject HttpClient Http
@@ -41,7 +42,7 @@
         <fieldset>
             <legend>Description</legend>
             <label for="description"><span>Enter a Description:</span><textarea name="description" class="textarea-field" @bind="@tempGoal.Description"></textarea></label>
-            <label><span> </span><input type="button" value="Create a new goal" @onclick="printGoal"/></label>
+            <label><span> </span><input type="button" value="Create a new goal" @onclick="createGoal"/></label>
             <label><span> </span><input type="reset" value="Reset" /></label>
         </fieldset>
     </form>
@@ -49,10 +50,13 @@
 
 
 @code {
-    
+    bool isValid = false;
+
+
     SavingGoal tempGoal = new SavingGoal()
     {
         StartDate = DateTime.Now,
+        FinishDate = DateTime.Today.AddDays(1)
     };
 
 
@@ -60,5 +64,46 @@
     public void printGoal()
     {
         Console.WriteLine(JsonSerializer.Serialize(tempGoal));
+    }
+
+    public void createGoal()
+    {
+        formValidation();
+        if(isValid)
+        {
+            //sent the goal:
+            SavingGoalsHelper.staticGoals.Add(tempGoal);
+            //send the goal to the DB:
+
+            Console.WriteLine("Goal creation successful!");
+        }
+    }
+
+    public void formValidation()
+    {
+        string errorMessage;
+        if(string.IsNullOrEmpty(tempGoal.GoalName))
+        {
+            //throw error that goal name is empty!
+            errorMessage = "The goal name is empty!";
+            Console.WriteLine(errorMessage);
+            isValid = false;
+            return;
+        } else if(tempGoal.FinishDate <= DateTime.Now)
+        {
+            //throw error that finish date is invalid
+            errorMessage = "The finish date is set in the past!";
+            Console.WriteLine(errorMessage);
+            isValid = false;
+            return;
+        } else if(tempGoal.GoalAmount <= 0)
+        {
+            //throw error that goal amount is invalid
+            errorMessage = "The set goal amount is invalid";
+            Console.WriteLine(errorMessage);
+            isValid = false;
+            return;
+        }
+        isValid = true;
     }
 }
