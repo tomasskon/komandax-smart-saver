@@ -10,6 +10,10 @@ namespace SmartSaver.Domain.Repositories
 {
     public class TransactionsRepository : GenericRepository<Transaction>, ITransactionsRepository
     {
+        public TransactionsRepository(SmartSaverContext context) : base(context)
+        {
+        }
+
         public async Task<IReadOnlyList<Transaction>> GetSortedUserTransactions(Guid userId, SortingModel sortingModel)
         {
             return await sortingModel

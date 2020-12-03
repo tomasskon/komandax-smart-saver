@@ -10,7 +10,12 @@ namespace SmartSaver.Domain.Repositories
 {
     public class GenericRepository<TModel> : IGenericRepository<TModel> where TModel : IdentityModelBase
     {
-        private SmartSaverContext Context = new SmartSaverContext();
+        protected readonly SmartSaverContext Context;
+
+        public GenericRepository(SmartSaverContext context)
+        {
+            Context = context;
+        }
 
         protected DbSet<TModel> Set => Context.Set<TModel>();
 

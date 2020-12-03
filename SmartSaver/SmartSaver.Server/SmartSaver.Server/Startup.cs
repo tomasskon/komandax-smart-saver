@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SmartSaver.Domain;
 using SmartSaver.Domain.Repositories;
 using SmartSaver.Domain.Repositories.Interfaces;
 
@@ -38,15 +40,16 @@ namespace SmartSaver.Server
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                );
+                    );
 
+            services.AddDbContext<SmartSaverContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SmartSaverDatabase")));
+            
             services.AddTransient<ITransactionsRepository, TransactionsRepository>();
-
             services.AddTransient<ICategoriesRepository, CategoriesRepository>();
-
             services.AddTransient<ISavingGoalsRepository, SavingsRepository>();
 
             services.AddTransient<IUsersRepository, UserRepository>();
+
             services.AddControllers();
         }
 

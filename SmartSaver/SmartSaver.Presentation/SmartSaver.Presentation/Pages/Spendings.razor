@@ -1,7 +1,9 @@
 ﻿@page "/spendings"
 
 @using SmartSaver.Presentation.Models
+@using Microsoft.Extensions.Configuration
 
+@inject IConfiguration Configuration
 @inject HttpClient Http
 
 <h1>Spendings</h1>
@@ -73,7 +75,7 @@
 
     protected async Task ReloadCategories()
     {
-        _spendingCategories = await Http.GetFromJsonAsync<Category[]>("https://localhost:44301/categories");
+        _spendingCategories = await Http.GetFromJsonAsync<Category[]>($"{Configuration["requestUri"]}/categories");
     }
 
     protected override async Task OnInitializedAsync()
@@ -84,7 +86,7 @@
     private async Task CreateCategory()
     {
         _alertMessage = "";
-        var response = await Http.PostAsJsonAsync<Category>("https://localhost:44301/categories", _newCategory);
+        var response = await Http.PostAsJsonAsync<Category>($"{Configuration["requestUri"]}/categories", _newCategory);
 
         await ReloadCategories();
         _newCategory.Name = "";
@@ -94,7 +96,7 @@
     private async Task DeleteCategory(MouseEventArgs e, Guid id)
     {
         _alertMessage = "";
-        var response = await Http.DeleteAsync("https://localhost:44301/categories/" + id.ToString());
+        var response = await Http.DeleteAsync($"{Configuration["requestUri"]}/categories/" + id.ToString());
 
         if (response.IsSuccessStatusCode)
         {

@@ -10,6 +10,10 @@ namespace SmartSaver.Domain.Repositories
 {
     public class CategoriesRepository : GenericRepository<Category>, ICategoriesRepository
     {
+        public CategoriesRepository(SmartSaverContext context) : base(context)
+        {
+        }
+
         public async Task<IReadOnlyList<Category>> GetAllUserCategories(Guid userId)
         {
             return await Set.Where(i => i.UserId == userId).ToListAsync();
