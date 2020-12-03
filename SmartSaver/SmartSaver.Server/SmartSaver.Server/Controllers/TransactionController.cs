@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SmartSaver.Domain.Models;
@@ -17,10 +18,11 @@ namespace SmartSaver.Server.Controllers
             _transactionsRepository = transactionsRepository;
         }
 
-        [HttpGet]
-        public async Task<IReadOnlyList<Transaction>> Get()
+        [HttpGet("{id}/sorting")]
+        public async Task<IReadOnlyList<Transaction>> Get(Guid userId, string sortingColumn, bool isAscending)
         {
-            return await _transactionsRepository.GetAll();
+            return await _transactionsRepository.GetSortedUserTransactions(Domain.Constants.Constants.TestUserId,
+                new SortingModel { IsAscending = isAscending, SortingColumn = sortingColumn });
         }
     }
 }

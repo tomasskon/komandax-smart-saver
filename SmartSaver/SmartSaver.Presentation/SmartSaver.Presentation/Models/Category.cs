@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace SmartSaver.Presentation.Models
 {
@@ -11,5 +12,7 @@ namespace SmartSaver.Presentation.Models
         public string Name { get; set; }
 
         public Guid UserId { get; set; }
+
+        public ICollection<Transaction> Transactions { get; set; }
     }
 }
