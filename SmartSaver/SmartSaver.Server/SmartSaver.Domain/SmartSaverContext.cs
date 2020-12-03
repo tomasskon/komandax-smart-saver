@@ -58,12 +58,13 @@ namespace SmartSaver.Domain
                     .HasMaxLength(50);
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
-
+                /*
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Goals)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Goals_Users");
+                */
             });
 
             modelBuilder.Entity<Transaction>(entity =>

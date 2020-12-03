@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using SmartSaver.Presentation.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,5 +24,7 @@ namespace SmartSaver.Presentation.Models
         public string FullName { get; set; }
 
         public byte[] UserImage { get; set; }
+
+        public ICollection<Transaction> Transactions { get; set; }
     }
 }

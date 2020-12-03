@@ -4,8 +4,6 @@ namespace SmartSaver.Presentation.Models
 {
     public class Transaction
     {
-        public Guid Id { get; set; }
-
         public int Amount { get; set; }
 
         public string Description { get; set; }
@@ -15,6 +13,10 @@ namespace SmartSaver.Presentation.Models
         public DateTime CreatedAt { get; set; }
 
         public Guid CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
+
+        public virtual User User { get; set; }
 
         public string BalanceType { get; set; }
 

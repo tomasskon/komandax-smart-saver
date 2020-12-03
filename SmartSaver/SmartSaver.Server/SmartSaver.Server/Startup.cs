@@ -35,7 +35,17 @@ namespace SmartSaver.Server
                         .AllowAnyHeader());
             });
 
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
             services.AddTransient<ITransactionsRepository, TransactionsRepository>();
+
+            services.AddTransient<ICategoriesRepository, CategoriesRepository>();
+
+            services.AddTransient<ISavingGoalsRepository, SavingsRepository>();
+
             services.AddTransient<IUsersRepository, UserRepository>();
             services.AddControllers();
         }
