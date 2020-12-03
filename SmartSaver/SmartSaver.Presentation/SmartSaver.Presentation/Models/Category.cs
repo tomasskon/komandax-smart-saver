@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace SmartSaver.Presentation.Models
@@ -7,6 +8,7 @@ namespace SmartSaver.Presentation.Models
     {
         public Guid Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public Guid UserId { get; set; }
