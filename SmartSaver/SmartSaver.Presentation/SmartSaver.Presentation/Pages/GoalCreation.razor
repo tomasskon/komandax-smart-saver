@@ -3,9 +3,11 @@
 @using SmartSaver.Presentation.Models
 @using SmartSaver.Presentation.Helpers
 @using System.Text.Json
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
+@inject IBreadcrumbService BreadcrumbService
 
 <style>
     body {
@@ -105,5 +107,18 @@
             return;
         }
         isValid = true;
+    }
+
+    protected override void OnInitialized()
+    {
+        InitializeBreadCrumbs();
+    }
+
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Savings", "/savings");
+        BreadcrumbService.AddBreadcrumb("Goal Creation", "/savings");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
     }
 }

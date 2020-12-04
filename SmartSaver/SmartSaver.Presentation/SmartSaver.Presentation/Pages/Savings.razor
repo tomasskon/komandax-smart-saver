@@ -4,9 +4,11 @@
 @using SmartSaver.Presentation.Helpers
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using System.Text.Json
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
+@inject IBreadcrumbService BreadcrumbService
 
 
 <style>
@@ -87,12 +89,22 @@
     */
 
 
-
     private SavingGoal savingGoal = new SavingGoal();
     public void CreateGoal()
     {
         Console.WriteLine(JsonSerializer.Serialize(savingGoal));
     }
 
+    protected override void OnInitialized()
+    {
+        InitializeBreadCrumbs();
+    }
 
+    
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Savings", "/savings");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
+    }
 }
