@@ -9,29 +9,58 @@
 else
 {
     <div class="form-control-lg">
-    <EditForm Model="@_user" OnValidSubmit="@HandleSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        <p><label> Cash balance:</label>
-        <InputNumber id="cash" @bind-Value="@_user.Cash" />
-        </p>
-        <p><label> Card balance:</label>
-        <InputNumber id="card" @bind-Value="@_user.Card" />
-        </p>
-        <button type="submit" class="btn btn-primary" >Submit</button>
-    </EditForm>
-      </div>
+        <EditForm Model="@_user" OnValidSubmit="@HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <p>
+                <label> Cash balance:</label>
+                <InputNumber id="cash" @bind-Value="@_user.Cash" />
+            </p>
+            <p>
+                <label> Card balance:</label>
+                <InputNumber id="card" @bind-Value="@_user.Card" />
+            </p>
+            <p>
+                <label> Total balance:</label>
+                <InputNumber id="total" @bind-Value="@total" />
+            </p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </EditForm>
+    </div>
 }
-    @code
+@code
 {
-private User _user;
+    private User _user;
+    private double total;
     protected override async Task OnInitializedAsync()
     {
         _user = await Http.GetFromJsonAsync<User>("https://localhost:44301/users");
+        Count();
     }
 
     protected async Task HandleSubmit()
     {
         await Http.PutAsJsonAsync(@"https://localhost:44301/users", _user);
+    }
+
+    public class TotalBalance
+    {
+        public delegate double delSum(double a, double b);
+        public double Sum(double a, double b)
+        {
+            return a + b;
+        }
+    }
+
+    public void Count()
+    {
+        TotalBalance obj = new TotalBalance();
+        TotalBalance.delSum objSum = null;
+        objSum = obj.Sum;
+
+        if (objSum != null)
+        {
+            total = objSum(_user.Card, _user.Cash);
+        }
     }
 }
