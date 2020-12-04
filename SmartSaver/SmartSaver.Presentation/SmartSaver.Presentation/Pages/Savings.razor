@@ -15,12 +15,8 @@
 @inject IBreadcrumbService BreadcrumbService
 
 
-<div class="topnav">
-    <a class="active" href="savings">Goals</a>
-    <a href="savings/goalcreation">Create a new Goal</a>
-    <a href="savings/goaledit">Add funds to your goal</a>
-</div>
-
+<a class="btn btn-primary m-2" href="savings/add">Add Goal</a>
+<a class="btn btn-primary m-2" href="savings/edit">Add Funds</a>
 
 @if (SavingGoalsHelper._savingGoals == null)
 {
@@ -120,7 +116,7 @@
         <tbody>
             @foreach (var goal in SavingGoalsHelper._savingGoals)
             {
-                <tr>
+                <tr @onclick="@(() => NavigationManager.NavigateTo("/savings/edit"))">
                     <td>@goal.GoalName</td>
                     <td>@goal.Description</td>
                     <td>@goal.GoalAmount $</td>

@@ -1,4 +1,4 @@
-﻿@page "/savings/goaledit"
+﻿@page "/savings/edit"
 
 @using SmartSaver.Presentation.Models
 @using SmartSaver.Presentation.Helpers
@@ -10,13 +10,6 @@
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
 @inject IBreadcrumbService BreadcrumbService
-
-
-<div class="topnav">
-    <a href="savings">Goals</a>
-    <a href="savings/goalcreation">Create a new Goal</a>
-    <a class="active" href="savings/goaledit">Add funds to your goal </a>
-</div>
 
 @if (SavingGoalsHelper._savingGoals == null)
 {
