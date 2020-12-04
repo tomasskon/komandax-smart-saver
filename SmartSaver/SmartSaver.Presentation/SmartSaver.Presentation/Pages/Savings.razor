@@ -180,4 +180,18 @@ else
         _sortingModel.SortingColumn = column;
         _sortingModel.IsAscending = isAscending;
     }
+
+    protected override void OnInitialized()
+    {
+        InitializeBreadCrumbs();
+    }
+
+
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Savings", "/savings");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
+
+    }
 }

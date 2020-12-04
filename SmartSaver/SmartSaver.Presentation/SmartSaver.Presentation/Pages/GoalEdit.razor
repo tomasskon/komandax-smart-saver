@@ -176,4 +176,17 @@ https://getbootstrap.com/docs/4.0/components/alerts/
 
         }
     }
+
+    protected override void OnInitialized()
+    {
+        InitializeBreadCrumbs();
+    }
+
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Savings", "/savings");
+        BreadcrumbService.AddBreadcrumb("Goal Edit", "/savings");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
+    }
 }
