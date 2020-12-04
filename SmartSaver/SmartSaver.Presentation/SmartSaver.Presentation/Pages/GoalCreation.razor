@@ -3,22 +3,10 @@
 @using SmartSaver.Presentation.Models
 @using SmartSaver.Presentation.Helpers
 @using System.Text.Json
+@using SmartSaver.Presentation.Constants 
 
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
-
-<style>
-    body {
-        background-color: #ebf5fc;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%235982ed' fill-opacity='1' d='M0,32L26.7,37.3C53.3,43,107,53,160,80C213.3,107,267,149,320,160C373.3,171,427,149,480,149.3C533.3,149,587,171,640,202.7C693.3,235,747,277,800,256C853.3,235,907,149,960,122.7C1013.3,96,1067,128,1120,133.3C1173.3,139,1227,117,1280,101.3C1333.3,85,1387,75,1413,69.3L1440,64L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: bottom;
-    }
-
-    .sidebar {
-        background-image: linear-gradient(180deg, rgb(5, 39, 103) 70%, #fff 100%);
-    }
-</style>
 
 
 <div class="topnav">
@@ -29,7 +17,7 @@
 
 
 <!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_ev_ondblclick2 -->
-
+<!--
 
 <div class="styled-form center">
     <form>
@@ -47,63 +35,62 @@
         </fieldset>
     </form>
 </div>
+-->
+<h1 class="h1">Create a new goal!</h1>
+<div class="form-control-lg">
+    <EditForm Model="@_goal" OnValidSubmit="@HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <p>
+            <label> Goal Name:</label>
+            <InputText id="goalName" @bind-Value="@_goal.GoalName" />
+        </p>
+        <p>
+            <label> Finish date:</label>
+            <InputDate id="goalAmount" @bind-Value="@_goal.FinishDate" />
+        </p>
+        <p>
+            <label> Goal Amount:</label>
+            <InputNumber id="goalAmount" @bind-Value="@_goal.GoalAmount" />
+        </p>
+        <p>
+            <label> Description:</label>
+            <InputText id="goalAmount" @bind-Value="@_goal.Description" />
+        </p>
+        <button type="submit" class="btn btn-primary">Create a new goal</button>
+    </EditForm>
+</div>
+
+
+
 
 
 @code {
-    bool isValid = false;
+    string _alertMessage = "";
+    string _alertType = "";
 
-
-    SavingGoal tempGoal = new SavingGoal()
+    private SavingGoal _goal = new SavingGoal()
     {
         StartDate = DateTime.Now,
-        FinishDate = DateTime.Today.AddDays(1)
+        FinishDate = DateTime.Today.AddDays(1),
+        UserId = Constants.TestUserId
     };
 
 
 
-    public void printGoal()
+    protected async Task HandleSubmit()
     {
-        Console.WriteLine(JsonSerializer.Serialize(tempGoal));
-    }
-
-    public void createGoal()
-    {
-        formValidation();
-        if(isValid)
+        _alertType = "";
+        var response = await Http.PostAsJsonAsync<SavingGoal>(@"https://localhost:44301/savings", _goal);
+        if(response.IsSuccessStatusCode)
         {
-            //sent the goal:
-            SavingGoalsHelper.staticGoals.Add(tempGoal);
-            //send the goal to the DB:
-
-            Console.WriteLine("Goal creation successful!");
+            _alertType = "success";
+            _alertMessage = "Goal created successfully!";
+        } else
+        {
+            _alertType = "danger";
+            _alertMessage = "Goal was not created successfully";
         }
     }
 
-    public void formValidation()
-    {
-        string errorMessage;
-        if(string.IsNullOrEmpty(tempGoal.GoalName))
-        {
-            //throw error that goal name is empty!
-            errorMessage = "The goal name is empty!";
-            Console.WriteLine(errorMessage);
-            isValid = false;
-            return;
-        } else if(tempGoal.FinishDate <= DateTime.Now)
-        {
-            //throw error that finish date is invalid
-            errorMessage = "The finish date is set in the past!";
-            Console.WriteLine(errorMessage);
-            isValid = false;
-            return;
-        } else if(tempGoal.GoalAmount <= 0)
-        {
-            //throw error that goal amount is invalid
-            errorMessage = "The set goal amount is invalid";
-            Console.WriteLine(errorMessage);
-            isValid = false;
-            return;
-        }
-        isValid = true;
-    }
 }
