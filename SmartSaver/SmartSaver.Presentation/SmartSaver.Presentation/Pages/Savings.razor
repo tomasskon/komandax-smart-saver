@@ -6,6 +6,8 @@
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using SmartSaver.Presentation.Constants
 @using SmartSaver.Presentation.Helpers
+@using SmartSaver.Presentation.Shared.LoadingSpinner
+@using System.Text.Json
 @using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject NavigationManager NavigationManager
@@ -23,8 +25,7 @@
 @if (SavingGoalsHelper._savingGoals == null)
 {
     <LoadingSpinner />
-}
-else
+} else
 {
     <h1>Saving Goals</h1>
     <table class="table">
@@ -182,16 +183,22 @@ else
     }
 
     protected override void OnInitialized()
+                         
+    private SavingGoal savingGoal = new SavingGoal();
+    public void CreateGoal()
     {
         InitializeBreadCrumbs();
     }
 
+    protected override void OnInitialized()
+    {
+        InitializeBreadCrumbs();
+    }
 
     private void InitializeBreadCrumbs()
     {
         BreadcrumbService.ClearList();
         BreadcrumbService.AddBreadcrumb("Savings", "/savings");
         BreadcrumbService.InvokeBreadcrumbsChanged();
-
     }
 }

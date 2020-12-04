@@ -88,4 +88,17 @@
         BreadcrumbService.InvokeBreadcrumbsChanged();
 
     }
+
+    protected override void OnInitialized()
+    {
+        InitializeBreadCrumbs();
+    }
+
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Savings", "/savings");
+        BreadcrumbService.AddBreadcrumb("Goal Creation", "/savings");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
+    }
 }

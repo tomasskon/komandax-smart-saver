@@ -1,12 +1,50 @@
-﻿@inherits LayoutComponentBase
+﻿@using SmartSaver.Presentation.Shared.Breadcrumbs                                 
+
+@inherits LayoutComponentBase
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@using SmartSaver.Presentation.Shared.LoadingSpinner
 
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+@if (!_isLoading)
+{
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+}
 
 <div class="main">
+    <Breadcrumbs />
     <div class="content px-4">
-        @Body
+        @if (_isLoading)
+        {
+            <LoadingSpinner />
+        }
+        else
+        {
+            @Body
+        }
     </div>
 </div>
+
+
+@code {
+    private bool _isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await Http.GetAsync("https://localhost:44301");
+
+            _isLoading = false;
+        }
+        catch (Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
+
+    }
+}
