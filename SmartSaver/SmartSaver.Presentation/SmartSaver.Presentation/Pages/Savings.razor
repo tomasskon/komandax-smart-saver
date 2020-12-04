@@ -6,7 +6,6 @@
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using SmartSaver.Presentation.Constants
 @using SmartSaver.Presentation.Helpers
-@using SmartSaver.Presentation.Shared.LoadingSpinner
 @using System.Text.Json
 @using SmartSaver.Presentation.Shared.Breadcrumbs
 
@@ -21,6 +20,7 @@
     <a href="savings/goalcreation">Create a new Goal</a>
     <a href="savings/goaledit">Add funds to your goal</a>
 </div>
+
 
 @if (SavingGoalsHelper._savingGoals == null)
 {
@@ -182,7 +182,7 @@
         _sortingModel.IsAscending = isAscending;
     }
 
-    protected override void OnInitialized()
+    
                          
     private SavingGoal savingGoal = new SavingGoal();
     public void CreateGoal()

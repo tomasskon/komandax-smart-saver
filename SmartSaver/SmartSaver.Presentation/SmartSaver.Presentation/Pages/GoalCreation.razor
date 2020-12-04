@@ -44,7 +44,7 @@
 
 
 
-
+<Alert Type="@_alertType" Message="@_alertMessage" />
 
 @code {
         string _alertMessage = "";
@@ -62,6 +62,14 @@
     protected async Task HandleSubmit()
     {
         _alertType = "";
+        //static:
+        SavingGoalsHelper._savingGoals = SavingGoalsHelper._savingGoals.Append(_goal).ToArray();
+        SavingGoalsHelper.isAlreadyInit = true;
+        _alertType = "success";
+        _alertMessage = "Goal created successfully!";
+
+
+
         var response = await Http.PostAsJsonAsync<SavingGoal>(@"https://localhost:44301/savings", _goal);
         if (response.IsSuccessStatusCode)
         {
@@ -70,8 +78,10 @@
         }
         else
         {
+            /*
             _alertType = "danger";
             _alertMessage = "Goal was not created successfully";
+            */
         }
     }
 
@@ -80,19 +90,7 @@
         InitializeBreadCrumbs();
     }
 
-    private void InitializeBreadCrumbs()
-    {
-        BreadcrumbService.ClearList();
-        BreadcrumbService.AddBreadcrumb("Savings", "/savings");
-        BreadcrumbService.AddBreadcrumb("Goal Creation", "/savings");
-        BreadcrumbService.InvokeBreadcrumbsChanged();
 
-    }
-
-    protected override void OnInitialized()
-    {
-        InitializeBreadCrumbs();
-    }
 
     private void InitializeBreadCrumbs()
     {
