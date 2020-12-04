@@ -3,10 +3,12 @@
 @using SmartSaver.Presentation.Models
 @using SmartSaver.Presentation.Helpers
 @using System.Text.Json
-@using SmartSaver.Presentation.Constants 
+@using SmartSaver.Presentation.Constants
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
+@inject IBreadcrumbService BreadcrumbService
 
 
 <div class="topnav">
@@ -15,27 +17,6 @@
     <a href="savings/goaledit">Add funds to your goal </a>
 </div>
 
-
-<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_ev_ondblclick2 -->
-<!--
-
-<div class="styled-form center">
-    <form>
-        <fieldset>
-            <legend>Create a new goal</legend>
-            <label for="goalname"><span>Goal Name: <span class="required">*</span></span><input type="text" class="input-field" name="goalname" placeholder="Enter your goal name" @bind-value="@tempGoal.GoalName" /></label>
-            <label for="goalamount"><span>Goal Amount: <span class="required">*</span></span><input type="number" class="input-field" name="goalamount" placeholder="$" @bind-value="@tempGoal.GoalAmount"/></label>
-            <label for="finishdate"><span>Set your goal date: <span class="required">*</span></span><input type="date" class="input-field" name="finishdate" @bind-value="@tempGoal.FinishDate"/></label>
-        </fieldset>
-        <fieldset>
-            <legend>Description</legend>
-            <label for="description"><span>Enter a Description:</span><textarea name="description" class="textarea-field" @bind="@tempGoal.Description"></textarea></label>
-            <label><span> </span><input type="button" value="Create a new goal" @onclick="createGoal"/></label>
-            <label><span> </span><input type="reset" value="Reset" /></label>
-        </fieldset>
-    </form>
-</div>
--->
 <h1 class="h1">Create a new goal!</h1>
 <div class="form-control-lg">
     <EditForm Model="@_goal" OnValidSubmit="@HandleSubmit">
@@ -82,11 +63,12 @@
     {
         _alertType = "";
         var response = await Http.PostAsJsonAsync<SavingGoal>(@"https://localhost:44301/savings", _goal);
-        if(response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
             _alertType = "success";
             _alertMessage = "Goal created successfully!";
-        } else
+        }
+        else
         {
             _alertType = "danger";
             _alertMessage = "Goal was not created successfully";

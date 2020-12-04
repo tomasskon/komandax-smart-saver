@@ -6,9 +6,12 @@
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using SmartSaver.Presentation.Constants
 @using SmartSaver.Presentation.Helpers
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
+@inject IJSRuntime JsRuntime
+@inject IBreadcrumbService BreadcrumbService
 
 
 <div class="topnav">
@@ -146,11 +149,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        if(!SavingGoalsHelper.isAlreadyInit)
+        if (!SavingGoalsHelper.isAlreadyInit)
         {
             ParseUrlParameters();
             await GetSortedSavingGoals();
-        } else
+        }
+        else
         {
             return;
         }

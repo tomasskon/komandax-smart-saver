@@ -29,7 +29,7 @@ else
                             </div>
                         </div>
                         <div>
-                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.Category)" IsAscending="@_sortingModel.IsAscending"/>
+                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.Category)" IsAscending="@_sortingModel.IsAscending" />
                         </div>
                     </div>
                 </th>
@@ -41,7 +41,7 @@ else
                             </div>
                         </div>
                         <div>
-                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.Amount)" IsAscending="@_sortingModel.IsAscending"/>
+                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.Amount)" IsAscending="@_sortingModel.IsAscending" />
                         </div>
                     </div>
                 </th>
@@ -53,7 +53,7 @@ else
                             </div>
                         </div>
                         <div>
-                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.Description)" IsAscending="@_sortingModel.IsAscending"/>
+                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.Description)" IsAscending="@_sortingModel.IsAscending" />
                         </div>
                     </div>
                 </th>
@@ -65,7 +65,7 @@ else
                             </div>
                         </div>
                         <div>
-                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.CreatedAt)" IsAscending="@_sortingModel.IsAscending"/>
+                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.CreatedAt)" IsAscending="@_sortingModel.IsAscending" />
                         </div>
                     </div>
                 </th>
@@ -77,23 +77,24 @@ else
                             </div>
                         </div>
                         <div>
-                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.BalanceType)" IsAscending="@_sortingModel.IsAscending"/>
+                            <SortingButtons IsSorting="@(_sortingModel.SortingColumn == TransactionsSortingEnum.BalanceType)" IsAscending="@_sortingModel.IsAscending" />
                         </div>
                     </div>
                 </th>
+
             </tr>
         </thead>
         <tbody>
-        @foreach (var transaction in _transactions)
-        {
-            <tr>
-                <td>@transaction.Category.Name</td>
-                <td>@transaction.Amount</td>
-                <td>@transaction.Description</td>
-                <td>@transaction.CreatedAt</td>
-                <td>@transaction.BalanceType</td>
-            </tr>
-        }
+            @foreach (var transaction in _transactions)
+            {
+                <tr>
+                    <td>@transaction.Category.Name</td>
+                    <td>@transaction.Amount</td>
+                    <td>@transaction.Description</td>
+                    <td>@transaction.CreatedAt</td>
+                    <td>@transaction.BalanceType</td>
+                </tr>
+            }
         </tbody>
     </table>
 }

@@ -5,9 +5,11 @@
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using SmartSaver.Presentation.Constants
 @using System.Text.Json
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
+@inject IBreadcrumbService BreadcrumbService
 
 
 <div class="topnav">
@@ -38,7 +40,7 @@ else
                 Goal Amount:
                 <input type="number" @bind-value="tempAmount" placeholder="$" />
             </p>
-            <!-- 
+
             <p>
                 Select your balance
                 <select name="balancetype" @bind="tempPaymentType" class="select-field">
@@ -46,7 +48,7 @@ else
                     <option value="card">Card</option>
                 </select>
             </p>
-            -->
+
             <button type="button" class="btn btn-primary" @onclick="EditGoal">Fund</button>
         </form>
     </div>
@@ -80,12 +82,13 @@ https://getbootstrap.com/docs/4.0/components/alerts/
         //END
 
         var response = await Http.DeleteAsync("http://localhost:44301/savings/" + id.ToString());
-        if(response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
             _alertType = "success";
             _alertMessage = "Goal deleted successfully!";
             SavingGoalsHelper._savingGoals = SavingGoalsHelper._savingGoals.Where(c => c.Id != id).ToArray();
-        } else
+        }
+        else
         {
             _alertType = "danger";
             _alertMessage = "Goal was not deleted successfully.";
@@ -101,12 +104,13 @@ https://getbootstrap.com/docs/4.0/components/alerts/
         SavingGoalsHelper._savingGoals[ind] = goal;
         SavingGoalsHelper.isAlreadyInit = true;
         //END
-        var response = await Http.PutAsJsonAsync("http://localhost:44301/savings/goaledit",goal);
-        if(response.IsSuccessStatusCode)
+        var response = await Http.PutAsJsonAsync("http://localhost:44301/savings/goaledit", goal);
+        if (response.IsSuccessStatusCode)
         {
             _alertType = "success";
             _alertMessage = "Goal updated successfully!";
-        } else
+        }
+        else
         {
             _alertType = "danger";
             _alertMessage = "Goal was not updated successfully.";
@@ -158,7 +162,8 @@ https://getbootstrap.com/docs/4.0/components/alerts/
 
                     //DB
                     await DeleteGoal(foundGoal.Id);
-                } else
+                }
+                else
                 {
                     //Update the db
                     Console.WriteLine("Trying to update...");
