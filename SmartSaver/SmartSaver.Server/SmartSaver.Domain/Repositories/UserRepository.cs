@@ -11,6 +11,8 @@ namespace SmartSaver.Domain.Repositories
 {
     public class UserRepository : GenericRepository<User>, IUsersRepository
     {
-
+        public UserRepository(SmartSaverContext context) : base(context)
+        {
+        }
     }
 }

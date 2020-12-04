@@ -10,6 +10,10 @@ namespace SmartSaver.Domain.Repositories
 {
     public class SavingsRepository : GenericRepository<SavingGoal>, ISavingGoalsRepository
     {
+        public SavingsRepository(SmartSaverContext context) : base(context)
+        {
+        }
+
         public async Task<SavingGoal> GetUserGoalIfExists(SavingGoal goal)
         {
             return await Set.SingleOrDefaultAsync(i => i.GoalName == goal.GoalName);
