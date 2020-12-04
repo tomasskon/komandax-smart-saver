@@ -105,7 +105,7 @@
         ResetAlert();
         try
         {
-            var response = await Http.PostAsJsonAsync<Category>("https://localhost:44301/categories", _newCategory);
+            var response = await Http.PostAsJsonAsync<Category>($"{Configuration["requestUri"]}/categories", _newCategory);
 
             await ReloadCategories();
             _newCategory.Name = "";

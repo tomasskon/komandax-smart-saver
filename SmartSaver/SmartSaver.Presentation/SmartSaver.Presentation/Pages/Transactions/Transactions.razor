@@ -5,12 +5,10 @@
 @using SmartSaver.Presentation.Shared.Sorting
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using SmartSaver.Presentation.Constants
-@using SmartSaver.Presentation.Shared.Breadcrumbs
 @using Microsoft.Extensions.Configuration
 
 @inject IConfiguration Configuration
 @inject NavigationManager NavigationManager
-@inject IBreadcrumbService BreadcrumbService
 @inject HttpClient Http
 
 <h1>Transactions</h1>
@@ -114,10 +112,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        BreadcrumbService.ClearList();
-        BreadcrumbService.AddBreadcrumb("Transactions", "/transactions");
-        BreadcrumbService.InvokeBreadcrumbsChanged();
-
         ParseUrlParameters();
 
         await GetSortedTransactions();
