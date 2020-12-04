@@ -3,10 +3,13 @@
 @using SmartSaver.Presentation.Models
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using Microsoft.Extensions.Configuration
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject IConfiguration Configuration
 @inject HttpClient Http
 @inject NavigationManager NavigationManager;
+@inject IBreadcrumbService BreadcrumbService
+
 <h1>Balances</h1>
 @if (_user == null)
 {
@@ -44,6 +47,8 @@ else
         {
             NavigationManager.NavigateTo("/error");
         }
+
+        InitializeBreadCrumbs();
     }
 
     protected async Task HandleSubmit()
@@ -56,5 +61,12 @@ else
         {
             NavigationManager.NavigateTo("/error");
         }
+    }
+
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Balance", "/balance");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
     }
 }

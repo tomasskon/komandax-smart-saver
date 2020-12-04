@@ -2,10 +2,12 @@
 
 @using SmartSaver.Presentation.Models
 @using Microsoft.Extensions.Configuration
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject IConfiguration Configuration
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject IBreadcrumbService BreadcrumbService
 
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 
@@ -92,6 +94,7 @@
     protected override async Task OnInitializedAsync()
     {
         await ReloadCategories();
+        InitializeBreadCrumbs();
     }
 
     protected void ResetAlert()
@@ -151,6 +154,14 @@
         {
             NavigationManager.NavigateTo("/error");
         }
+    }
+
+    
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Spendings", "/spendings");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
     }
 }
 

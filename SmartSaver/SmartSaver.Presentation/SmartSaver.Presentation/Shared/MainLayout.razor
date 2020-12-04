@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using SmartSaver.Presentation.Shared.Breadcrumbs                                 
+
+@inherits LayoutComponentBase
 
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
@@ -14,6 +16,7 @@
 }
 
 <div class="main">
+    <Breadcrumbs />
     <div class="content px-4">
         @if (_isLoading)
         {
