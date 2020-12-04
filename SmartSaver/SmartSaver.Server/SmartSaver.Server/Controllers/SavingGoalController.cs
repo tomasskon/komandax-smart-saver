@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SmartSaver.Domain.Models;
@@ -16,19 +17,36 @@ namespace SmartSaver.Server.Controllers
         {
             _savingGoalsRepository = savingGoalsRepository;
         }
-
-        [HttpGet]
-        public async Task<IReadOnlyList<SavingGoal>> Get()
+    
+        [HttpGet("{id}/sorting")]
+        public async Task<IReadOnlyList<SavingGoal>> Get(Guid userId, string sortingColumn, bool isAscending)
         {
-            return await _savingGoalsRepository.GetAll();
+            return await _savingGoalsRepository.GetSortedGoals(Domain.Constants.Constants.TestUserId,
+                new SortingModel { IsAscending = isAscending, SortingColumn = sortingColumn });
         }
 
+        [HttpPost]
+        public async Task<Guid> Store(SavingGoal goal)
+        {
+            goal.UserId = Domain.Constants.Constants.TestUserId;
+            return await _savingGoalsRepository.Create(goal);
+        }
+
+        [Route("goaledit/{id}")]
+        [HttpDelete]
+        public async Task<NoContentResult> Delete(Guid id)
+        {
+            await _savingGoalsRepository.Delete(id);
+            return NoContent();
+        }
+
+        [Route("savings/goaledit")]
         [HttpPut]
-        public async void Put(SavingGoal goal)
+        public async void Update(SavingGoal goal)
         {
-            await _savingGoalsRepository.Update(Domain.Constants.Constants.TestUserId, goal);
+            await _savingGoalsRepository.Update(goal.Id, goal);
         }
-        
+
 
     }
 }

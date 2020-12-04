@@ -1,8 +1,9 @@
-﻿@page "/savings/goaledit"
+﻿@page "/savings/edit"
 
 @using SmartSaver.Presentation.Models
 @using SmartSaver.Presentation.Helpers
 @using SmartSaver.Presentation.Shared.LoadingSpinner
+@using SmartSaver.Presentation.Constants
 @using System.Text.Json
 @using SmartSaver.Presentation.Shared.Breadcrumbs
 
@@ -10,60 +11,51 @@
 @inject IJSRuntime JsRuntime
 @inject IBreadcrumbService BreadcrumbService
 
-<style>
-    body {
-        background-color: #ebf5fc;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%235982ed' fill-opacity='1' d='M0,32L26.7,37.3C53.3,43,107,53,160,80C213.3,107,267,149,320,160C373.3,171,427,149,480,149.3C533.3,149,587,171,640,202.7C693.3,235,747,277,800,256C853.3,235,907,149,960,122.7C1013.3,96,1067,128,1120,133.3C1173.3,139,1227,117,1280,101.3C1333.3,85,1387,75,1413,69.3L1440,64L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: bottom;
-    }
-
-    .sidebar {
-        background-image: linear-gradient(180deg, rgb(5, 39, 103) 70%, #fff 100%);
-    }
-</style>
-
-
-<div class="topnav">
-    <a href="savings">Goals</a>
-    <a href="savings/goalcreation">Create a new Goal</a>
-    <a class="active" href="savings/goaledit">Add funds to your goal </a>
-</div>
-
-
-<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_ev_ondblclick2 -->
-
-@if (_savingGoals == null)
+@if (SavingGoalsHelper._savingGoals == null)
 {
     <LoadingSpinner />
 }
 else
 {
-    <div class="styled-form center">
+    <h1 class="h1">Fund your goal!</h1>
+    <div class="form-control-lg">
         <form>
-            <fieldset>
-                <legend>Add funds to your goal</legend>
-                <label for="goalselection">
-                    <span>Select your goal<span class="required">*</span></span>
-                    <select name="goalselect" @bind="selectedValueName" class="select-field">
-                        @foreach (var goal in _savingGoals)
-                        {
-                            <option value="@goal.GoalName">@goal.GoalName</option>
-                        }
-                    </select>
-                </label>
-                <label for="goalamount"><span>Goal Amount: <span class="required">*</span></span><input type="number" @bind-value="tempAmount" class="input-field" name="goalamount" placeholder="$" /></label>
-                <label for="balance">
-                    <span>Select your balance</span><select name="balancetype" @bind="tempPaymentType" class="select-field">
-                        <option value="cash">Cash</option>
-                        <option value="card">Card</option>
-                    </select>
-                </label>
-                <label><span> </span><input type="button" value="Add funds" @onclick="EditGoal" /></label>
-            </fieldset>
+            <p>
+                Select your goal
+                <select name="goalselect" @bind="selectedValueName" class="select-field">
+                    @foreach (var goal in SavingGoalsHelper._savingGoals)
+                    {
+                        <option value="@goal.GoalName">@goal.GoalName</option>
+                    }
+                </select>
+            </p>
+            <p>
+                Goal Amount:
+                <input type="number" @bind-value="tempAmount" placeholder="$" />
+            </p>
+            <!--
+                
+            <p>
+                Select your balance
+                <select name="balancetype" @bind="tempPaymentType" class="select-field">
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                </select>
+            </p>
+            -->
+
+            <button type="button" class="btn btn-primary" @onclick="EditGoal">Fund</button>
         </form>
     </div>
+
+
 }
+
+
+<Alert Type="@_alertType" Message="@_alertMessage" />
+<!--
+https://getbootstrap.com/docs/4.0/components/alerts/
+                                           -->
 
 
 @code {
@@ -71,76 +63,119 @@ else
     string tempPaymentType = "";
     double tempAmount = 0;
 
-    //Static
-    private List<SavingGoal> _savingGoals = SavingGoalsHelper.staticGoals;
+    string _alertMessage = "";
+    string _alertType = "danger"; //success or danger
+
     //DB
-    /*
-    SavingGoal[] _savingGoals;
-    protected override async Task OnInitializedAsync()
+    private async Task DeleteGoal(Guid id)
     {
-        _savingGoals = await Http.GetFromJsonAsync<SavingGoal[]>("http://localhost:5000/savings");
+        _alertMessage = "";
+        _alertType = "";
+        //Deleting statically:
+        SavingGoalsHelper._savingGoals = SavingGoalsHelper._savingGoals.Where(c => c.Id != id).ToArray();
+        SavingGoalsHelper.isAlreadyInit = true;
+        //END
+
+        var response = await Http.DeleteAsync("http://localhost:44301/savings/" + id.ToString());
+        if (response.IsSuccessStatusCode)
+        {
+            _alertType = "success";
+            _alertMessage = "Goal deleted successfully!";
+            SavingGoalsHelper._savingGoals = SavingGoalsHelper._savingGoals.Where(c => c.Id != id).ToArray();
+        }
+        else
+        {
+            _alertType = "danger";
+            _alertMessage = "Goal was not deleted successfully.";
+        }
     }
-    */
+
+    private async Task UpdateGoal(SavingGoal goal)
+    {
+        _alertMessage = "";
+        _alertType = "";
+        //Updating statically:
+        int ind = Array.FindIndex(SavingGoalsHelper._savingGoals, goal => goal.GoalName == selectedValueName);
+        SavingGoalsHelper._savingGoals[ind] = goal;
+        SavingGoalsHelper.isAlreadyInit = true;
+        //END
+        var response = await Http.PutAsJsonAsync("http://localhost:44301/savings/goaledit", goal);
+        if (response.IsSuccessStatusCode)
+        {
+            _alertType = "success";
+            _alertMessage = "Goal updated successfully!";
+        }
+        else
+        {
+            _alertType = "danger";
+            _alertMessage = "Goal was not updated successfully.";
+        }
+    }
 
 
-    private void EditGoal()
+
+    private async void EditGoal()
     {
         Console.WriteLine(selectedValueName + " " + tempPaymentType + " " + tempAmount + "$");
-
-
         if (string.IsNullOrEmpty(selectedValueName))
         {
+            _alertType = "danger";
+            _alertMessage = "There was an error when selecting a goal...";
             Console.WriteLine("There was an error when selecting a goal...");
             return;
         }
         else if (tempAmount <= 0)
         {
+            _alertType = "danger";
+            _alertMessage = "Invalid goal amount input!";
             Console.WriteLine("Invalid goal amount input!");
             return;
         }
         else
         {
-            //Static
-            
-            SavingGoal foundGoal = _savingGoals.Find(x => x.GoalName.Contains(selectedValueName));
-            if(foundGoal == null)
+            SavingGoal foundGoal = Array.Find(SavingGoalsHelper._savingGoals, goal => goal.GoalName == selectedValueName);
+            if (foundGoal == null)
             {
+                _alertType = "danger";
+                _alertMessage = "There was an error finding an existing goal";
                 Console.WriteLine("There was an error finding an existing goal");
-            } else
+            }
+            else
             {
+                _alertType = "success";
+                _alertMessage = "The goal was found! Payment type: " + tempPaymentType;
                 Console.WriteLine("The goal was found! Payment type: " + tempPaymentType);
-                //doing statically:
-                _savingGoals.Find(x => x.GoalName.Contains(selectedValueName)).Progress += tempAmount;
-                //do db update operation, do transaction with tempPaymentType:
-
-                Console.WriteLine("Goal updated successfully!");
-
-                if(_savingGoals.Find(x => x.GoalName.Contains(selectedValueName)).Progress >= _savingGoals.Find(x => x.GoalName.Contains(selectedValueName)).GoalAmount)
+                foundGoal.Progress += tempAmount;
+                SavingGoalsHelper.isAlreadyInit = true;
+                if (foundGoal.GoalAmount <= foundGoal.Progress)
                 {
-                    Console.WriteLine("The goal has been reached! => Deleting the goal");
-                    _savingGoals.Remove(_savingGoals.Find(x => x.GoalName.Contains(selectedValueName)));
+                    _alertType = "success";
+                    _alertMessage = "The goal is completed! Congratulations!";
+                    Console.WriteLine("The goal is completed! Congratulations!");
+                    //delete the goal! get the id of the goal!
+
+
+                    //DB
+                    await DeleteGoal(foundGoal.Id);
+                }
+                else
+                {
+                    //Update the db
+                    Console.WriteLine("Trying to update...");
+
+                    //DB
+                    await UpdateGoal(foundGoal);
                 }
 
             }
-            
-            //DB
-            /*
-            SavingGoal foundGoal = Array.Find(_savingGoals, goal => goal.GoalName == selectedValueName);
-            if(foundGoal != null)
-            {
-                Console.WriteLine("There was an error finding an existing goal");
-            } else
-            {
-                Console.WriteLine("The goal was found! Payment type: " + tempPaymentType);
-                foundGoal.Progress += tempAmount;
-            }
-            */
+
         }
     }
 
     protected override void OnInitialized()
     {
-       InitializeBreadCrumbs();
+        InitializeBreadCrumbs();
+
     }
 
     private void InitializeBreadCrumbs()
