@@ -2,6 +2,7 @@
 
 @using SmartSaver.Presentation.Models
 @using SmartSaver.Presentation.Helpers
+@using SmartSaver.Presentation.Shared.LoadingSpinner
 @using System.Text.Json
 
 @inject HttpClient Http
@@ -32,7 +33,7 @@
 
 @if (_savingGoals == null)
 {
-    <p><em>Loading...</em></p>
+    <LoadingSpinner />
 }
 else
 {

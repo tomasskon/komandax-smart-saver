@@ -26,7 +26,7 @@ namespace SmartSaver.Server.Controllers
         }
 
         [HttpPut]
-        public async void Put(User user)
+        public async Task Put(User user)
         {
             await _usersRepository.Update(SmartSaver.Domain.Constants.Constants.TestUserId, user);
         }

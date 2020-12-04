@@ -1,19 +1,24 @@
 ﻿@page "/spendings"
 
 @using SmartSaver.Presentation.Models
+@using Microsoft.Extensions.Configuration
 
+@inject IConfiguration Configuration
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@using SmartSaver.Presentation.Shared.LoadingSpinner
 
 <h1>Spendings</h1>
 
-<Alert Type="success" Message="@_alertMessage" />
+<Alert Type="@_alertType" Message="@_alertMessage" />
 
 <div class="row">
     <div class="col-md-6">
         <h3>Categories</h3>
         @if (_spendingCategories == null)
         {
-            <p><em>Loading...</em></p>
+            <LoadingSpinner />
         }
         else
         {
@@ -70,10 +75,18 @@
     private Category[] _spendingCategories;
     private Category _newCategory = new Category();
     public string _alertMessage = "";
+    public string _alertType = "success";
 
     protected async Task ReloadCategories()
     {
-        _spendingCategories = await Http.GetFromJsonAsync<Category[]>("https://localhost:44301/categories");
+        try
+        {
+        	_spendingCategories = await Http.GetFromJsonAsync<Category[]>($"{Configuration["requestUri"]}/categories");
+        }
+        catch(Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
     }
 
     protected override async Task OnInitializedAsync()
@@ -81,27 +94,63 @@
         await ReloadCategories();
     }
 
+    protected void ResetAlert()
+    {
+        _alertType = "success";
+        _alertMessage = "";
+    }
+
     private async Task CreateCategory()
     {
-        _alertMessage = "";
-        var response = await Http.PostAsJsonAsync<Category>("https://localhost:44301/categories", _newCategory);
+        ResetAlert();
+        try
+        {
+            var response = await Http.PostAsJsonAsync<Category>($"{Configuration["requestUri"]}/categories", _newCategory);
 
-        await ReloadCategories();
-        _newCategory.Name = "";
-        _alertMessage = "Category created successfully";
+            await ReloadCategories();
+            _newCategory.Name = "";
+            _alertMessage = "Category created successfully";
+        }
+        catch (HttpRequestException exception)
+        {
+            _alertType = "danger";
+            _alertMessage = "Category was not created. Error: " + exception.Message;
+        }
+        catch (Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
     }
 
     private async Task DeleteCategory(MouseEventArgs e, Guid id)
     {
-        _alertMessage = "";
-        var response = await Http.DeleteAsync("https://localhost:44301/categories/" + id.ToString());
+        ResetAlert();
+        try
+        {
+        	var response = await Http.DeleteAsync($"{Configuration["requestUri"]}/categories/" + id.ToString());
 
         if (response.IsSuccessStatusCode)
-        {
-            _spendingCategories = _spendingCategories.Where(c => c.Id != id).ToArray();
-        }
+            if (response.IsSuccessStatusCode)
+            {
+                _spendingCategories = _spendingCategories.Where(c => c.Id != id).ToArray();
 
-        _alertMessage = "Category deleted successfully";
+                _alertMessage = "Category deleted successfully";
+            }
+            else
+            {
+                _alertType = "danger";
+                _alertMessage = "Category has not been deleted because it has transactions";
+            }
+        }
+        catch(HttpRequestException)
+        {
+            _alertType = "danger";
+            _alertMessage = "Category was not found";
+        }
+        catch (Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
     }
 }
 
