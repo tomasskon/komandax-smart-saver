@@ -24,5 +24,17 @@ namespace SmartSaver.Server.Controllers
             return await _transactionsRepository.GetSortedUserTransactions(Domain.Constants.Constants.TestUserId,
                 new SortingModel { IsAscending = isAscending, SortingColumn = sortingColumn });
         }
+
+        [HttpGet("last/{count}")]
+        public async Task<IReadOnlyList<Transaction>> GetLast(int count)
+        {
+            return await _transactionsRepository.GetLastTransactions(Domain.Constants.Constants.TestUserId, count);
+        }
+
+        [HttpGet("grouped")]
+        public async Task<IReadOnlyList<GroupedTransaction>> GetGroupedByCategory()
+        {
+            return await _transactionsRepository.GetAmountSpentPerCategory(Domain.Constants.Constants.TestUserId);
+        }
     }
 }
