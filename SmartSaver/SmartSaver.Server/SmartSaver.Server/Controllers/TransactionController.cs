@@ -12,10 +12,12 @@ namespace SmartSaver.Server.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly ITransactionsRepository _transactionsRepository;
+        private readonly IUsersRepository _usersRepository;
 
-        public TransactionController(ITransactionsRepository transactionsRepository)
+        public TransactionController(ITransactionsRepository transactionsRepository, IUsersRepository usersRepository)
         {
             _transactionsRepository = transactionsRepository;
+            _usersRepository = usersRepository;
         }
 
         [HttpGet("{id}/sorting")]
@@ -36,5 +38,30 @@ namespace SmartSaver.Server.Controllers
         {
             return await _transactionsRepository.GetAmountSpentPerCategory(Domain.Constants.Constants.TestUserId);
         }
+
+
+        [HttpPost]
+        [Route("spend")]
+        public async Task<IActionResult> AddNewSpending(Transaction transaction)
+        {
+            var user = await _usersRepository.GetById(Domain.Constants.Constants.TestUserId);
+            var balance = user.GetType().GetProperty(transaction.BalanceType);
+            var balanceAmount = (double)balance.GetValue(user);
+
+            transaction.UserId = user.Id;
+
+            if (balanceAmount >= transaction.AmountDouble)
+            {
+                balance.SetValue(user, balanceAmount - transaction.AmountDouble);
+
+                await _usersRepository.Update(user.Id, user);
+                await _transactionsRepository.Create(transaction);
+
+                return Ok();
+            }
+
+            return NotFound();
+        }
+
     }
 }

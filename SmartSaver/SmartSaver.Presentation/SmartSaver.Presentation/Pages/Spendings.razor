@@ -3,6 +3,7 @@
 @using SmartSaver.Presentation.Models
 @using Microsoft.Extensions.Configuration
 @using SmartSaver.Presentation.Shared.Breadcrumbs
+@using System.Collections.Generic
 
 @inject IConfiguration Configuration
 @inject HttpClient Http
@@ -70,22 +71,59 @@
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
         </EditForm>
+
+        <h3>Spend money</h3>
+        <EditForm Model="_newTransaction" OnValidSubmit="@SpendMoney">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" class="form-control" @bind="_newTransaction.CategoryIdString">
+                    <option hidden></option>
+                </select>
+            </div>
+                
+            <div class="form-group">
+                <label for="balance">Balance</label>
+                <InputSelect id="balance" class="form-control" @bind-Value="_newTransaction.BalanceType">
+                    <option hidden></option>
+                    <option>Card</option>
+                    <option>Cash</option>
+                </InputSelect>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <InputNumber id="amount" class="form-control" step="0.01" @bind-Value="_newTransaction.AmountDouble" />
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <InputTextArea id="description" class="form-control" @bind-Value="_newTransaction.Description"/>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </EditForm>
     </div>
 </div>
 
 @code {
     private Category[] _spendingCategories;
     private Category _newCategory = new Category();
-    public string _alertMessage = "";
+    private Transaction _newTransaction = new Transaction();
+    public string _alertMessage = String.Empty;
     public string _alertType = "success";
 
     protected async Task ReloadCategories()
     {
         try
         {
-        	_spendingCategories = await Http.GetFromJsonAsync<Category[]>($"{Configuration["requestUri"]}/categories");
+            _spendingCategories = await Http.GetFromJsonAsync<Category[]>($"{Configuration["requestUri"]}/categories");
         }
-        catch(Exception)
+        catch (Exception)
         {
             NavigationManager.NavigateTo("/error");
         }
@@ -125,27 +163,55 @@
         }
     }
 
+    private async Task SpendMoney()
+    {
+        ResetAlert();
+        try
+        {
+            var response = await Http.PostAsJsonAsync<Transaction>($"{Configuration["requestUri"]}/transactions/spend", _newTransaction);
+            if (response.IsSuccessStatusCode)
+            {
+                _newTransaction = new Transaction();
+                _alertMessage = "Spending completed successfully";
+            } 
+            else
+            {
+                _alertType = "danger";
+                _alertMessage = "Not enough money in balance";
+            }
+        }
+        catch (HttpRequestException exception)
+        {
+            _alertType = "danger";
+            _alertMessage = "Spending was not completed. Error: " + exception.Message;
+        }
+        catch (Exception)
+        {
+            NavigationManager.NavigateTo("/error");
+        }
+    }
+
     private async Task DeleteCategory(MouseEventArgs e, Guid id)
     {
         ResetAlert();
         try
         {
-        	var response = await Http.DeleteAsync($"{Configuration["requestUri"]}/categories/" + id.ToString());
+            var response = await Http.DeleteAsync($"{Configuration["requestUri"]}/categories/" + id.ToString());
 
-        if (response.IsSuccessStatusCode)
             if (response.IsSuccessStatusCode)
-            {
-                _spendingCategories = _spendingCategories.Where(c => c.Id != id).ToArray();
+                if (response.IsSuccessStatusCode)
+                {
+                    _spendingCategories = _spendingCategories.Where(c => c.Id != id).ToArray();
 
-                _alertMessage = "Category deleted successfully";
-            }
-            else
-            {
-                _alertType = "danger";
-                _alertMessage = "Category has not been deleted because it has transactions";
-            }
+                    _alertMessage = "Category deleted successfully";
+                }
+                else
+                {
+                    _alertType = "danger";
+                    _alertMessage = "Category has not been deleted because it has transactions";
+                }
         }
-        catch(HttpRequestException)
+        catch (HttpRequestException)
         {
             _alertType = "danger";
             _alertMessage = "Category was not found";
@@ -156,7 +222,7 @@
         }
     }
 
-    
+
     private void InitializeBreadCrumbs()
     {
         BreadcrumbService.ClearList();
