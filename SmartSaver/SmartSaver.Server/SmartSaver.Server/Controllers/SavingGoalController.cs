@@ -18,7 +18,7 @@ namespace SmartSaver.Server.Controllers
             _savingGoalsRepository = savingGoalsRepository;
         }
     
-        [HttpGet("{id}/sorting")]
+        [HttpGet("")]
         public async Task<IReadOnlyList<SavingGoal>> Get(Guid userId, string sortingColumn, bool isAscending)
         {
             return await _savingGoalsRepository.GetSortedGoals(Domain.Constants.Constants.TestUserId,
@@ -32,7 +32,7 @@ namespace SmartSaver.Server.Controllers
             return await _savingGoalsRepository.Create(goal);
         }
 
-        [Route("goaledit/{id}")]
+        [Route("")]
         [HttpDelete]
         public async Task<NoContentResult> Delete(Guid id)
         {
@@ -40,7 +40,7 @@ namespace SmartSaver.Server.Controllers
             return NoContent();
         }
 
-        [Route("savings/goaledit")]
+        [Route("")]
         [HttpPut]
         public async void Update(SavingGoal goal)
         {

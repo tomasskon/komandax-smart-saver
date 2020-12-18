@@ -8,7 +8,6 @@ namespace SmartSaver.Domain.Models
     {
         public string Key { get; set; }
         public int Sum { get; set; }
-
         public double SumDouble { get => (double)Sum / 100; }
     }
 }
