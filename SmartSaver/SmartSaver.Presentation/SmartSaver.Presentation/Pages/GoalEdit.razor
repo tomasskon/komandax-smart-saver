@@ -71,28 +71,30 @@ else
             <DataAnnotationsValidator />
             <ValidationSummary />
             <div class="form-group">
-                <p>
+                
 
-                    <label>Select your goal</label>
-                    <select name="goalselect" @bind="selectedValueName" class="select-field">
+                    <label class="control-label col-sm-2">Select your goal</label>
+                    <div class="col-sm-10">
+                    <select name="goalselect" @bind="selectedValueName" class="select-field form-control">
                         @foreach (var goal in SavingGoalsHelper._savingGoals)
                         {
                             <option value="@goal.GoalName">@goal.GoalName</option>
                         }
                     </select>
-                </p>
+                    </div>
+                
             </div>
-            <p>
-                <label>Goal Amount</label>
-                <InputNumber id="goalAmount" @bind-Value="tempAmount" />
-            </p>
-            <p>
-                Select your balance
-                <select name="balancetype" @bind="tempPaymentType" class="select-field">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Goal Amount</label>
+                <InputNumber class="form-control" id="goalAmount" @bind-Value="tempAmount" />
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Select your balance</label>
+                <select name="balancetype" @bind="tempPaymentType" class="select-field form-control">
                     <option value="cash">Cash</option>
                     <option value="card">Card</option>
                 </select>
-            </p>
+            </div>
             <button type="button" class="btn btn-primary" @onclick="EditGoal">Fund</button>
         </EditForm>
     </div>
