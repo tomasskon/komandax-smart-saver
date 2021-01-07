@@ -1,11 +1,12 @@
-﻿@using SmartSaver.Presentation.Shared.Breadcrumbs                                 
+﻿@using SmartSaver.Presentation.Shared.Breadcrumbs
+@using SmartSaver.Presentation.Shared.LoadingSpinner
+@using Microsoft.Extensions.Configuration
 
 @inherits LayoutComponentBase
 
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
-
-@using SmartSaver.Presentation.Shared.LoadingSpinner
+@inject IConfiguration Configuration
 
 
 @if (!_isLoading)
@@ -37,7 +38,7 @@
     {
         try
         {
-            await Http.GetAsync("https://localhost:44301");
+            await Http.GetAsync(Configuration["requestUri"]);
 
             _isLoading = false;
         }

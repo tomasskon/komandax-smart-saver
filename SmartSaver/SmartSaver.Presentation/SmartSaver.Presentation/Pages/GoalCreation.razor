@@ -5,7 +5,9 @@
 @using System.Text.Json
 @using SmartSaver.Presentation.Constants
 @using SmartSaver.Presentation.Shared.Breadcrumbs
+@using Microsoft.Extensions.Configuration
 
+@inject IConfiguration Configuration
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
 @inject IBreadcrumbService BreadcrumbService
@@ -41,8 +43,8 @@
 <Alert Type="@_alertType" Message="@_alertMessage" />
 
 @code {
-        string _alertMessage = "";
-        string _alertType = "";
+    string _alertMessage = "";
+    string _alertType = "";
 
     private SavingGoal _goal = new SavingGoal()
     {
@@ -64,7 +66,7 @@
 
 
 
-        var response = await Http.PostAsJsonAsync<SavingGoal>(@"https://localhost:44301/savings", _goal);
+        var response = await Http.PostAsJsonAsync<SavingGoal>($"{Configuration["requestUri"]}/savings", _goal);
         if (response.IsSuccessStatusCode)
         {
             _alertType = "success";

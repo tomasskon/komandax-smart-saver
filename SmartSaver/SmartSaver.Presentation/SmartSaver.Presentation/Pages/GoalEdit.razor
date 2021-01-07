@@ -6,7 +6,9 @@
 @using SmartSaver.Presentation.Constants
 @using System.Text.Json
 @using SmartSaver.Presentation.Shared.Breadcrumbs
+@using Microsoft.Extensions.Configuration
 
+@inject IConfiguration Configuration
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
 @inject IBreadcrumbService BreadcrumbService
@@ -34,7 +36,7 @@ else
                 <input type="number" @bind-value="tempAmount" placeholder="$" />
             </p>
             <!--
-                
+
             <p>
                 Select your balance
                 <select name="balancetype" @bind="tempPaymentType" class="select-field">
@@ -76,7 +78,7 @@ https://getbootstrap.com/docs/4.0/components/alerts/
         SavingGoalsHelper.isAlreadyInit = true;
         //END
 
-        var response = await Http.DeleteAsync("http://localhost:44301/savings/" + id.ToString());
+        var response = await Http.DeleteAsync($"{Configuration["requestUri"]}/savings/" + id.ToString());
         if (response.IsSuccessStatusCode)
         {
             _alertType = "success";
@@ -99,7 +101,7 @@ https://getbootstrap.com/docs/4.0/components/alerts/
         SavingGoalsHelper._savingGoals[ind] = goal;
         SavingGoalsHelper.isAlreadyInit = true;
         //END
-        var response = await Http.PutAsJsonAsync("http://localhost:44301/savings/goaledit", goal);
+        var response = await Http.PutAsJsonAsync($"{Configuration["requestUri"]}/savings/goaledit", goal);
         if (response.IsSuccessStatusCode)
         {
             _alertType = "success";
