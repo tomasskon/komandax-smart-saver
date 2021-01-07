@@ -6,8 +6,10 @@
 @using SmartSaver.Presentation.Shared.LoadingSpinner
 @using SmartSaver.Presentation.Constants
 @using Microsoft.Extensions.Configuration
+@using SmartSaver.Presentation.Shared.Breadcrumbs
 
 @inject IConfiguration Configuration
+@inject IBreadcrumbService BreadcrumbService
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
 
@@ -90,7 +92,7 @@ else
             {
                 <tr>
                     <td>@transaction.Category.Name</td>
-                    <td>@transaction.Amount</td>
+                    <td>@transaction.AmountDouble €</td>
                     <td>@transaction.Description</td>
                     <td>@transaction.CreatedAt</td>
                     <td>@transaction.BalanceType</td>
@@ -113,15 +115,15 @@ else
     protected override async Task OnInitializedAsync()
     {
         ParseUrlParameters();
-
         await GetSortedTransactions();
+        InitializeBreadCrumbs();
     }
 
     private async Task GetSortedTransactions()
     {
         try
         {
-        	var requestUri = $"{Configuration["requestUri"]}/transactions/{Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
+            var requestUri = $"{Configuration["requestUri"]}/transactions/{Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
             _transactions = await Http.GetFromJsonAsync<Transaction[]>(requestUri);
             NavigationManager.NavigateTo($"transactions/{_sortingModel.SortingColumn}/{_sortingModel.IsAscending}");
         }
@@ -141,5 +143,12 @@ else
     {
         _sortingModel.SortingColumn = column;
         _sortingModel.IsAscending = isAscending;
+    }
+
+    private void InitializeBreadCrumbs()
+    {
+        BreadcrumbService.ClearList();
+        BreadcrumbService.AddBreadcrumb("Transactions", "/transactions");
+        BreadcrumbService.InvokeBreadcrumbsChanged();
     }
 }

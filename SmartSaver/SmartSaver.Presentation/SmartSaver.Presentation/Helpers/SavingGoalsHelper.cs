@@ -46,5 +46,9 @@ namespace SmartSaver.Presentation.Helpers
         }
 
         public static List<SavingGoal> staticGoals = new List<SavingGoal>();
+
+        public static SavingGoal[] _savingGoals;
+
+        public static bool isAlreadyInit = false;
     }
 }

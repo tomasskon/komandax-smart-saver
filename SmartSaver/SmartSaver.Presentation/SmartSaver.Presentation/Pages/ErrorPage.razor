@@ -1,10 +1,12 @@
 ﻿@layout EmptyLayout
 @page "/error"
 
+@using Microsoft.Extensions.Configuration
+@using SmartSaver.Presentation.Shared.LoadingSpinner
+
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
-
-@using SmartSaver.Presentation.Shared.LoadingSpinner
+@inject IConfiguration Configuration
 
 
 <div class="page-wrap d-flex flex-row align-items-center" style="min-height: 100vh; min-width: 100%;">
@@ -26,7 +28,7 @@
     </div>
 </div>
 
-@code { 
+@code {
     private bool _isLoading = false;
 
     public async Task TryAgain()
@@ -35,7 +37,7 @@
 
         try
         {
-            var response = await Http.GetAsync("https://localhost:44301");
+            var response = await Http.GetAsync(Configuration["requestUri"]);
 
             NavigationManager.NavigateTo("/");
         }
@@ -44,4 +46,4 @@
             _isLoading = false;
         }
     }
-    }
+}
