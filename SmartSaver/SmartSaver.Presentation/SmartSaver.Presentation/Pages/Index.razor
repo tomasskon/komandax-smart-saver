@@ -30,7 +30,7 @@ else
                     @foreach (var transaction in _lastTransactions)
                     {
                         <tr>
-                            <td>@transaction.AmountDouble</td>
+                            <td>@transaction.AmountDouble €</td>
                             <td>@transaction.Category.Name</td>
                             <td>@transaction.BalanceType</td>
                             <td>@transaction.CreatedAt</td>
@@ -49,7 +49,7 @@ else
                     {
                         <tr>
                             <td>@groupedTransaction.Key</td>
-                            <td>@groupedTransaction.SumDouble</td>
+                            <td>@groupedTransaction.SumDouble €</td>
                         </tr>
                     }
                 </table>

@@ -8,7 +8,9 @@
 @using SmartSaver.Presentation.Helpers
 @using System.Text.Json
 @using SmartSaver.Presentation.Shared.Breadcrumbs
+@using Microsoft.Extensions.Configuration
 
+@inject IConfiguration Configuration
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
@@ -21,7 +23,8 @@
 @if (SavingGoalsHelper._savingGoals == null)
 {
     <LoadingSpinner />
-} else
+}
+else
 {
     <h1>Saving Goals</h1>
     <table class="table">
@@ -159,7 +162,7 @@
 
     private async Task GetSortedSavingGoals()
     {
-        var requestUri = $"https://localhost:44301/savings/{Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
+        var requestUri = $"{Configuration["requestUri"]}/savings/{Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
         SavingGoalsHelper._savingGoals = await Http.GetFromJsonAsync<SavingGoal[]>(requestUri);
         NavigationManager.NavigateTo($"savings/{_sortingModel.SortingColumn}/{_sortingModel.IsAscending}");
     }
@@ -178,8 +181,8 @@
         _sortingModel.IsAscending = isAscending;
     }
 
-    
-                         
+
+
     private SavingGoal savingGoal = new SavingGoal();
     public void CreateGoal()
     {
