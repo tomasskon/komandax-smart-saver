@@ -1,13 +1,13 @@
 ﻿@page "/transactions"
 @page "/transactions/{sortingColumn}/{isAscending:bool}"
-
-@using SmartSaver.Presentation.Models
-@using SmartSaver.Presentation.Shared.Sorting
-@using SmartSaver.Presentation.Shared.LoadingSpinner
-@using SmartSaver.Presentation.Constants
 @using Microsoft.Extensions.Configuration
-@using SmartSaver.Presentation.Shared.Breadcrumbs
-
+@using Microsoft.VisualBasic
+@using SmartSaver.Portal.Client.Models
+@using SmartSaver.Portal.Client.Shared.Breadcrumbs
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using SmartSaver.Portal.Shared
+@attribute [Authorize]
 @inject IConfiguration Configuration
 @inject IBreadcrumbService BreadcrumbService
 @inject NavigationManager NavigationManager
@@ -17,7 +17,7 @@
 
 @if (_transactions == null)
 {
-    <LoadingSpinner />
+    <LoadingSpinners />
 }
 else
 {
@@ -123,7 +123,7 @@ else
     {
         try
         {
-            var requestUri = $"transactions/{Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
+            var requestUri = $"transactions/{SmartSaver.Portal.Client.Constants.Constants.TestUserId}/sorting?sortingColumn={_sortingModel.SortingColumn}&isAscending={_sortingModel.IsAscending}";
             _transactions = await Http.GetFromJsonAsync<Transaction[]>(requestUri);
             NavigationManager.NavigateTo($"transactions/{_sortingModel.SortingColumn}/{_sortingModel.IsAscending}");
         }
