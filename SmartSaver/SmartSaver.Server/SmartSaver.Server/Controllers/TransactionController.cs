@@ -13,11 +13,13 @@ namespace SmartSaver.Server.Controllers
     {
         private readonly ITransactionsRepository _transactionsRepository;
         private readonly IUsersRepository _usersRepository;
+        private readonly ICategoriesRepository _categoriesRepository;
 
-        public TransactionController(ITransactionsRepository transactionsRepository, IUsersRepository usersRepository)
+        public TransactionController(ITransactionsRepository transactionsRepository, IUsersRepository usersRepository, ICategoriesRepository categoriesRepository)
         {
             _transactionsRepository = transactionsRepository;
             _usersRepository = usersRepository;
+            _categoriesRepository = categoriesRepository;
         }
 
         [HttpGet("{id}/sorting")]
@@ -63,5 +65,42 @@ namespace SmartSaver.Server.Controllers
             return NotFound();
         }
 
+        [HttpPut("{userId}/{type}/{category}/{description}/{amount}")]
+        public async Task<ActionResult> SpendExtension(Guid userId, string type, string category, string description, string amount)
+        {
+            var getCategory = await _categoriesRepository.GetCategoryByName(category);
+
+            if (getCategory != null)
+            {
+                var user = await _usersRepository.GetById(Domain.Constants.Constants.TestUserId);
+                var balance = user.GetType().GetProperty(type);
+                var balanceAmount = (double)balance.GetValue(user);
+
+                if (double.TryParse(amount, out var spendAmount))
+                {
+                    if (balanceAmount >= spendAmount)
+                    {
+                        var transaction = new Transaction
+                        {
+                            AmountDouble = spendAmount,
+                            BalanceType = type,
+                            CategoryId = getCategory.Id,
+                            CreatedAt = DateTime.UtcNow,
+                            Description = description,
+                            UserId = userId
+                        };
+
+                        balance.SetValue(user, balanceAmount - spendAmount);
+
+                        await _transactionsRepository.Create(transaction);
+                        await _usersRepository.Update(user.Id, user);
+
+                        return Ok();
+                    }
+                }
+            }
+
+            return NotFound();
+        }
     }
 }
