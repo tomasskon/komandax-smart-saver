@@ -30,5 +30,6 @@ namespace SmartSaver.Server.Controllers
         {
             await _usersRepository.Update(SmartSaver.Domain.Constants.Constants.TestUserId, user);
         }
+
     }
 }
