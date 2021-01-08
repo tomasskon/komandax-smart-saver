@@ -8,11 +8,13 @@ namespace DataSQL
         static void Main(string[] args)
         {
             string sqlConnectString = "Server=(localdb)\\mssqllocaldb;Database=SmartSaver;Integrated Security=True";
-
+            SqlConnection conn = new SqlConnection(sqlConnectString);
+            conn.Open();
             string sqlSelect = "SELECT FullName FROM dbo.Users";
-
-            SqlDataAdapter da = new SqlDataAdapter(sqlSelect, sqlConnectString);
+            UsersAdapter ua = new UsersAdapter();
+            SqlDataAdapter da = UsersAdapter.CreateCustomerAdapter(conn);
             DataTable dt = new DataTable();
+            //da.SelectCommand.ExecuteNonQuery();
             da.Fill(dt);
 
             foreach (DataRow row in dt.Rows)

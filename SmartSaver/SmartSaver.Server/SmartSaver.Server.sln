@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartSaver.Server", "SmartS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartSaver.Domain", "SmartSaver.Domain\SmartSaver.Domain.csproj", "{2D1ADE10-985B-43C1-B33E-1416B51146B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSQL", "DataSQL\DataSQL.csproj", "{E9BD41BE-14F8-4AEA-8DF3-B11CAFADF0A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoConsoleApp", "AdoConsoleApp\AdoConsoleApp.csproj", "{B5D2CC45-11C8-4DED-A39D-DA521C35092C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{2D1ADE10-985B-43C1-B33E-1416B51146B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1ADE10-985B-43C1-B33E-1416B51146B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1ADE10-985B-43C1-B33E-1416B51146B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9BD41BE-14F8-4AEA-8DF3-B11CAFADF0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9BD41BE-14F8-4AEA-8DF3-B11CAFADF0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9BD41BE-14F8-4AEA-8DF3-B11CAFADF0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9BD41BE-14F8-4AEA-8DF3-B11CAFADF0A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D2CC45-11C8-4DED-A39D-DA521C35092C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D2CC45-11C8-4DED-A39D-DA521C35092C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D2CC45-11C8-4DED-A39D-DA521C35092C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D2CC45-11C8-4DED-A39D-DA521C35092C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
