@@ -19,9 +19,9 @@ namespace SmartSaver.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IReadOnlyList<Category>> Get()
+        public async Task<IReadOnlyList<Category>> Get([FromQuery(Name = "per-page")] int perPage = 10, [FromQuery(Name = "page")] int page = 1)
         {
-            return await _categoriesRepository.GetAllUserCategories(Domain.Constants.Constants.TestUserId);
+            return await _categoriesRepository.GetAllUserCategories(Domain.Constants.Constants.TestUserId, perPage, page);
         }
 
         [HttpPost]
@@ -39,6 +39,13 @@ namespace SmartSaver.Server.Controllers
             await _categoriesRepository.Delete(id);
 
             return NoContent();
+        }
+
+        [Route("count")]
+        [HttpGet]
+        public async Task<ActionResult<int>> GetCount()
+        {
+            return await _categoriesRepository.GetCount(Domain.Constants.Constants.TestUserId);
         }
     }
 }
