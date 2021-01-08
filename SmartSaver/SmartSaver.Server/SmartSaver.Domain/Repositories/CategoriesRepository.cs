@@ -14,9 +14,14 @@ namespace SmartSaver.Domain.Repositories
         {
         }
 
-        public async Task<IReadOnlyList<Category>> GetAllUserCategories(Guid userId)
+        public async Task<IReadOnlyList<Category>> GetAllUserCategories(Guid userId, int perPage = 10, int page = 1)
         {
-            return await Set.Where(i => i.UserId == userId).ToListAsync();
+            return await Set.Where(i => i.UserId == userId).Skip((page - 1) * perPage).Take(perPage).ToListAsync();
+        }
+
+        public async Task<int> GetCount(Guid userId)
+        {
+            return await Set.Where(i => i.UserId == userId).CountAsync();
         }
 
         public async Task<Category> GetCategoryByName(string category)
