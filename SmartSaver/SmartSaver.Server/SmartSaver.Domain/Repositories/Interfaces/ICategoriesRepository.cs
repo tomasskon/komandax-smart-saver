@@ -8,5 +8,7 @@ namespace SmartSaver.Domain.Repositories.Interfaces
     public interface ICategoriesRepository : IGenericRepository<Category>
     {
         Task<IReadOnlyList<Category>> GetAllUserCategories(Guid userId);
+
+        Task<Category> GetCategoryByName(string category);
     }
 }

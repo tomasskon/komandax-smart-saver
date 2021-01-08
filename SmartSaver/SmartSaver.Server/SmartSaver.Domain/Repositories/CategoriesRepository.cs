@@ -18,5 +18,10 @@ namespace SmartSaver.Domain.Repositories
         {
             return await Set.Where(i => i.UserId == userId).ToListAsync();
         }
+
+        public async Task<Category> GetCategoryByName(string category)
+        {
+            return await Set.SingleOrDefaultAsync(i => i.Name == category);
+        }
     }
 }
