@@ -18,119 +18,114 @@
 }
 else
 {
-    <h1>Profile page</h1>
-    <div class="row">
-        <div class="col-4">
-            <div class="form-group">
-                <input type="file" @ref="inputReference" @onchange="async () => await OpenFileAsync()" />
-                <u1>
-                </u1>
-            </div>
-            <button class="btn btn-block btn-success" @onclick="async () => await UploadFileAsync()">Upload profile image</button>
-            @if (!string.IsNullOrWhiteSpace(message))
-            {
-                <div class="alert alert-success">
-                    Image has been uploaded
-                </div>
-            }
-        </div>
-        <div class="rounded-circle">
-            @if (imagePath != null)
-            {
-                <img style="width:150px" src="@imagePath" class=" align-content-lg-center" />
-            }
-        </div>
-    </div>
-
-    <h3 class="mb-0">My account</h3>
-    <div class="card-body">
-        <h6 class="heading-small text-muted mb-4">User information</h6>
-        <div class="pl-lg-4">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group focused">
-                        <label class="form-control-label" for="userid">User ID</label>
-                        <input type="text" id="userid" class="form-control form-control-alternative" value="@_user.Id" readonly>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <EditForm Model="@_user" OnValidSubmit="@HandleSubmit">
-                            <label class="form-control-label" for="email">Email address</label>
-                            <input type="email" id="email" @bind-value="@_user.Gmail" class="form-control form-control-alternative">
-                        </EditForm>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <EditForm Model="@_user" OnValidSubmit="@HandleSubmit">
-                            <label class="form-control-label" for="fname">Full name</label>
-                            <input type="text" id="fname" @bind-value="@_user.FullName" class="form-control form-control-alternative">
-                        </EditForm>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group focused">
-                        <label class="form-control-label" for="card">Card balance</label>
-                        <input type="text" id="card" class="form-control form-control-alternative" value="@_user.Card" readonly>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group focused">
-                        <label class="form-control-label" for="cash">Cash balance</label>
-                        <input type="text" id="cash" class="form-control form-control-alternative" value="@_user.Cash" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="my-4">
-    </div>
-    <footer class="footer">
-        <div class="row align-items-center justify-content-xl-between">
-        </div>
-    </footer>
-
     <div>
-        <h1 class="mb-4">Hello!</h1>
+        <h1 class="mb-4">
+            Home
+        </h1>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Your last 5 transactions</h3>
-                <table class="table">
-                    <tr>
-                        <th>Amount</th>
-                        <th>Category Name</th>
-                        <th>Balance</th>
-                        <th>Created At</th>
-                    </tr>
-                    @foreach (var transaction in _lastTransactions)
-                    {
-                        <tr>
-                            <td>@transaction.AmountDouble €</td>
-                            <td>@transaction.Category.Name</td>
-                            <td>@transaction.BalanceType</td>
-                            <td>@transaction.CreatedAt</td>
-                        </tr>
-                     }
-                </table>
+        <div class="card mb-4">
+            <div class="card-header">
+                My profile
             </div>
-            <div class="col-md-6">
-                <h3>Your spent amount per category</h3>
-                <table class="table">
-                    <tr>
-                        <th>Category Name</th>
-                        <th>Amount</th>
-                    </tr>
-                    @foreach (var groupedTransaction in _groupedTransactions)
-                    {
-                        <tr>
-                            <td>@groupedTransaction.Key</td>
-                            <td>@groupedTransaction.SumDouble €</td>
-                        </tr>
-                    }
-                </table>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>User information</h3>
+                        <div class="form-group focused">
+                            <label class="form-control-label" for="id">User Id</label>
+                            <input type="text" id="id" class="form-control form-control-alternative" value="@_user.Id" readonly>
+                        </div>
+                        <div class="form-group">
+                            <EditForm Model="@_user" OnValidSubmit="@HandleSubmit">
+                                <label class="form-control-label" for="email">Email address</label>
+                                <input type="email" id="email" @bind-value="@_user.Gmail" class="form-control form-control-alternative">
+                            </EditForm>
+                        </div>
+                        <div class="form-group">
+                            <EditForm Model="@_user" OnValidSubmit="@HandleSubmit">
+                                <label class="form-control-label" for="fname">Full name</label>
+                                <input type="text" id="fname" @bind-value="@_user.FullName" class="form-control form-control-alternative">
+                            </EditForm>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group focused">
+                                    <label class="form-control-label" for="card">Card balance</label>
+                                    <input type="text" id="card" class="form-control form-control-alternative" value="@_user.Card" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group focused">
+                                    <label class="form-control-label" for="cash">Cash balance</label>
+                                    <input type="text" id="cash" class="form-control form-control-alternative" value="@_user.Cash" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Profile image</h3>
+                        @if (!string.IsNullOrWhiteSpace(error))
+                        {
+                            <div class="alert alert-danger">
+                                @error
+                            </div>
+                        }
+                        @if (imagePath != null)
+                        {
+                            <img style="max-height:181px;" src="@imagePath" class="img-thumbnail mb-4" />
+                        }
+                        <div class="form-group">
+                            <input type="file" accept=".jpg,.JPG" @ref="inputReference" @onchange="async () => await OpenFileAsync()" />
+                        </div>
+                        <button class="btn btn-block btn-success" @onclick="async () => await UploadFileAsync()">Upload profile image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                My statistics
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Your last 5 transactions</h3>
+                        <table class="table">
+                            <tr>
+                                <th>Amount</th>
+                                <th>Category Name</th>
+                                <th>Balance</th>
+                                <th>Created At</th>
+                            </tr>
+                            @foreach (var transaction in _lastTransactions)
+                            {
+                                <tr>
+                                    <td>@transaction.AmountDouble €</td>
+                                    <td>@transaction.Category.Name</td>
+                                    <td>@transaction.BalanceType</td>
+                                    <td>@transaction.CreatedAt</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Your spent amount per category</h3>
+                        <table class="table">
+                            <tr>
+                                <th>Category Name</th>
+                                <th>Amount</th>
+                            </tr>
+                            @foreach (var groupedTransaction in _groupedTransactions)
+                            {
+                                <tr>
+                                    <td>@groupedTransaction.Key</td>
+                                    <td>@groupedTransaction.SumDouble €</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -139,7 +134,7 @@ else
 @code
 {
     ElementReference inputReference;
-    string message = string.Empty;
+    string error = string.Empty;
     static string imagePath = null;
     private User _user;
     string fileName = string.Empty;
@@ -160,6 +155,16 @@ else
         catch (Exception)
         {
             NavigationManager.NavigateTo("/error");
+        }
+        try
+        {
+            var tempImagePath = $"{Configuration["requestUri"]}/api/images/{_user.Id}.jpg";
+            await Http.GetAsync(tempImagePath);
+            imagePath = tempImagePath;
+        }
+        catch (Exception)
+        {
+
         }
     }
 
@@ -211,22 +216,29 @@ else
         {
             fileStream = new MemoryStream(ms.ToArray());
         }
-
     }
 
     async Task UploadFileAsync()
     {
+        error = string.Empty;
+        if (!fileName.EndsWith(".jpg"))
+        {
+            error = "Image must be jpg type";
+            return;
+        }
+
         var content = new MultipartFormDataContent();
         content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data");
         content.Add(new StreamContent(fileStream, (int)fileStream.Length), "image", fileName);
-        var response = await Http.PostAsync($"{Configuration["requestUri"]}/api/images", content);
+        content.Add(new StringContent(_user.Id.ToString()), "userId");
 
+        var response = await Http.PostAsync($"{Configuration["requestUri"]}/api/images", content);
 
         if (response.IsSuccessStatusCode)
         {
             var uploadedFileName = await response.Content.ReadAsStringAsync();
             imagePath = $"{Configuration["requestUri"]}/{uploadedFileName}";
-            message = "Uploaded successfully";
+            NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
         }
     }
 }
